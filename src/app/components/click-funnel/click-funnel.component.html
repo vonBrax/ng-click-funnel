@@ -1,0 +1,32 @@
+<div class="funnel-container">
+  <mat-toolbar>
+    <mat-progress-bar [value]="progressBarValue"></mat-progress-bar>
+  </mat-toolbar>
+  <mat-card>
+    <mat-card-title>Title - {{step.question}}</mat-card-title>
+    <mat-card-subtitle>Subtitle - {{step.question}}</mat-card-subtitle>
+    <!-- <mat-card-content [@answers]="step.answers.length"> -->
+      <mat-card-content>
+      <!-- <div *ngFor="let answer of answers; index as i" >
+        <app-radio-click (removeAnswersEvent)="removeAnswers(i)" [answer]="answer" [index]="i"></app-radio-click>
+      </div> -->
+      <!-- <div (click)="goForward($event)" #wrapper> -->
+      <div #wrapper [@answersAnimation]="step.answers.length" class="wrapper">
+          <div *ngFor="let answer of step.answers; index as i" class="option">  
+          <!-- <app-radio-click *ngFor="let answer of step.answers; index as i" (removeAnswersEvent)="removeAnswers(i)" [answer]="answer" [index]="i"></app-radio-click> -->
+          <app-radio-click [answer]="answer" [index]="i"></app-radio-click>
+          </div>  
+      </div>
+      
+      <!-- 
+      <div [@goals]="goals.length">
+        <p *ngFor="let goal of goals; index as i" (click)="removeItem(i)">{{goal}}</p>
+      </div> -->
+  
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-fab type="button" (click)="back()" [disabled]="cursor === 0" ><mat-icon>arrow_back</mat-icon></button>
+    </mat-card-actions>
+    <mat-card-footer>Footer</mat-card-footer>
+  </mat-card>
+</div>

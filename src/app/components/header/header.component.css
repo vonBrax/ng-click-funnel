@@ -1,0 +1,60 @@
+.header {
+    background-color: #f7d91d;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    width: 100%;
+    border-bottom-right-radius: 50px; 
+    position: relative;
+    padding: 1em 0;
+    box-shadow: 0 0 20px rgba(0,0,0,.1); 
+}
+
+.header__inner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+
+}
+
+.logo {
+    padding-right: 1em;
+    max-width: 400px;
+}
+
+.accreditation-logos img:first-of-type {
+    margin-right: 20px;
+}
+
+.svg {
+    max-width: 280px;
+    min-width: 180px;
+    fill: #585a51;
+    flex: 1;
+}
+ 
+.svg--quno-logo .st1 {
+    fill: #f7d91d;
+    opacity: .5;
+    flex: 1;
+}
+
+:host /deep/ .selectPhone {
+    padding-top: 20px;
+}
+
+@media (max-width: 804px) {
+    .hide--untilTabletMid {
+        display: none!important;
+    }
+}
+
+@media (min-width: 600px) {
+    .header {
+        height: 100px;
+    }
+    .header__inner {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+}

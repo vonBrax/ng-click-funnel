@@ -1,0 +1,131 @@
+.flag {
+  display: flex;
+  align-items: center;
+}
+.flag--inline {
+  display: inline-block;
+}
+.flag.flag--noBoxShadow > svg {
+  box-shadow: none;
+}
+.flag > svg {
+  display: block;
+  border-radius: 2px;
+  width: 21px;
+  height: 16px;
+  box-shadow: 0px 0px 2px 0px #979797;
+}
+
+.svg--angle-down {
+  margin-left: 1em;
+}
+
+.selectPhone {
+  background-color: transparent;
+  position: relative;
+  text-align: left;
+  max-height: 75px;
+}
+
+.selectPhone > p {
+  margin: 0 0 .5em 1em;
+  font-weight: bold;
+}
+
+.selectPhone--sectionMobile {
+  margin: 1em auto;
+  max-height: 80px;
+  max-width: 225px;
+}
+.selectPhone--sectionMobile > p:first-of-type {
+  text-transform: uppercase;
+  text-align: center;
+  margin-left: 0;
+}
+.selectPhone--sectionReady {
+  margin-bottom: 1.25em;
+}
+.selectPhone__main {
+  max-height: 55px;
+  cursor: pointer;
+}
+.selectPhone__main.is-active .selectPhone__list {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.selectPhone__button {
+  color: #585a51;
+  background-color: #FFF;
+  padding: 0.125em 1em;
+  border: 2px solid #585a51;
+  border-radius: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.selectPhone--sectionReady .selectPhone__button {
+  font-size: 1.25em;
+  background-color: transparent;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.selectPhone__button > span:last-of-type {
+  margin-left: auto;
+  display: inline-block;
+  align-self: center;
+}
+.selectPhone__button > span:last-of-type > svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  fill: #585a51;
+}
+.selectPhone__button > span:last-of-type > svg path {
+  transition: none;
+}
+.selectPhone__list {
+  visibility: hidden;
+  position: relative;
+  color: #585a51;
+  padding: 0.5em 0;
+  width: 97%;
+  left: 0;
+  right: 0;
+  margin: 0.5em auto 0 auto;
+  background-color: #FFF;
+  border-radius: 10px;
+  z-index: 2;
+  text-align: center;
+  transform: translateY(-1em);
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  box-shadow: 0 0px 6px 2px #c1c1c1;
+}
+.selectPhone__phoneItem {
+  padding: .5em 1em;
+  display: flex;
+  align-items: center;
+}
+.selectPhone__phoneItem:hover {
+  background-color: #e1e1e1;
+}
+.selectPhone__phoneItem--selected {
+  padding: 0.25em 0;
+}
+.selectPhone__phoneItem > span:last-of-type {
+  margin-left: .5em;
+}
+@media (min-width: 992px) {
+  .selectPhone__main:hover .selectPhone__list,
+  .selectPhone__main:active .selectPhone__list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .selectPhone__main:hover .selectPhone__button:hover,
+  .selectPhone__main:active .selectPhone__button:hover,
+  .selectPhone__main:hover .selectPhone__button:focus,
+  .selectPhone__main:active .selectPhone__button:focus {
+    background-color: #e1e1e1;
+  }
+}
