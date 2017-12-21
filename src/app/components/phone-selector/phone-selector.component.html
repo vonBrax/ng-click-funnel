@@ -1,7 +1,7 @@
 <div class="selectPhone ">
   <!-- <p>Contact us today</p> -->
-  <div class="selectPhone__main" tabindex="0" toggle-on-touchstart="" (click)="isActive=true" (appClickOutside)="isActive=false" [class.is-active]="isActive" >
-    <div class="selectPhone__button" aria-haspopup="true">
+  <div class="selectPhone__main" tabindex="0" (click)="isActive=true" appClickOutside (clickOutside)="isActive=false" [class.is-active]="isActive" > 
+    <div class="selectPhone__button" aria-haspopup="true"> 
       
       <a class="selectPhone__phoneItem selectPhone__phoneItem--selected" target="_self" href="{{'tel:'+countryList[0].number}}">
         <span class="flag flag--inline">

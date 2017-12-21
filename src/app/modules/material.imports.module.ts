@@ -4,7 +4,10 @@ import {
   MatToolbarModule,
   MatProgressBarModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 const materialImports = [
@@ -12,7 +15,10 @@ const materialImports = [
   MatToolbarModule,
   MatProgressBarModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

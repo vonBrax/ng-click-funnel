@@ -1,0 +1,11 @@
+<section [formGroup]="childGroup" class="wrapper">
+  <div *ngFor="let field of fields">
+    <mat-form-field>
+    <input matInput [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder">
+    <mat-error>{{field.error_message || 'This field is required'}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <app-tos [description]="tosContent" [childGroup]="childGroup"></app-tos>
+  </div>
+</section>

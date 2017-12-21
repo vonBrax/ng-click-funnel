@@ -14,4 +14,8 @@ export class PhoneSelectorComponent implements OnInit {
   ngOnInit() {
     this.countryList = CountryList;
   }
+
+  testing() {
+    console.log('Am I working???');
+  }
 }

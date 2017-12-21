@@ -1,0 +1,135 @@
+.hero {
+    /* background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,w_360,q_70,fl_progressive/pages/homepage-hero.jpg'); */
+    background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,w_360,q_70,fl_progressive/clinic/BILD1326.jpg');
+    background-position: center center;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-top: -50px;
+    color: #fff;
+    padding: 2em 0;
+}
+
+.hero__inner {
+    display: flex;
+   /*  align-items:center; */
+    justify-content: space-between;
+    height: 100%;
+    padding-top: 3em;
+}
+
+.hero__values {
+    text-align: center;
+    /* flex: 1 1 50%;
+    align-self: flex-start; */
+}
+
+.hero__values h1 {
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+.hero__values h2 {
+    font-size: 1.5em;
+}
+
+.hero__value {
+    margin: 1em 0;
+}
+
+figure {
+    margin-top: 4em;
+}
+
+app-click-funnel {
+    flex-basis: 400px;
+}
+
+mat-icon {
+    vertical-align: middle;
+}
+
+@media (min-width: 804px) {
+
+    .show--mobile {
+        display: none;
+    }
+
+    .hero {
+        padding: 3em 0;
+    }
+
+    .hero__values {
+        text-align: left;
+    }
+    .hero__values h1 {
+        margin-bottom: 1em;
+        font-size: 3em;
+    }
+
+    .hero__values h2 {
+        font-size: 2em;
+    }
+
+    .hero__value {
+        margin: 1.5em 0;
+    }
+    .padding-left--large {
+        padding-left: 2em;
+    }
+}
+
+@media (max-width: 803px) {
+    app-form-hero {
+        display: none;
+    }
+}
+
+
+/*Responsive background image media query rules*/
+@media all and (orientation: landscape) {
+    .hero {
+        background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,w_360,q_70,fl_progressive/clinic/BILD1326.jpg');
+    }
+
+    @media (min-width: 360px) {
+        .hero {
+            background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,w_640,q_70,fl_progressive/clinic/BILD1326.jpg') 
+        }
+    }
+
+    @media (min-width: 640px) {
+        .hero {
+            background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,w_1024,q_70,fl_progressive/clinic/BILD1326.jpg')
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero {
+            background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,w_1920,q_70,fl_progressive/clinic/BILD1326.jpg')
+        }
+    }
+}
+
+@media all and (orientation: portrait) {
+     .hero {
+       background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,c_fill,h_640,w_360,q_70,fl_progressive/clinic/BILD1326.jpg')
+    }
+
+    @media (min-height: 360px) {
+        .hero {
+            background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,c_fill,h_1024,w_800,q_70,fl_progressive/clinic/BILD1326.jpg')
+        }
+    }
+
+    @media (min-height: 640px) {
+        .hero {
+            background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,c_fill,h_1280,w_970,q_70,fl_progressive/clinic/BILD1326.jpg')
+        }
+    }
+
+    @media (min-height: 1024px) {
+        .hero{
+            background-image: url('https://res.cloudinary.com/junomedical/image/upload/f_auto,c_fill,h_1920,w_1280,q_70,fl_progressive/pages/clinic/BILD1326.jpg') }
+    }
+}
+   

@@ -1,0 +1,6 @@
+<section class="how-it-works center-content">
+  <div class="column" *ngFor="let block of strings, index as i">
+      <h3 class="title"><span class="number">{{'0' + (i+1)}}&nbsp;</span><span class="string">{{block.title}}</span></h3>
+      <div class="body">{{block.description}}</div>
+  </div>
+</section> 

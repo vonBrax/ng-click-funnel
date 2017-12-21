@@ -1,8 +1,9 @@
 <!-- <div class="radio-container" (click)="removeAnswers()">  -->
-<div class="radio-container"> 
+<div class="radio-container" [formGroup]="formGroup"> 
   <label class="radio-button">
-    <span class="radio-option">{{numberToChar(index)}}</span>
-    <input type="radio" value="{{answer}}" name="{{index}}"> 
+   <!--  <span class="radio-option">{{numberToChar(index)}}</span> -->
+    <!-- <input type="radio" value="{{answer}}" name="{{index}}" [formControlName]="controlName">  -->
+    <input type="radio" value="{{answer}}" [formControlName]="controlName">   
     <span class="radio-answer">{{answer}}</span>
   </label>
 </div>

@@ -1,0 +1,27 @@
+span {
+    font-size: .75em;
+}
+
+.wrapper__tos {
+    text-align: justify;
+}
+
+:host /deep/ mat-checkbox>label {
+    white-space: initial;
+}
+
+:host /deep/ .mat-checkbox-inner-container {
+    margin-top: 0;
+}
+
+:host /deep/ .mat-checkbox-layout .mat-checkbox-label {
+    line-height: 20px;
+}
+
+:host /deep/ mat-checkbox a {
+    font-weight: bold;
+}
+
+:host /deep/ mat-checkbox a:hover {
+    text-decoration: underline;
+}

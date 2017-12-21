@@ -1,0 +1,23 @@
+.how-it-works {
+   /*  display: flex;
+    justify-content: space-between;
+    padding: 2em 0 2.5em;
+    background: #fff;
+    box-shadow: 0 8px 6px -6px #c1c1c1;
+    display: none;
+    position: relative; */
+    box-shadow: 0 8px 6px -6px #c1c1c1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5em;
+    padding: 2em 0;
+}
+
+.how-it-works .title {
+    border-bottom: 1px solid #585a51;
+    margin-bottom: .5em;
+}
+
+.title .number {
+    font-size: 1.5em;
+}

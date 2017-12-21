@@ -1,22 +1,19 @@
 .radio-container {
-    /* width: 100%; */
-    border: 1px solid #c1c1c1;
     display: flex;
-    margin: .5em 0;
     font-size: 1em;
     transition: background-color .2s ease-in;
     height: 100%;
 
 }
-.radio-container:hover{
- background: turquoise;   
-}
+
 .radio-button {
-    padding: 0 2em;
+    border: 1px solid #c1c1c1;
+    padding: .5em 2em;
     display: flex;
     align-items: center;
-    cursor: pointer;    
-    /* min-height: 70px; */
+    cursor: pointer;
+    height: 100%;
+    width: 100%;    
 }
 
 .radio-option {
@@ -41,3 +38,8 @@ input[type="radio"]{
     display: none;
 }
 
+@media (min-width: 600px) {
+    .radio-button {
+        padding: 0 2em;
+    }
+}

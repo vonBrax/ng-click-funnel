@@ -1,0 +1,13 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, 200px);
+    align-items: center;
+    justify-items: center; 
+}
+
+.cell img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;  
+}

@@ -1,5 +1,5 @@
 .header {
-    background-color: #f7d91d;
+    background-color: #ffffff;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     width: 100%;
     border-bottom-right-radius: 50px; 
@@ -34,7 +34,7 @@
 }
  
 .svg--quno-logo .st1 {
-    fill: #f7d91d;
+    fill: #ffffff;
     opacity: .5;
     flex: 1;
 }

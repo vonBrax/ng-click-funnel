@@ -1,0 +1,19 @@
+<div class="hero">
+  <div class="hero__inner center-content">
+    <div class="hero__values">
+      <h1>{{strings.headline}}</h1>
+      <div class="hero__value" *ngFor="let value of strings.values">
+        <h2>
+          <mat-icon>check</mat-icon>
+          <strong>{{value.title}}</strong>
+        </h2>
+        <p class="padding-left--large">{{value.description}}</p>
+      </div>
+      <figure>
+        <img src="https://res.cloudinary.com/junomedical/image/upload/f_auto,w_100,q_70,fl_progressive/accreditation/imtj" alt="International Medical Travel Awards 2017">
+        <img src="https://res.cloudinary.com/junomedical/image/upload/f_auto,w_100,q_70,fl_progressive/accreditation/temos-international" alt="Temos International">
+      </figure>
+    </div>
+    <app-click-funnel></app-click-funnel>
+  </div>
+</div>

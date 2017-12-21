@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    flex-flow: row wrap; 
+}
+
+.wrapper>div {
+    flex: 1 1 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+:host /deep/ .mat-input-infix.mat-form-field-infix {
+    width: initial;
+}
+
+@media (min-width: 600px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1em;
+        padding-top: 2em;    
+    }
+
+    .wrapper>div:nth-of-type(odd):last-of-type {
+        grid-column: 1 / 3;
+    }
+}

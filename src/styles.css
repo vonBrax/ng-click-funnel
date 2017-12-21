@@ -227,3 +227,7 @@ p, span, div, input, checkbox, select, option, radio {
 .svg path {
     transition: all .5s;
 }
+
+body {
+    background-color: #f6f7fb;
+}
