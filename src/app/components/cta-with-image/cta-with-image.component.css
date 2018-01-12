@@ -1,0 +1,42 @@
+section {
+    background-color: #585a51;
+}
+.wrapper {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em 0;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+button {
+    background-color: #f7d91d;
+    border-radius: 10px;
+    color: #585a51;
+    font-size: 1em;
+    width: 100%;
+}
+
+app-svg-quote {
+    fill: #fff;
+}
+
+@media (min-width: 804px) {
+    .flex-basis--40 {
+        flex-basis: 40%;
+    }
+}
+
+/* Helper classes */
+.flex-direction--column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-align--center {
+    align-items: center;
+}

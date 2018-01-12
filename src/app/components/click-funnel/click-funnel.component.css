@@ -8,6 +8,7 @@
 
 mat-card {
     border-bottom-right-radius: 50px;
+    min-height: 360px;
     overflow: hidden;
 }
 

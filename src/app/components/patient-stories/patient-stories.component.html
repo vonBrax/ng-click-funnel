@@ -1,0 +1,20 @@
+<section>
+  <div class="wrapper center-content">
+    <div class="grid">
+      
+      <div class="cell align-self--center">
+        <h2 class="title margin-bottom--normal">{{strings.title}}</h2>
+        <p class="margin-bottom--normal">{{strings.description}}</p>
+        <div class="wrapper__buttons margin-bottom--normal">
+          <button *ngFor="let video of strings.videos, index as i" (click)="switchVideos(i)" [class.active]="videos.indexOf(activeVideo) === i">
+          <app-svg-angle-right-circle class="svg--circle"></app-svg-angle-right-circle>
+          <span class="video-title">{{video.title}}</span>
+        </button>
+        </div>
+      </div>
+      <div class="cell aspect-ratio--16-9">
+        <iframe [src]="activeVideo.url | safe" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+section {
+    background-color: #f7d91d;
+}
+
+.wrapper {
+    color: #585a51;
+    padding: 2em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+button {
+    background-color: #f7d91d;
+    border: 1px solid #585a51;
+    border-radius: 20px;
+}
+
+@media (min-width: 600px) {
+    h2 {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 50%;
+    }
+}

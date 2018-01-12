@@ -13,7 +13,7 @@ export class PackageDealsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.strings = Strings.package_deals[0];
+    this.strings = Strings.package_deals;
   }
 
 }

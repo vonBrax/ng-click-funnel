@@ -1,0 +1,21 @@
+<section>
+  <div class="wrapper center-content">
+    <div class="title">{{strings.title}}</div>
+    
+    <div *ngFor="let review of strings.reviews" class="review">
+      
+      <div class="cell flex-basis--20 margin-right--normal">
+        <span class="font-weight--bold margin-bottom--small">{{review.patient}}</span>
+        <span>{{review.country}}</span>
+        <span class="treatment font-size--75">{{review.treatment}}</span>
+      </div>
+      
+      <div class="cell flex-basis--50">
+        <app-svg-star [starsNumber]="review.stars"></app-svg-star>
+        <span class="font-size--75 margin-bottom--normal margin-top--small">{{review.date}}</span>
+        <span class="font-weight--bold">"{{review.teaser}}"</span>
+        <span>{{review.full}}</span>
+      </div>
+    </div>
+  </div>
+</section>

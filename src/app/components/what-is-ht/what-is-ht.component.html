@@ -1,0 +1,29 @@
+<section>
+  <div class="wrapper center-content">
+    <div class="flex">
+
+      <div class="cell flex-basis--30 flex-selfAlign--center">
+        <div class="title margin-bottom--normal">
+          <div class="circle--yellow">
+            <app-svg-ht-icon></app-svg-ht-icon>
+          </div>
+          <span>{{strings.title}}</span>
+        </div>
+        
+        
+        <p *ngFor="let p of strings.description, last as l" [innerHTML]="p | html" [class.margin-bottom--small]="!l"></p>
+      </div>
+    
+      <div class="cell grid-wrapper flex-basis--60 hide--phone hide--tabletMid">
+        <div class="column" *ngFor="let method of strings.methods">
+          <div class="flex-wrapper margin-bottom--normal">
+            <div class="circle--yellow margin-bottom--small">{{method.abbr}}</div>
+            <span class="font-size--75">{{method.name}}</span>
+          </div>
+          <p class="text-align--justify margin-bottom--small">{{method.description}}</p>
+          <p [innerHTML]="method.extras | html"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

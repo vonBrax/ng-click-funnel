@@ -5,7 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ScrollToDirective } from './directives/smooth-scroll.directive';
 import { HtmlPipe } from './pipes/html.pipe';
+import { SafePipe } from './pipes/safe.pipe';
 
 import { MaterialImportsModule } from './modules/material.imports.module';
 
@@ -22,11 +24,27 @@ import { HeroBannerComponent } from './components/hero-banner/hero-banner.compon
 import { HowItWorksComponent } from './components/how-it-works/how-it-works.component';
 import { ReviewStatsComponent } from './components/review-stats/review-stats.component';
 import { PackageDealsComponent } from './components/package-deals/package-deals.component';
+import { SvgStarComponent } from './components/svg-star/svg-star.component';
+import { PatientStoriesComponent } from './components/patient-stories/patient-stories.component';
+import { SvgAngleRightCircleComponent } from './components/svg-angle-right-circle/svg-angle-right-circle.component';
+import { WhatIsHtComponent } from './components/what-is-ht/what-is-ht.component';
+import { SvgHtIconComponent } from './components/svg-ht-icon/svg-ht-icon.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { AccreditationsComponent } from './components/accreditations/accreditations.component';
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
+import { CtaPlainComponent } from './components/cta-plain/cta-plain.component';
+import { CtaInlineComponent } from './components/cta-inline/cta-inline.component';
+import { CtaWithImageComponent } from './components/cta-with-image/cta-with-image.component';
+import { SvgQuoteComponent } from './components/svg-quote/svg-quote.component';
+import { SvgStar2Component } from './components/svg-star2/svg-star2.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
     ClickOutsideDirective,
+    ScrollToDirective,
     HtmlPipe,
+    SafePipe,
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -38,7 +56,21 @@ import { PackageDealsComponent } from './components/package-deals/package-deals.
     HeroBannerComponent,
     HowItWorksComponent,
     ReviewStatsComponent,
-    PackageDealsComponent
+    PackageDealsComponent,
+    SvgStarComponent,
+    PatientStoriesComponent,
+    SvgAngleRightCircleComponent,
+    WhatIsHtComponent,
+    SvgHtIconComponent,
+    ReviewsComponent,
+    AccreditationsComponent,
+    DisclaimerComponent,
+    CtaPlainComponent,
+    CtaInlineComponent,
+    CtaWithImageComponent,
+    SvgQuoteComponent,
+    SvgStar2Component,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

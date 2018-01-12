@@ -189,22 +189,8 @@ p, span, div, input, checkbox, select, option, radio {
 
 /* Global Styles */
 
-.center-content {
-    max-width: 1100px;
-    margin: 0 auto;
-   
-}
-@media (min-width: 600px) {
-     .center-content {
-         margin: 0 2em;
-     }
-}      
-@media (min-width: 1072px) {
-    .center-content {
-        margin: 0 auto;
-        min-width: 992px;
-        width: 80%;
-    }
+body {
+    background-color: #f6f7fb;
 }
 
 .svg {
@@ -215,19 +201,135 @@ p, span, div, input, checkbox, select, option, radio {
     overflow: visible!important;
     display: inline-block;
     vertical-align: top;
-    fill: #585a51;
-}
-
-.svg,
-.svg [fill^="#"],
-.svg [FILL^="#"] {
-    fill: #585a51;
 }
 
 .svg path {
     transition: all .5s;
 }
 
-body {
-    background-color: #f6f7fb;
+.center-content {
+    max-width: 1100px;
+    margin: 0 1em;
+   
+}
+
+@media (min-width: 600px) {
+     
+    .center-content {
+         margin: 0 2em;
+     }
+}      
+
+@media (min-width: 1072px) {
+    
+    .center-content {
+        margin: 0 auto;
+        min-width: 992px;
+        width: 80%;
+    }
+}
+
+/* Helper Classes */
+
+.font-family--adelle {
+    font-family: "AdelleSans W01", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.font-family--netto {
+    font-family: "NettoWeb W03", Roboto, "Helvetica Neue",Arial,sans-serif;
+}
+
+.font-size--75 {
+    font-size: .75em;
+}
+
+.font-weight--bold {
+    font-weight: bold;
+}
+
+.margin-bottom--small {
+    margin-bottom: .5em;
+}
+
+.margin-bottom--normal {
+    margin-bottom: 1em;
+}
+
+.margin-bottom--large {
+    margin-bottom: 2em;
+}
+
+.margin-right--small {
+    margin-right: .5em;
+}
+
+.margin-right--normal {
+    margin-right: 1em;
+}
+
+.margin-right--large {
+    margin-right: 2em;
+}
+
+.margin-top--small {
+    margin-top: .5em;
+}
+
+.margin-top--normal {
+    margin-top: 1em;
+}
+
+.margin-top--large {
+    margin-top: 2em;
+}
+
+.padding-left--large {
+    padding-left: 2em;
+}
+
+.text-align--center {
+    text-align: center;
+}
+
+.text-align--justify {
+    text-align: justify;
+}
+
+@media (max-width: 599px) {
+    .hide--phone {
+        display: none!important;
+    }
+}
+
+@media (min-width: 600px) {
+
+    .show--phone {
+        display: none!important;
+    }
+
+    @media (max-width: 803px) {
+        .hide--tabletMid {
+            display: none!important;
+        }
+    }
+    
+    @media (max-width: 991px) {
+        .hide--tablet{
+            display: none!important;
+        }
+    }
+}
+
+@media (min-width: 804px) {
+    @media(max-width: 991px) {
+        .hide--tabletMidEnd {
+            display: none!important;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .hide--desktop {
+        display: none!important;
+    }
 }

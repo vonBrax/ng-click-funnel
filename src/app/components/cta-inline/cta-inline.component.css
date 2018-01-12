@@ -1,0 +1,18 @@
+section {
+     background-color: #585a51;
+}
+
+.wrapper {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 1em 0;
+}
+
+button {
+    background-color: #f7d91d;
+    border-radius: 20px;
+    color: #585a51;
+    margin: 0 auto;
+    min-width: 150px;
+}

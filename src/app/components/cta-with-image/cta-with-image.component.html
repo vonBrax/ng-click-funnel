@@ -1,0 +1,20 @@
+<section>
+  <div class="wrapper center-content">
+    <div class="column hide--phone hide--tabletMid">
+      <img [src]="strings.image_url">
+    </div>
+    <div class="column flex-direction--column flex-align--center flex-basis--40">
+    <app-svg-quote></app-svg-quote>
+      <h2 class="margin-bottom--normal margin-top--normal">{{strings.title}}</h2>
+      <p class="margin-bottom--large">{{strings.text}}</p>
+      <button
+        mat-button
+        mat-raised-button
+        appScrollTo
+        [scrollTo]="'quote'"
+        [duration]="1000"
+        [easing]="'easeInOutQuad'"
+        [alignCenter]="true">{{strings.button_text}}</button>
+    </div>
+  </div>
+</section>

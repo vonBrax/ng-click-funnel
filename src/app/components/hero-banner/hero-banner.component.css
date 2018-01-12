@@ -11,8 +11,8 @@
 
 .hero__inner {
     display: flex;
-   /*  align-items:center; */
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: center;
     height: 100%;
     padding-top: 3em;
 }
@@ -37,25 +37,35 @@
 }
 
 figure {
+    flex-basis: 100%;
     margin-top: 4em;
-}
-
-app-click-funnel {
-    flex-basis: 400px;
 }
 
 mat-icon {
     vertical-align: middle;
 }
 
-@media (min-width: 804px) {
+app-click-funnel {
+    flex-basis: 100%;
+    max-width: 400px;
+}
 
-    .show--mobile {
-        display: none;
+@media (min-width: 600px) {
+    .hero__values h1 {
+        font-size: 3em;
     }
+}
+
+
+@media (min-width: 804px) {
 
     .hero {
         padding: 3em 0;
+    }
+
+     .hero__inner {
+        display: grid;
+        grid-template-columns: 1fr minmax(min-content, 400px);
     }
 
     .hero__values {
@@ -63,7 +73,6 @@ mat-icon {
     }
     .hero__values h1 {
         margin-bottom: 1em;
-        font-size: 3em;
     }
 
     .hero__values h2 {
@@ -73,17 +82,11 @@ mat-icon {
     .hero__value {
         margin: 1.5em 0;
     }
-    .padding-left--large {
-        padding-left: 2em;
-    }
-}
 
-@media (max-width: 803px) {
-    app-form-hero {
-        display: none;
-    }
+  /*   app-click-funnel {
+        justify-self: end;
+    } */
 }
-
 
 /*Responsive background image media query rules*/
 @media all and (orientation: landscape) {
