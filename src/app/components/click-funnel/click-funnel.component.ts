@@ -219,13 +219,13 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSubmit() {
     if (this.formGroup.valid) {
-      console.log('YEP!! ALL GOOD!');
-      console.log(JSON.stringify(this.formGroup.value, null, 2));
+      // console.log('YEP!! ALL GOOD!');
+      // console.log(JSON.stringify(this.formGroup.value, null, 2));
       this.setUnbounceForm();
       this.mixpanelService.submit(this.formGroup.get(this.funnel[this.funnelLength - 1].name).value);
       this.progressBarValue = 100;
-      console.log(typeof(lp));
-      console.log(typeof(lp.jQuery));
+      // console.log(typeof(lp));
+      // console.log(typeof(lp.jQuery));
       lp.jQuery(this.ubForm).submit();
 
     } else {
