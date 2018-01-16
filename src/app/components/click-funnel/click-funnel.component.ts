@@ -67,6 +67,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   funnel: any[] = Strings.funnel;
   funnelName: string = Strings.funnel_name;
   funnelLength = this.funnel.length;
+  currValue: string;
   formGroup: FormGroup;
   ubForm: any;
   landingUrl: string;
@@ -110,13 +111,13 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.ubForm) {
       this.initUnbounce();
     } else {
-      console.log('Unbounce form not found. Setting timeout...');
+      // console.log('Unbounce form not found. Setting timeout...');
       setTimeout(() => {
         this.ubForm = this.getUnbounceForm();
         if (this.ubForm) {
           this.initUnbounce();
         } else {
-          console.log('STILL NO FORM AFTER TIMEOUT!!!');
+          // console.log('STILL NO FORM AFTER TIMEOUT!!!');
         }
       });
     }
@@ -174,9 +175,6 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initUnbounce() {
-    console.log('Initializing Unbounce');
-    console.log('URL: ' + this.landingUrl );
-    console.log('Params: ' + this.urlParams );
     this.setUnbounceFields();
     this.parseQueryParams(this.urlParams);
   }
@@ -203,6 +201,9 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout( () => {
       const prevStepVal = this.formGroup.get(this.funnel[this.cursor].name).value;
       const prevStepName = this.funnel[this.cursor].name;
+      if( prevStepName === 'additional_info') {
+        const currVal = this.formGroup.get(prevStepName).value;
+      }
       this.animationDirection = 'forwards';
       this.cursor++;
       this.updateUrl();
