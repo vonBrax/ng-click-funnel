@@ -1,5 +1,5 @@
 <div class="funnel-container" id="quote">
-  <mat-card>
+  <mat-card #matCard>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
       <div #wrapper>
         <mat-progress-bar [value]="progressBarValue" color="primary"></mat-progress-bar>

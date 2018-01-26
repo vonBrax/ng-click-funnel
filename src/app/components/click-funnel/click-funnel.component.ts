@@ -12,7 +12,10 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/takeUntil';
 
-declare var lp;
+
+import { MatCard } from '@angular/material';
+
+declare var lp, init;
 
 @Component({
   selector: 'app-click-funnel',
@@ -72,7 +75,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   urlParams: string;
   cursor: number;
   progressBarValue = 0;
-  clickEvent$: Observable<MouseEvent>;
+  clickEvent$: Observable<any>;
   checked;
   animationDirection = 'forwards';
 
@@ -83,6 +86,8 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   wrapper: ElementRef;
   @ViewChild('ubFormWrapper')
   ubFormWrapper: ElementRef;
+  @ViewChild('matCard')
+  matCard: MatCard;
 
   constructor(
     private fb: FormBuilder,
@@ -98,10 +103,14 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    if (typeof init === 'function' ) { init(); }
     this.clickEvent$ = Observable.fromEvent( this.wrapper.nativeElement, 'click');
     this.clickEvent$
       .takeUntil(this.ngUnsubscribe)
-      .filter(evt => evt.srcElement.tagName.toLowerCase() === 'input' )
+      .filter(evt => {
+        return evt.srcElement ? evt.srcElement.tagName.toLowerCase() === 'input' :
+          evt.target.tagName.toLowerCase() === 'input';
+      })
       .subscribe(evt => {
         this.next();
     });
@@ -119,6 +128,11 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }
+
+
+    console.log(this.matCard);
+    console.log(typeof this.matCard)
+
   }
 
   back(): void {
@@ -214,6 +228,13 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.animationDirection = 'forwards';
       this.cursor++;
+
+
+      if (this.cursor === this.funnelLength - 1 ) {
+        this.matCard.nativeElement.scrollIntoView({behavior: 'smooth', block: 'center'});
+      }
+
+
       this.updateUrl();
       this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
       this.mixpanelService.step({
