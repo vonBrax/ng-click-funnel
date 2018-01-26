@@ -14,7 +14,7 @@
     flex-flow: row wrap;
     justify-content: center;
     height: 100%;
-    padding-top: 3em;
+    padding-top: 2em;
 }
 
 .hero__values {
@@ -24,7 +24,7 @@
 }
 
 .hero__values h1 {
-    margin-bottom: 1em;
+    margin-bottom: .5em;
     font-size: 2em;
 }
 
@@ -53,6 +53,10 @@ app-click-funnel {
 @media (min-width: 600px) {
     .hero__values h1 {
         font-size: 3em;
+        margin-bottom: 1em;
+    }
+    .hero__inner {
+        padding-top: 3em;
     }
 }
 
