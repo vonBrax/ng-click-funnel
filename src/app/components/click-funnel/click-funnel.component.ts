@@ -1,10 +1,7 @@
-// TODO: BUILD AND SEE IF IT WILL WORK!!!! =)
-
-
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
+import { trigger, style, transition, animate, keyframes, state } from '@angular/animations';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MixpanelService } from '../../services/mixpanel.service';
 
 import { Strings } from '../../models/strings';
@@ -70,6 +67,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   currValue: string;
   formGroup: FormGroup;
   ubForm: any;
+  ubFields: any = {};
   landingUrl: string;
   urlParams: string;
   cursor: number;
@@ -148,6 +146,16 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
     const formInner = this.ubForm.querySelector('.fields') || this.ubForm;
     const isSingleField = fields ? false : true;
     const len = isSingleField ? 1 : fields.length;
+    const isAdditionalInfo = /additional_info_/i.test(name);
+
+    if (isAdditionalInfo) {
+      if (!this.ubFields.additional_info ) {
+        this.ubFields.additional_info = '';
+        this.createHiddenFields('additional_info');
+      }
+      this.ubFields[name] = name;
+      return;
+    }
 
     for (let i = 0; i < len; i++) {
       const el = document.createElement('input');
@@ -166,6 +174,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         el.value = value;
       }
       formInner.appendChild(el);
+      this.ubFields[fieldName] = el;
     }
   }
 
@@ -197,18 +206,16 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   next() {
     if (this.cursor === this.funnelLength - 1 ) { return; }
-
     setTimeout( () => {
       const prevStepVal = this.formGroup.get(this.funnel[this.cursor].name).value;
       const prevStepName = this.funnel[this.cursor].name;
-      if( prevStepName === 'additional_info') {
+      if (prevStepName === 'additional_info') {
         const currVal = this.formGroup.get(prevStepName).value;
       }
       this.animationDirection = 'forwards';
       this.cursor++;
       this.updateUrl();
       this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
-
       this.mixpanelService.step({
         step: this.cursor + 1,
         name: this.funnel[this.cursor].name,
@@ -219,15 +226,10 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSubmit() {
     if (this.formGroup.valid) {
-      console.log('YEP!! ALL GOOD!');
-      console.log(JSON.stringify(this.formGroup.value, null, 2));
       this.setUnbounceForm();
       this.mixpanelService.submit(this.formGroup.get(this.funnel[this.funnelLength - 1].name).value);
       this.progressBarValue = 100;
-      console.log(typeof(lp));
-      console.log(typeof(lp.jQuery));
       lp.jQuery(this.ubForm).submit();
-
     } else {
       console.log('Something is wrong with your form, bro...');
     }
@@ -272,13 +274,30 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   setUnbounceForm() {
     if (!this.ubForm) { return; }
-    const fieldsArr = Array.prototype.slice.call(this.ubForm.querySelectorAll('.fields input'));
-    fieldsArr.forEach(field => {
-      const path = field.dataset.path ? field.dataset.path + '.' + field.name : field.name;
-      if (this.formGroup.get(path)) {
-        field.value = this.formGroup.get(path).value;
+    const separator = ', ';
+    for (const k in this.ubFields) {
+      if (this.ubFields.hasOwnProperty(k)) {
+        const field = this.ubFields[k];
+        const isAdditionalInfo = /additional_info_/i.test(field);
+        const path = (field.dataset && field.dataset.path) ? field.dataset.path + '.' + field.name :
+          (field.name ? field.name : field);
+        if (path === 'additional_info') {
+          continue;
+        }
+        if (this.formGroup.get(path)) {
+          if (isAdditionalInfo) {
+            this.ubFields.additional_info.value +=
+              `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+          } else {
+            field.value = this.formGroup.get(path).value;
+          }
+        }
       }
-    });
+    }
+    // Remove leading separator if additional field is present.
+    if (this.ubFields.additional_info && this.ubFields.additional_info.value.indexOf(separator) === 0) {
+      this.ubFields.additional_info.value.replace(separator, '');
+    }
   }
 
   updateUrl(): void {

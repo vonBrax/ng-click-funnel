@@ -2,7 +2,7 @@ export const Strings = {
   "funnel_name": "EN.Hair:1.5",
   "funnel": [
     {
-      "name": "additional_info",
+      "name": "additional_info_prev_treatment",
       "type": "radio-click",
       "validators": [
         "required"
@@ -35,6 +35,7 @@ export const Strings = {
       ],
       "question": "Do you have a treatment date in mind?",
       "answers": [
+        "As soon as possible",
         "Within the next 3 months",
         "Within the next 6 months",
         "More than 6 months in the future",
@@ -71,6 +72,32 @@ export const Strings = {
       ]
     },
     {
+      "name": "additional_info_shoe_size",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "What's your shoe size?",
+      "answers": [
+        "Not telling",
+        "Depends on the country I am",
+        "I'm looking for hair, not for shoes"
+      ]
+    },
+    {
+      "name": "additional_info_favourite_band",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "What's your favourite band?",
+      "answers": [
+        "The Baldies",
+        "Skinheads",
+        "Abba"
+      ]
+    },
+    {
       "name": "personal_information",
       "type": "personal_information",
       "validators": [
@@ -100,7 +127,7 @@ export const Strings = {
         {
           "name": "email",
           "type": "email",
-          "placeholder": "Email address",
+          "placeholder": "Email",
           "error_message": "Please tell us your email address",
           "validators": [
             "required"
@@ -120,7 +147,7 @@ export const Strings = {
     }
   ],
   "hero_banner": {
-    "headline": "Your hair transplant!!!!",
+    "headline": "Your hair transplant",
     "values": [
       {
         "title": "Affordable",

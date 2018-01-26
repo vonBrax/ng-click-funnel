@@ -16,21 +16,12 @@ export class RadioClickComponent implements OnInit {
   formGroup: FormGroup;
   @Input()
   controlName: string;
-  /*
-  @Output()
-  removeAnswersEvent: EventEmitter<any> = new EventEmitter<any>();
-*/
+
   constructor() { }
 
   ngOnInit() { }
-
+/*
   numberToChar(i) {
     return String.fromCharCode(65 + i);
-  }
-  /*
-  removeAnswers() {
-    this.removeAnswersEvent.emit();
-  }
-  */
-
+  } */
 }
