@@ -13,7 +13,25 @@
     align-items: center;
     cursor: pointer;
     height: 100%;
-    width: 100%;    
+    width: 100%;
+}
+
+input:hover+.radio-button,
+input:focus+.radio-button,
+.radio-button:hover,
+.radio-button:focus {
+     background-color: #e3d9ca;
+}
+
+input:active+.radio-button,
+.radio-button:active {
+    background-color: #cebda4;
+    transform: translate(2px, 2px);
+}
+
+input[type="radio"]:checked+.radio-button{
+    background-color: #155263;
+    color: #fff;
 }
 
 .radio-option {
@@ -35,7 +53,9 @@
     width: 100%;
 }
 input[type="radio"]{
-    display: none;
+    /* display: none; */
+    height: 0px;
+    width: 0px;
 }
 
 @media (min-width: 600px) {

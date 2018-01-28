@@ -108,6 +108,7 @@ export class ScrollToDirective {
         ) {
             clearInterval(this.runAnimation);
             this.runAnimation = null;
+            this.scrollToElement.focus();
             // callbackAfter(element);
         }
     }

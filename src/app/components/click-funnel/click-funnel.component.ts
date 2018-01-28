@@ -12,9 +12,6 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/takeUntil';
 
-
-import { MatCard } from '@angular/material';
-
 declare var lp, init;
 
 @Component({
@@ -86,8 +83,10 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   wrapper: ElementRef;
   @ViewChild('ubFormWrapper')
   ubFormWrapper: ElementRef;
-  @ViewChild('matCard')
-  matCard: MatCard;
+  @ViewChild('container')
+  container: ElementRef;
+  @ViewChild('questionLegend')
+  questionLegend: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -108,8 +107,8 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
     this.clickEvent$
       .takeUntil(this.ngUnsubscribe)
       .filter(evt => {
-        return evt.srcElement ? evt.srcElement.tagName.toLowerCase() === 'input' :
-          evt.target.tagName.toLowerCase() === 'input';
+        return evt.srcElement ? evt.srcElement.tagName.toLowerCase() === 'label' :
+          evt.target.tagName.toLowerCase() === 'label';
       })
       .subscribe(evt => {
         this.next();
@@ -128,14 +127,23 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }
-
-
-    console.log(this.matCard);
-    console.log(typeof this.matCard)
+    setTimeout( () => {
+      this.questionLegend.nativeElement.focus();
+    });
 
   }
 
-  back(): void {
+  animationDone(evt) {
+    if (this.cursor === this.funnelLength - 1 ) {
+      this.container.nativeElement.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+    setTimeout( () => {
+      this.questionLegend.nativeElement.focus();
+    });
+  }
+
+  back(evt): void {
+    evt.stopPropagation();
     if ( this.cursor === 0 ) { return; }
     this.mixpanelService.track('Clicked Back Button', {
       step: this.cursor + 1,
@@ -228,13 +236,6 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.animationDirection = 'forwards';
       this.cursor++;
-
-
-      if (this.cursor === this.funnelLength - 1 ) {
-        this.matCard.nativeElement.scrollIntoView({behavior: 'smooth', block: 'center'});
-      }
-
-
       this.updateUrl();
       this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
       this.mixpanelService.step({
@@ -242,7 +243,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         name: this.funnel[this.cursor].name,
         prevStepValue: prevStepName + ' - ' + prevStepVal
       });
-    }, 100 );
+    }, 100);
   }
 
   onSubmit() {

@@ -22,6 +22,7 @@ span {
     font-weight: bold;
 }
 
-:host /deep/ mat-checkbox a:hover {
+:host /deep/ mat-checkbox a:hover,
+:host /deep/ mat-checkbox a:focus {
     text-decoration: underline;
 }

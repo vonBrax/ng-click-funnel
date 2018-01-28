@@ -35,7 +35,7 @@ mat-card-actions {
     transition: background-color .1s ease-in, transform .1s ease-in-out;
 }
 
-.option:hover,
+/* .option:hover,
 .option:focus {
      background-color: #e3d9ca;
 }
@@ -43,9 +43,9 @@ mat-card-actions {
 .option:active {
     background-color: #cebda4;
     transform: translate(2px, 2px);
-}
+} */
 
-.option--selected {
+/* .option--selected {
     background-color: #155263;
     color: #fff;
 }
@@ -54,7 +54,7 @@ mat-card-actions {
 .option--selected:focus {
     background-color: #155263;
     color: #fff;
-}
+} */
 
 :host /deep/ mat-progress-bar {
     border-radius: 8px;

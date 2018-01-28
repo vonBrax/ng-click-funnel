@@ -4,12 +4,12 @@
         <h2 class="font-weight--bold margin-bottom--normal">{{strings.title}}</h2>
         <span>{{strings.description}}</span>
       </div>
-      
+
       <div class="wrapper__circles">
-        
+
         <div *ngFor="let stat of strings.stats, first as f" [class.margin-top--negative]="!f" class="circle" >
           <div class="content">
-            <h5 class="font-size--75 margin-bottom--small">{{stat.question}}</h5>
+            <p class="font-size--75 margin-bottom--small">{{stat.question}}</p>
             <span *ngIf="stat.stars" class="margin-bottom--small">
               <app-svg-star2 [starsNumber]="stat.stars"></app-svg-star2>
             </span>

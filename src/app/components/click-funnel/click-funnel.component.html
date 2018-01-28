@@ -1,22 +1,24 @@
-<div class="funnel-container" id="quote">
-  <mat-card #matCard>
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+<div class="funnel-container" id="quote" #container tabindex="-1">
+  <mat-card>
+    <form role="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
       <div #wrapper>
-        <mat-progress-bar [value]="progressBarValue" color="primary"></mat-progress-bar>
+        <mat-progress-bar [value]="progressBarValue" color="primary" aria-live="polite"></mat-progress-bar>
         <ng-container *ngFor="let step of funnel; index as i">
           <ng-container *ngIf="cursor === i">
-            <mat-card-header @headlineAnimation>
-              <mat-card-title >{{step.question}}</mat-card-title>
+            <mat-card-header @headlineAnimation (@headlineAnimation.done)="animationDone($event)" >
+              <mat-card-title>
+                <legend tabindex="0" #questionLegend>{{step.question}}</legend>
+              </mat-card-title>
               <!-- <mat-card-subtitle *ngIf="cursor === funnelLength - 1">Subtitle - {{step.question}}</mat-card-subtitle> -->
               <mat-card-subtitle *ngIf="step.subtitle">{{step.subtitle}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
               <ng-container [ngSwitch]="step.type">
 
-                <div *ngSwitchCase="'radio-click'" [@answersAnimation]="animationDirection" class="wrapper"> 
-                  <div *ngFor="let answer of step.answers; index as j" class="option" [class.option--selected]="checked[i]===answer">  
+                <div *ngSwitchCase="'radio-click'" [@answersAnimation]="animationDirection" class="wrapper" role="radiogroup">
+                  <div *ngFor="let answer of step.answers; index as j" class="option" [class.option--selected]="checked[i]===answer">
                     <app-radio-click [answer]="answer" [index]="j" [formGroup]="formGroup" [controlName]="step.name" (click)="checked[i]=answer"></app-radio-click>
-                  </div>  
+                  </div>
                 </div>
 
                 <div *ngSwitchCase="'personal_information'" [@answersAnimation]="'forwards'">
@@ -26,7 +28,7 @@
               </ng-container>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button type="button" (click)="back()" *ngIf="cursor > 0" color="accent"><mat-icon>arrow_back</mat-icon></button>
+              <button mat-button type="button" (click)="back($event)" *ngIf="cursor > 0" color="accent" aria-label="Go to the previous step"><mat-icon>arrow_back</mat-icon></button>
               <button mat-raised-button type="submit" class="btn--submit" *ngIf="cursor === funnelLength - 1" [disabled]="formGroup.invalid" color="primary">Get your free quote</button>
             </mat-card-actions>
           </ng-container>
@@ -36,6 +38,6 @@
   </mat-card>
 </div>
 
-<!--  <p>{{formGroup.value | json}}</p>   -->
+ <p>{{formGroup.value | json}}</p>
 
 <div #ubFormWrapper id="ubFormWrapper"></div>
