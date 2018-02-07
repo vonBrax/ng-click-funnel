@@ -8,15 +8,19 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $juno-app-primary: mat-palette($mat-yellow, 500, 100, A700);
-$juno-app-accent: mat-palette($mat-grey);
+$juno-app-accent: mat-palette($mat-grey, 700);
 // The warn palette is optional (defaults to red).
 $juno-app-warn: mat-palette($mat-brown, 200, 50, 800);
 // Create the theme object (a Sass map containing all of the palettes).
 $juno-app-theme: mat-light-theme($juno-app-primary, $juno-app-accent, $juno-app-warn);
+
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($juno-app-theme);
+
+/*
 // Define an alternate dark theme.
 $dark-primary: mat-palette($mat-blue-grey);
 $dark-accent: mat-palette($mat-amber, A200, A100, A400);
@@ -27,4 +31,18 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .juno-dark-theme {
     @include angular-material-theme($dark-theme);
+}
+*/
+
+
+// Define an alternate theme.
+$alt-primary: mat-palette($mat-blue-grey, 600);
+$alt-accent: mat-palette($mat-amber, A200, A100, A400);
+$alt-warn: mat-palette($mat-red, 800);
+$alt-theme: mat-light-theme($alt-primary, $alt-accent, $alt-warn);
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.juno-alt-theme {
+    @include angular-material-theme($alt-theme);
 }

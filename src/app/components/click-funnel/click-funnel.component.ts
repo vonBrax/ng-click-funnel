@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, state } from '@angular/animations';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
 import { MixpanelService } from '../../services/mixpanel.service';
+import { EmailValidatorService } from '../../services/email.validator.service';
 
 import { Strings } from '../../models/strings';
 
@@ -12,7 +14,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/takeUntil';
 
-declare var lp, init;
+declare var lp, replaceUb;
 
 @Component({
   selector: 'app-click-funnel',
@@ -20,6 +22,7 @@ declare var lp, init;
   styleUrls: ['./click-funnel.component.css'],
   providers: [
     MixpanelService,
+    EmailValidatorService,
     Location,
     {provide: LocationStrategy, useClass: PathLocationStrategy}
   ],
@@ -64,6 +67,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   funnel: any[] = Strings.funnel;
   funnelName: string = Strings.funnel_name;
   funnelLength = this.funnel.length;
+  submittingForm = false;
   currValue: string;
   formGroup: FormGroup;
   ubForm: any;
@@ -85,13 +89,14 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   ubFormWrapper: ElementRef;
   @ViewChild('container')
   container: ElementRef;
-  @ViewChild('questionLegend')
-  questionLegend: ElementRef;
+  @ViewChild('stepQuestion')
+  stepQuestion: ElementRef;
 
   constructor(
     private fb: FormBuilder,
     private location: Location,
-    private mixpanelService: MixpanelService ) { }
+    private mixpanelService: MixpanelService,
+    private emailValidator: EmailValidatorService ) { }
 
   ngOnInit() {
     this.cursor = 0;
@@ -102,7 +107,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    if (typeof init === 'function' ) { init(); }
+    if (typeof replaceUb === 'function' ) { replaceUb(); }
     this.clickEvent$ = Observable.fromEvent( this.wrapper.nativeElement, 'click');
     this.clickEvent$
       .takeUntil(this.ngUnsubscribe)
@@ -127,9 +132,10 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     }
-    setTimeout( () => {
-      this.questionLegend.nativeElement.focus();
-    });
+
+    /*  setTimeout( () => {
+      this.firstOption.nativeElement.focus();
+    }); */
 
   }
 
@@ -137,9 +143,11 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.cursor === this.funnelLength - 1 ) {
       this.container.nativeElement.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
-    setTimeout( () => {
-      this.questionLegend.nativeElement.focus();
-    });
+    if (this.stepQuestion) {
+      setTimeout( () => {
+        this.stepQuestion.nativeElement.focus();
+      });
+    }
   }
 
   back(evt): void {
@@ -227,8 +235,14 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   next() {
-    if (this.cursor === this.funnelLength - 1 ) { return; }
-    setTimeout( () => {
+    if (this.cursor === this.funnelLength - 1 ) {
+      return;
+    } else if (this.cursor === this.funnelLength - 2 ) {
+      setTimeout(() => this.processNextStep());
+    } else {
+      setTimeout(() => this.processNextStep(), 100);
+    }
+    /* setTimeout( () => {
       const prevStepVal = this.formGroup.get(this.funnel[this.cursor].name).value;
       const prevStepName = this.funnel[this.cursor].name;
       if (prevStepName === 'additional_info') {
@@ -243,17 +257,39 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         name: this.funnel[this.cursor].name,
         prevStepValue: prevStepName + ' - ' + prevStepVal
       });
-    }, 100);
+    }, 100); */
+  }
+
+  processNextStep() {
+    const prevStepVal = this.formGroup.get(this.funnel[this.cursor].name).value;
+      const prevStepName = this.funnel[this.cursor].name;
+      if (prevStepName === 'additional_info') {
+        const currVal = this.formGroup.get(prevStepName).value;
+      }
+      this.animationDirection = 'forwards';
+      this.cursor++;
+      this.updateUrl();
+      this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
+      this.mixpanelService.step({
+        step: this.cursor + 1,
+        name: this.funnel[this.cursor].name,
+        prevStepValue: prevStepName + ' - ' + prevStepVal
+      });
   }
 
   onSubmit() {
     if (this.formGroup.valid) {
-      this.setUnbounceForm();
-      this.mixpanelService.submit(this.formGroup.get(this.funnel[this.funnelLength - 1].name).value);
-      this.progressBarValue = 100;
-      lp.jQuery(this.ubForm).submit();
-    } else {
-      console.log('Something is wrong with your form, bro...');
+      try {
+        this.submittingForm = true;
+        this.setUnbounceForm();
+        this.mixpanelService.submit(this.formGroup.get(this.funnel[this.funnelLength - 1].name).value);
+        this.progressBarValue = 100;
+        lp.jQuery(this.ubForm).submit();
+      } catch (e) {
+        this.submittingForm = false;
+        console.log('Error: Form not submitted.', e);
+      }
+
     }
   }
 
@@ -275,7 +311,17 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
       if (step.fields) {
         const nestedControls = {};
         for (let i = 0; i < step.fields.length; i++) {
-          nestedControls[step.fields[i].name] = [ '', Validators[step.fields[i].validators] ];
+          if (step.fields[i].name === 'phone_country') {
+            continue;
+          } else if (step.fields[i].name === 'phone_number') {
+            nestedControls['phone_number'] = this.fb.group({
+              countryControl: ['', Validators.required],
+              phoneNumberControl: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+              hiddenPhoneNumberControl: ''
+            });
+          } else {
+             nestedControls[step.fields[i].name] = [ '', { validators: Validators[step.fields[i].validators], updateOn: 'blur'} ];
+          }
         }
         nestedControls['tos_signoff'] = ['', Validators.requiredTrue ];
         controls[step.name] = this.fb.group(nestedControls);
@@ -284,6 +330,10 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
     this.formGroup = this.fb.group(controls);
+
+    // Set custom validation for the email field
+    this.formGroup.get('personal_information.email')
+      .setValidators(Validators.compose([Validators.required, this.emailValidator.validate()]));
   }
 
   setUnbounceFields() {
@@ -291,6 +341,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
       this.createHiddenFields(step.name, step.fields);
     });
     this.createHiddenFields('jlp', null, this.landingUrl);
+    this.createHiddenFields('intl_phone', null);
     // if (localStorage.getItem('jlp')) { this.createHiddenFields('jlp', null, localStorage.getItem('jlp')); }
   }
 
@@ -306,10 +357,19 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
         if (path === 'additional_info') {
           continue;
         }
+        if (field.name === 'phone_country') {
+          /** TODO: CHANGE THE IMPLEMENTATION OF THIS THING */
+          const countryPath = path.replace('.phone_country', '.phone_number.countryControl');
+          field.value = this.formGroup.get(countryPath).value.iso2;
+          continue;
+        }
         if (this.formGroup.get(path)) {
           if (isAdditionalInfo) {
             this.ubFields.additional_info.value +=
               `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+          } else if (field.name === 'phone_number') {
+            field.value = this.formGroup.get(path + '.phoneNumberControl').value;
+            this.ubFields.intl_phone.value = this.formGroup.get(path + '.hiddenPhoneNumberControl').value;
           } else {
             field.value = this.formGroup.get(path).value;
           }
@@ -318,7 +378,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     // Remove leading separator if additional field is present.
     if (this.ubFields.additional_info && this.ubFields.additional_info.value.indexOf(separator) === 0) {
-      this.ubFields.additional_info.value.replace(separator, '');
+      this.ubFields.additional_info.value = this.ubFields.additional_info.value.replace(separator, '');
     }
   }
 

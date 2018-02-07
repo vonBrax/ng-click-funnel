@@ -23,7 +23,7 @@ export class ClickOutsideDirective {
   }
 
   @HostListener('document:touchstart', ['$event', '$event.target'])
-  public onTouchStart(event: TouchEvent, targetElement: HTMLElement) {
+  public onTouchStart(event: any, targetElement: HTMLElement) {
     this.isTouchDevice = true;
     if (!targetElement) {
       return;

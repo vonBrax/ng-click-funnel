@@ -56,6 +56,13 @@ export const Strings = {
               error_message: 'Please tells us your last name',
               validators: ['required']
             },
+             {
+              name: 'country',
+              type: 'autocomplete',
+              placeholder: 'Country',
+              error_message: 'Please specify your country',
+              validators: ['required']
+            },
             {
               name: 'phone_number',
               type: 'phone',
@@ -74,7 +81,8 @@ export const Strings = {
         tos: 'I agree to the <a href="https://www.qunomedical.com/en/terms-and-conditions" target="_blank">' +
               'Terms and Conditions</a> and that Qunomedical may collect, process, use, and disclose my personal information,' +
               ' including my health data, in order to provide a personal and customized service and as further detailed in my ' +
-              '<a href="https://www.qunomedical.com/en/privacy#consent-declaration" target="_blank">Consent Declaration</a>.'
+              '<a href="https://www.qunomedical.com/en/privacy#consent-declaration" target="_blank">Consent Declaration</a>.',
+        submit_btn: 'Get your free quote'
     }
   ],
   hero_banner: {

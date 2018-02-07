@@ -6,6 +6,18 @@
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 } */
 
+fieldset {
+    height: 100%;
+}
+
+.btn-next--a11y {
+    transform: translateX(-9999px);
+}
+
+.btn-next--a11y:focus {
+    transform: translateX(0);
+}
+
 mat-card {
     border-bottom-right-radius: 50px;
     min-height: 360px;
@@ -13,7 +25,12 @@ mat-card {
 }
 
 mat-card-header mat-card-title {
-    font-size: 1em;
+    font-size: 1em;  
+}
+
+mat-card-title .title {
+    font-size: 1.125em;
+    font-weight: 900;
 }
 
 mat-card-actions {
@@ -59,10 +76,11 @@ mat-card-actions {
 :host /deep/ mat-progress-bar {
     border-radius: 8px;
     height: 8px;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
 }
 
-:host /deep/ mat-card-content {
+:host /deep/ mat-card-content.font-size--16px {
+    font-size: 16px;
     margin-left: 8px;
     margin-right: 8px;
 }
@@ -77,6 +95,6 @@ mat-card-actions {
     }
 
     mat-card-content {
-        height: 270px;
+        height: 300px;
     }
 }

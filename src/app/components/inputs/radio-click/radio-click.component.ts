@@ -11,6 +11,8 @@ export class RadioClickComponent implements OnInit {
   @Input()
   answer: string;
   @Input()
+  icon: string;
+  @Input()
   index: number;
   @Input()
   formGroup: FormGroup;
@@ -23,7 +25,7 @@ export class RadioClickComponent implements OnInit {
 
   ngOnInit() { }
 
-  onKeydown(evt){
+  onKeydown(evt) {
     const VK_SPACE = 32;
     const VK_ENTER = 13;
     const key = evt.keyCode;

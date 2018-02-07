@@ -16,11 +16,19 @@
     width: 100%;
 }
 
-input:hover+.radio-button,
+input:hover+.radio-button, 
 input:focus+.radio-button,
-.radio-button:hover,
+.radio-button:hover, 
 .radio-button:focus {
      background-color: #e3d9ca;
+}
+
+/* Fix for sticky hover on Safari iOS */
+@media(hover:hover) {
+    input:hover+.radio-button,
+    .radio-button:hover {
+        background-color: #e3d9ca;
+    }
 }
 
 input:active+.radio-button,
@@ -56,6 +64,7 @@ input[type="radio"]{
     /* display: none; */
     height: 0px;
     width: 0px;
+    opacity: 0;
 }
 
 @media (min-width: 600px) {

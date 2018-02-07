@@ -1,4 +1,4 @@
-<div class="footer">
+<footer class="footer center-content">
 
   <div class="footer__socialLinks">
     <ul class="icon-row icon-row--rounded-icons footerLinks">
@@ -41,8 +41,8 @@
 
    <p [innerHTML]="(footer.terms+'<span> | </span>'+footer.privacy) | html"></p> 
 
-  <p>
+  <p class="text-align--center">
     Copyright © {{this.year}} Qunomedical GmbH, {{footer ? footer.rights : 'All rights reserved' }}.
   </p>
   
-</div>
+</footer>
