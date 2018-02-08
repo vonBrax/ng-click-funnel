@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "gen-ext-phonemetadata": "libphonenumber-generate-metadata metadata.custom.json --extended"
   },
   "private": true,
   "dependencies": {
