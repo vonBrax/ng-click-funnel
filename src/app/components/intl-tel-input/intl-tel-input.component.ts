@@ -12,7 +12,7 @@ import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
-import { JsonpService } from '../../services/jsonp.service';
+import { DataService } from '../../services/data.service';
 
 
 import { ALL_COUNTRIES, regionlessNanpNumbers, options } from '../../models/allCountries.data';
@@ -22,8 +22,8 @@ import { IntlTelInputUtils } from '../../models/utils';
 @Component({
   selector: 'app-intl-tel-input',
   templateUrl: './intl-tel-input.component.html',
-  styleUrls: ['./intl-tel-input.component.scss'],
-  providers: [JsonpService]
+  styleUrls: ['./intl-tel-input.component.css'],
+  providers: [DataService]
 })
 export class IntlTelInputComponent implements OnInit {
 
@@ -47,7 +47,7 @@ export class IntlTelInputComponent implements OnInit {
   countryStrings: any;
   phoneStrings: any;
 
-  constructor(private fb: FormBuilder, private jsonpService: JsonpService ) { }
+  constructor(private fb: FormBuilder, private dataService: DataService ) { }
 
   get allCountries(): Country[] {
     const countries = [];
@@ -83,18 +83,24 @@ export class IntlTelInputComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this.filter(name) : this.countries.slice())
     );
-    this.phoneNumberControl.valueChanges
+     this.phoneNumberControl.valueChanges
       .subscribe(data => {
         // this.hiddenPhoneNumberControl.setValue(this.intlTelInputUtils.formatNumber(data, this.selectedCountry.iso2));
         this.hiddenPhoneNumberControl.setValue( this.isValidNumber() ? this.getNumber() : 'invalid');
         this._updateFlagFromNumber(data);
         const dialCode = this.selectedCountry.dialCode;
     });
-    // this.formGroup.valueChanges.subscribe(value => console.log(value));
 
     if (options.utilsScript) {
       this.intlTelInputUtils = new IntlTelInputUtils();
+      this.dataService.getJson('https://raw.githubusercontent.com/vonBrax/ng-click-funnel/master/metadata.custom.json')
+        .then(data => {
+          this.intlTelInputUtils.setCustomMetadata(data);
+          this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
+          this.countries[0].iso2);
+        });
     }
+
     this._init();
   }
 
@@ -352,8 +358,8 @@ export class IntlTelInputComponent implements OnInit {
       // I prefer doing it so we can display a default flag when page load, so even
       // if there's a problem with the request for the country, at least we will display
       // a flag there.
-      this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
-      this.countries[0].iso2);
+      // this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
+      // this.countries[0].iso2);
     }
 
     // format
@@ -569,7 +575,7 @@ export class IntlTelInputComponent implements OnInit {
     // seem to work (we just subscribe to the observable instead and
     // call the apropriate method when it arrives)
     const url = options.geoIpJsonpUrl;
-    this.jsonpService.get(url).then(value => this.handleAutoCountry(value));
+    this.dataService.getJsonp(url).then(value => this.handleAutoCountry(value));
   }
 
   protected handleAutoCountry(data: IpInfoCallback ) {
@@ -580,7 +586,7 @@ export class IntlTelInputComponent implements OnInit {
         // if there's no initial value in the input, then update the flag
         if (!this.phoneNumberControl.value) {
             // this.setCountry(this.defaultCountry);
-            this.setCountry(this.defaultCountry);
+            // this.setCountry(this.defaultCountry);
         }
     }
   }
@@ -609,14 +615,6 @@ export class IntlTelInputComponent implements OnInit {
   public getNumberType() {
     if (this.intlTelInputUtils) {
       return this.intlTelInputUtils.getNumberType(this._getFullNumber(), this.selectedCountry.iso2);
-    }
-    return -99;
-  }
-
-  // get the validation error
-  public getValidationError() {
-    if (this.intlTelInputUtils) {
-      return this.intlTelInputUtils.getValidationError(this._getFullNumber(), this.selectedCountry.iso2);
     }
     return -99;
   }

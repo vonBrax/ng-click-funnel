@@ -28,5 +28,4 @@ export class PatientStoriesComponent implements OnInit {
   switchVideos(i: number): void {
     this.activeVideo = this.videos[i];
   }
-
 }

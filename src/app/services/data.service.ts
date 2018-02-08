@@ -3,12 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class JsonpService {
+export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  get(url: string): Promise<any> {
+  getJson(url: string): Promise<any> {
+    return this.http.get(url).toPromise();
+  }
+
+  getJsonp(url: string): Promise<any> {
     return this.http.jsonp(url + '?callback=JSONP_CALLBACK', 'callback' ).toPromise();
   }
+
+
 
 }
