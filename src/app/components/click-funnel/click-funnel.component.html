@@ -1,8 +1,8 @@
 <div class="funnel-container" id="quote" #container tabindex="-1">
   <mat-card>
     <form role="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
-      <div #wrapper>
-
+      <!-- <div #wrapper (click)="handleClick($event)"> -->
+        <div (click)="handleClick($event)">
         <mat-progress-bar [value]="progressBarValue" color="primary" aria-live="polite"></mat-progress-bar>
         <ng-container *ngFor="let step of funnel; index as i">
           <ng-container *ngIf="cursor === i">
@@ -14,10 +14,8 @@
               <!-- <mat-card-subtitle *ngIf="cursor === funnelLength - 1">Subtitle - {{step.question}}</mat-card-subtitle> -->
               <mat-card-subtitle *ngIf="step.subtitle">{{step.subtitle}}</mat-card-subtitle>
             </mat-card-header>
-            <mat-card-content class="font-size--16px">
-              
+            <mat-card-content class="font-size--16px">           
               <ng-container [ngSwitch]="step.type">
-                
                 <fieldset *ngSwitchCase="'radio-click'" role="radiogroup" aria-required="true">
                   <legend aria-labelledby="stepQuestion"></legend>
                   <div [@answersAnimation]="animationDirection" class="wrapper">
@@ -33,11 +31,9 @@
                     </div>
                   </div>
                 </fieldset>
-
                 <div *ngSwitchCase="'personal_information'" [@answersAnimation]="'forwards'">
                   <app-personal-info [childGroup]="formGroup.get(step.name)" [fields]="step.fields" [tosContent]="step.tos"></app-personal-info>
                 </div>
-              
               </ng-container>
             </mat-card-content>
             <mat-card-actions>
@@ -49,7 +45,6 @@
                 aria-label="Go to the previous step">
                 <mat-icon>arrow_back</mat-icon>
               </button>
-
               <button mat-button
                 type="button"
                 class="btn-next--a11y"
@@ -59,7 +54,6 @@
                 aria-label="Go to the next step">
                 <mat-icon>arrow_forward</mat-icon>
               </button>
-
               <button mat-raised-button
                 type="submit"
                 class="btn--submit"
@@ -67,11 +61,9 @@
                 [disabled]="formGroup.invalid || submittingForm"
                 color="primary">{{funnel[cursor].submit_btn}}
               </button>
-
             </mat-card-actions>
           </ng-container>
         </ng-container>
-
       </div>
     </form>
   </mat-card>

@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, state } from '@angular/animations';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators/*  , AbstractControl */ } from '@angular/forms';
 
 import { MixpanelService } from '../../services/mixpanel.service';
 import { EmailValidatorService } from '../../services/email.validator.service';
 
 import { Strings } from '../../models/strings';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/takeUntil';
+// import { Observable } from 'rxjs/Observable';
+// import { Subject } from 'rxjs/Subject';
+// import 'rxjs/add/observable/fromEvent';
+// import 'rxjs/add/operator/filter';
+// import 'rxjs/add/operator/takeUntil';
 
 declare var lp, replaceUb;
 
@@ -62,7 +62,7 @@ declare var lp, replaceUb;
   ]
 })
 
-export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestroy */ {
 
   funnel: any[] = Strings.funnel;
   funnelName: string = Strings.funnel_name;
@@ -76,15 +76,16 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   urlParams: string;
   cursor: number;
   progressBarValue = 0;
-  clickEvent$: Observable<any>;
+  // clickEvent$: Observable<any>;
   checked;
   animationDirection = 'forwards';
 
   // Safely unsubscribe observables
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  // private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  @ViewChild('wrapper')
-  wrapper: ElementRef;
+  // @ViewChild('wrapper')
+  // wrapper: ElementRef;
+
   @ViewChild('ubFormWrapper')
   ubFormWrapper: ElementRef;
   @ViewChild('container')
@@ -108,16 +109,21 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     if (typeof replaceUb === 'function' ) { replaceUb(); }
-    this.clickEvent$ = Observable.fromEvent( this.wrapper.nativeElement, 'click');
-    this.clickEvent$
-      .takeUntil(this.ngUnsubscribe)
-      .filter(evt => {
-        return evt.srcElement ? evt.srcElement.tagName.toLowerCase() === 'label' :
-          evt.target.tagName.toLowerCase() === 'label';
-      })
-      .subscribe(evt => {
-        this.next();
-    });
+
+    // this.clickEvent$ = Observable.fromEvent( this.wrapper.nativeElement, 'click');
+    // this.clickEvent$
+    //   .takeUntil(this.ngUnsubscribe)
+    //   .filter(evt => {
+    //     console.log('Incoming click...');
+    //     console.log(evt.target);
+    //     /* return evt.srcElement ? evt.srcElement.tagName.toLowerCase() === 'label' :
+    //       evt.target.tagName.toLowerCase() === 'label'; */
+    //       return evt.target.tagName.toLowerCase() === 'input';
+    //   })
+    //   .subscribe(evt => {
+    //     this.next();
+    // });
+
     this.ubForm = this.getUnbounceForm();
     if (this.ubForm) {
       this.initUnbounce();
@@ -137,6 +143,14 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
       this.firstOption.nativeElement.focus();
     }); */
 
+  }
+
+  handleClick(evt) {
+    // console.log('Clicks are here!');
+    // console.log(evt.target);
+    if (evt.target.tagName.toLowerCase() === 'input') {
+      this.next();
+    }
   }
 
   animationDone(evt) {
@@ -385,9 +399,9 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnDestroy {
   updateUrl(): void {
     this.location.replaceState(this.location.path().replace(/step=[^&]+/, 'step=' + (this.cursor + 1)));
   }
-
+/*
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
-  }
+  } */
 }

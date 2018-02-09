@@ -2,23 +2,15 @@ export const Strings = {
   "funnel_name": "DE.Hair:1.3",
   "funnel": [
     {
-      "name": "treatment",
+      "name": "additional_info_prev_treatment",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Wie viele Grafts benötigen Sie?",
+      "question": "Hatten Sie bereits eine Haartransplantation?",
       "answers": [
-        "2.000 Grafts",
-        "3.000 Grafts",
-        "4.000 Grafts",
-        "7.000 Grafts (2x)"
-      ],
-      "icons": [
-        "http://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412237/unbounce/bald-2000.png",
-        "http://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412260/unbounce/bald-3000.png",
-        "http://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412272/unbounce/bald-4000.png",
-        "http://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412282/unbounce/bald-7000.png"
+        "Ja",
+        "Nein"
       ]
     },
     {
