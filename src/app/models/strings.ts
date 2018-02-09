@@ -72,12 +72,21 @@ export const Strings = {
       ]
     },
     {
+      "name": "additional_info_user_notes",
+      "type": "textarea",
+      "validators": [],
+      "question": "Möchten Sie uns noch etwas mitteilen?",
+      "answers": [],
+      "label": "Zusätzliche Informationen",
+      "next_button": "WEITER"
+    },
+    {
       "name": "personal_information",
       "type": "personal_information",
-      "validators": [
-        "required"
-      ],
+      "validators": [],
       "question": "Bitte geben Sie uns Ihre Kontaktdaten, um Ihr persönliches Angebot zu erhalten",
+      "label": "Zusätzliche Informationen",
+      "next_button": "WEITER",
       "fields": [
         {
           "name": "first_name",

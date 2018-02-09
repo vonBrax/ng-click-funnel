@@ -300,6 +300,10 @@ body {
     text-align: justify;
 }
 
+.width--100 {
+    width: 100%;
+}
+
 @media (max-width: 599px) {
     .hide--phone {
         display: none!important;

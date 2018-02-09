@@ -16,6 +16,7 @@
             </mat-card-header>
             <mat-card-content class="font-size--16px">           
               <ng-container [ngSwitch]="step.type">
+                
                 <fieldset *ngSwitchCase="'radio-click'" role="radiogroup" aria-required="true">
                   <legend aria-labelledby="stepQuestion"></legend>
                   <div [@answersAnimation]="animationDirection" class="wrapper">
@@ -31,9 +32,28 @@
                     </div>
                   </div>
                 </fieldset>
+                
                 <div *ngSwitchCase="'personal_information'" [@answersAnimation]="'forwards'">
                   <app-personal-info [childGroup]="formGroup.get(step.name)" [fields]="step.fields" [tosContent]="step.tos"></app-personal-info>
                 </div>
+
+                <fieldset *ngSwitchCase="'textarea'" [@answersAnimation]="animationDirection">
+                   <legend aria-labelledby="stepQuestion"></legend>
+                   <mat-form-field class="juno-alt-theme width--100">
+                     <textarea
+                      matInput
+                      [placeholder]="step.label"
+                      matTextareaAutosize
+                      matAutosizeMinRows="2"
+                      matAutosizeMaxRows="10"
+                      [formControlName]="step.name"
+                      aria-label="Additional Information"
+                      aria-required="false">
+                     </textarea>
+                   <!--  <mat-hint>This field is not required</mat-hint> -->
+                   </mat-form-field>
+                  <button class="radio-click-btn" (click)="next()" aria-label="Go to the next step">{{step.next_button}}</button>
+                </fieldset>
               </ng-container>
             </mat-card-content>
             <mat-card-actions>
@@ -49,6 +69,7 @@
                 type="button"
                 class="btn-next--a11y"
                 (click)="next()"
+                color="accent"
                 *ngIf="cursor < funnelLength - 1"
                 [disabled]="formGroup.get(step.name).invalid"
                 aria-label="Go to the next step">
@@ -70,6 +91,6 @@
 </div>
 <div #ubFormWrapper id="ubFormWrapper"></div>
     
-   <!--  <p>{{formGroup.status}}</p>
-    <p>{{formGroup.value | json}}</p> -->
-  
+   <!--   <p>{{formGroup.status}}</p>
+    <p>{{formGroup.value | json}}</p> 
+   -->
