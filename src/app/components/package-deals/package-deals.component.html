@@ -1,9 +1,9 @@
 <section>
   <div class="wrapper center-content">
     <ng-container *ngFor="let row of strings">
-      
+
       <figure class="cell">
-        <img src="{{row.doctor.photo}}" alt="{{row.doctor.name}}">
+        <img [lazySrc]="row.doctor.photo" alt="{{row.doctor.name}}">
       </figure>
       <div class="cell">
         <span class="doctor_name margin-bottom--small">{{row.doctor.name}}</span><br>
@@ -27,12 +27,12 @@
           mat-button
           mat-raised-button
           appScrollTo
-          [scrollTo]="'quote'"  
+          [scrollTo]="'quote'"
           [duration]="1000"
           [easing]="'easeInOutQuart'"
           [alignCenter]="true">{{row.cta.button_text}}</button>
       </div>
-    
+
     </ng-container>
   </div>
 <section>

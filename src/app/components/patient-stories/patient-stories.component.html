@@ -1,7 +1,7 @@
 <section>
   <div class="wrapper center-content">
     <div class="grid">
-      
+
       <div class="cell align-self--center">
         <h2 class="title margin-bottom--normal">{{strings.title}}</h2>
         <p class="margin-bottom--normal">{{strings.description}}</p>
@@ -13,7 +13,8 @@
         </div>
       </div>
       <div class="cell aspect-ratio--16-9">
-        <iframe *ngIf="activeVideo" [src]="activeVideo.url | safe" frameborder="0" allowfullscreen title="Patient Stories - Youtube Videos"></iframe>
+        <!-- <iframe *ngIf="activeVideo" [src]="activeVideo.url | safe" frameborder="0" allowfullscreen title="Patient Stories - Youtube Videos"></iframe> -->
+        <iframe #iframe *ngIf="videos" [lazySrc]="activeVideo.url" frameborder="0" allowfullscreen title="Patient Stories - Youtube Videos"></iframe>
       </div>
     </div>
   </div>

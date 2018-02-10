@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Strings } from '../../models/strings';
 
 export interface Video {
@@ -13,11 +13,14 @@ export interface Video {
 })
 export class PatientStoriesComponent implements OnInit {
 
+  @ViewChild('iframe')
+  iframe: ElementRef;
+
   strings: any;
   videos: Video[];
   activeVideo: Video;
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
     this.strings = Strings.patient_stories;
@@ -26,6 +29,7 @@ export class PatientStoriesComponent implements OnInit {
   }
 
   switchVideos(i: number): void {
+    this.renderer.setAttribute(this.iframe.nativeElement, 'src', this.videos[i].url);
     this.activeVideo = this.videos[i];
   }
 }

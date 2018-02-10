@@ -10,6 +10,7 @@ import { HtmlPipe } from './pipes/html.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 
 import { MaterialImportsModule } from './modules/material.imports.module';
+import { LazyModule } from './modules/lazy.module';
 
 // App components
 import { AppComponent } from './app.component';
@@ -79,6 +80,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     BrowserAnimationsModule,
     MaterialImportsModule,
     ReactiveFormsModule,
+    LazyModule,
     HttpClientModule,
     HttpClientJsonpModule
   ],
