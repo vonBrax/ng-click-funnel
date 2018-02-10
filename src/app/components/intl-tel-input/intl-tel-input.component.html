@@ -1,0 +1,40 @@
+<div [formGroup]="formGroup" class="wrapper">
+  <!-- <mat-form-field class="flag-container" floatLabel="never" [ngClass]="'iti-sdc'+(selectedCountry.dialCode.length +1)"> -->
+  <mat-form-field class="flag-container">
+    <!-- <mat-label>Country</mat-label> -->
+    <div matPrefix class="selected-flag">
+      <div class="iti-flag" [ngClass]="selectedCountry.iso2"></div> 
+      <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+    <input
+      matInput
+      type="text"
+      placeholder="{{countryStrings.placeholder}}"
+      [attr.aria-label]="countryStrings.placeholder"
+      formControlName="countryControl"
+      [matAutocomplete]="auto"
+      (focus)="onFocus($event)">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event)">
+      <mat-option *ngFor="let country of filteredCountries | async" [value]="country" [class.last-preferred]="country.isLastPreferred">
+        <span class="iti-flag {{country.iso2}}"></span>
+        +{{country.dialCode}} {{country.name}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>{{countryStrings.error_message}}</mat-error>
+  </mat-form-field>
+  <div class="spacer"></div>
+  <mat-form-field class="phone-container" [floatLabel]="selectedCountry['placeholder'] ? 'always' : 'auto'">
+    <mat-label>{{phoneStrings.placeholder}}</mat-label>
+      <input
+        matInput
+        type="tel"
+        [placeholder]="selectedCountry['placeholder'] ? selectedCountry['placeholder'] : ''"
+        [attr.aria-labal]="phoneStrings.placeholder"
+        formControlName="phoneNumberControl"
+        #phoneNumberField>
+      <input type="hidden" formControlName="hiddenPhoneNumberControl">
+      <mat-error>{{phoneStrings.error_message}}</mat-error>
+  </mat-form-field>
+</div>
+
+<!-- <p>{{formGroup.value | json}}</p> -->

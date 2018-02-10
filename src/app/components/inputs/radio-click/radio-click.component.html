@@ -1,9 +1,17 @@
 <!-- <div class="radio-container" (click)="removeAnswers()">  -->
-<div class="radio-container" [formGroup]="formGroup"> 
-  <label class="radio-button">
+<div class="radio-container" [formGroup]="formGroup">
+  <input
+    type="radio"
+    value="{{answer}}"
+    [formControlName]="controlName"
+    [attr.id]="controlName + '_' + answer"
+    [attr.name]="controlName"
+    (keydown)="onKeydown($event)">
+  <label class="radio-button" [attr.for]="controlName + '_' + answer" #labelEl>
+    <img *ngIf="icon" [attr.src]="icon" alt=""> {{answer}}
+    <!-- <img src="https://d9hhrg4mnvzow.cloudfront.net/get.qunomedical.com/en_us/source_all/hair1_4/1c562cab-140x140-bald-2000.png" alt=""> -->
    <!--  <span class="radio-option">{{numberToChar(index)}}</span> -->
     <!-- <input type="radio" value="{{answer}}" name="{{index}}" [formControlName]="controlName">  -->
-    <input type="radio" value="{{answer}}" [formControlName]="controlName">   
-    <span class="radio-answer">{{answer}}</span>
+    <!-- <span class="radio-answer" >{{answer}}</span> -->
   </label>
 </div>

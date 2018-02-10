@@ -1,33 +1,87 @@
-<div class="funnel-container" id="quote">
+<div class="funnel-container" id="quote" #container tabindex="-1">
   <mat-card>
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
-      <div #wrapper>
-        <mat-progress-bar [value]="progressBarValue" color="primary"></mat-progress-bar>
+    <form role="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+      <!-- <div #wrapper (click)="handleClick($event)"> -->
+        <div (click)="handleClick($event)">
+        <mat-progress-bar [value]="progressBarValue" color="primary" aria-live="polite"></mat-progress-bar>
         <ng-container *ngFor="let step of funnel; index as i">
           <ng-container *ngIf="cursor === i">
-            <mat-card-header @headlineAnimation>
-              <mat-card-title >{{step.question}}</mat-card-title>
+            <mat-card-header @headlineAnimation (@headlineAnimation.done)="animationDone($event)" >
+              <mat-card-title>
+                <!-- <h3  class="title" tabindex="0" #questionLegend>{{step.question}}</h3> -->
+                <h3  class="title" id="stepQuestion" tabindex="-1" #stepQuestion>{{step.question}}</h3>
+              </mat-card-title>
               <!-- <mat-card-subtitle *ngIf="cursor === funnelLength - 1">Subtitle - {{step.question}}</mat-card-subtitle> -->
               <mat-card-subtitle *ngIf="step.subtitle">{{step.subtitle}}</mat-card-subtitle>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content class="font-size--16px">           
               <ng-container [ngSwitch]="step.type">
-
-                <div *ngSwitchCase="'radio-click'" [@answersAnimation]="animationDirection" class="wrapper"> 
-                  <div *ngFor="let answer of step.answers; index as j" class="option" [class.option--selected]="checked[i]===answer">  
-                    <app-radio-click [answer]="answer" [index]="j" [formGroup]="formGroup" [controlName]="step.name" (click)="checked[i]=answer"></app-radio-click>
-                  </div>  
-                </div>
-
+                
+                <fieldset *ngSwitchCase="'radio-click'" role="radiogroup" aria-required="true">
+                  <legend aria-labelledby="stepQuestion"></legend>
+                  <div [@answersAnimation]="animationDirection" class="wrapper">
+                    <div *ngFor="let answer of step.answers; index as j" class="option" [class.option--selected]="checked[i]===answer">
+                      <app-radio-click
+                        [answer]="answer"
+                        [icon]="step.icons ? step.icons[j] : null"
+                        [index]="j"
+                        [formGroup]="formGroup"
+                        [controlName]="step.name"
+                        (click)="checked[i]=answer">
+                      </app-radio-click>
+                    </div>
+                  </div>
+                </fieldset>
+                
                 <div *ngSwitchCase="'personal_information'" [@answersAnimation]="'forwards'">
                   <app-personal-info [childGroup]="formGroup.get(step.name)" [fields]="step.fields" [tosContent]="step.tos"></app-personal-info>
                 </div>
 
+                <fieldset *ngSwitchCase="'textarea'" [@answersAnimation]="animationDirection">
+                   <legend aria-labelledby="stepQuestion"></legend>
+                   <mat-form-field class="juno-alt-theme width--100">
+                     <textarea
+                      matInput
+                      [placeholder]="step.label"
+                      matTextareaAutosize
+                      matAutosizeMinRows="2"
+                      matAutosizeMaxRows="10"
+                      [formControlName]="step.name"
+                      aria-label="Additional Information"
+                      aria-required="false">
+                     </textarea>
+                   <!--  <mat-hint>This field is not required</mat-hint> -->
+                   </mat-form-field>
+                  <button class="radio-click-btn" (click)="next()" aria-label="Go to the next step">{{step.next_button}}</button>
+                </fieldset>
               </ng-container>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button type="button" (click)="back()" *ngIf="cursor > 0" color="accent"><mat-icon>arrow_back</mat-icon></button>
-              <button mat-raised-button type="submit" class="btn--submit" *ngIf="cursor === funnelLength - 1" [disabled]="formGroup.invalid" color="primary">Get your free quote</button>
+              <button mat-button 
+                type="button"
+                (click)="back($event)"
+                *ngIf="cursor > 0"
+                color="accent"
+                aria-label="Go to the previous step">
+                <mat-icon>arrow_back</mat-icon>
+              </button>
+              <button mat-button
+                type="button"
+                class="btn-next--a11y"
+                (click)="next()"
+                color="accent"
+                *ngIf="cursor < funnelLength - 1"
+                [disabled]="formGroup.get(step.name).invalid"
+                aria-label="Go to the next step">
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+              <button mat-raised-button
+                type="submit"
+                class="btn--submit"
+                *ngIf="cursor === funnelLength - 1"
+                [disabled]="formGroup.invalid || submittingForm"
+                color="primary">{{funnel[cursor].submit_btn}}
+              </button>
             </mat-card-actions>
           </ng-container>
         </ng-container>
@@ -35,7 +89,8 @@
     </form>
   </mat-card>
 </div>
-
-<!--  <p>{{formGroup.value | json}}</p>   -->
-
 <div #ubFormWrapper id="ubFormWrapper"></div>
+    
+   <!--   <p>{{formGroup.status}}</p>
+    <p>{{formGroup.value | json}}</p> 
+   -->

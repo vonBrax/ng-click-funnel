@@ -6,14 +6,14 @@
         <p>{{strings.description}}</p>
       </div>
       <div class="cell flex-basis--20" *ngFor="let src of strings.logo_urls"> 
-        <img  [src]="src">
+        <img  [src]="src.url" [alt]="src.alt">
       </div> 
     </div>
     <div class="row">
       <h3>{{strings.press.title}}</h3>
     </div>
     <div class="row flex-wrap--wrap">
-      <img *ngFor="let src of strings.press.logo_urls" [src]="src">
+      <img *ngFor="let src of strings.press.logo_urls" [src]="src.url" [alt]="src.alt">
     </div>
   </div>
 </section>

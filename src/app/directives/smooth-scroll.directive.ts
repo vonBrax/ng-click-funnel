@@ -108,6 +108,8 @@ export class ScrollToDirective {
         ) {
             clearInterval(this.runAnimation);
             this.runAnimation = null;
+            document.getElementById('stepQuestion').focus();
+            // this.scrollToElement.focus();
             // callbackAfter(element);
         }
     }

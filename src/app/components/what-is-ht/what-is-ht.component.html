@@ -7,13 +7,13 @@
           <div class="circle--yellow">
             <app-svg-ht-icon></app-svg-ht-icon>
           </div>
-          <span>{{strings.title}}</span>
+          <h2>{{strings.title}}</h2>
         </div>
-        
-        
+
+
         <p *ngFor="let p of strings.description, last as l" [innerHTML]="p | html" [class.margin-bottom--small]="!l"></p>
       </div>
-    
+
       <div class="cell grid-wrapper flex-basis--60 hide--phone hide--tabletMid">
         <div class="column" *ngFor="let method of strings.methods">
           <div class="flex-wrapper margin-bottom--normal">

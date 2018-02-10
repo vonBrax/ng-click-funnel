@@ -213,6 +213,11 @@ body {
    
 }
 
+.mat-autocomplete-panel {
+  width: fit-content;
+  max-width: 194.5%!important;
+}
+
 @media (min-width: 600px) {
      
     .center-content {
@@ -293,6 +298,10 @@ body {
 
 .text-align--justify {
     text-align: justify;
+}
+
+.width--100 {
+    width: 100%;
 }
 
 @media (max-width: 599px) {

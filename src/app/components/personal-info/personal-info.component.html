@@ -1,11 +1,29 @@
-<section [formGroup]="childGroup" class="wrapper">
-  <div *ngFor="let field of fields">
-    <mat-form-field>
-    <input matInput [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder">
-    <mat-error>{{field.error_message || 'This field is required'}}</mat-error>
+<section [formGroup]="childGroup" class="wrapper juno-alt-theme">
+  
+  <ng-container *ngFor="let field of fields">
+    
+    <mat-form-field color="primary" *ngIf="field.name !== 'phone_number' && field.name !== 'phone_country'" [class.span--2]="field.name === 'email'">  
+      <div *ngIf="field.name === 'email'; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <input matInput [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder" (blur)="revalidateEmail($event)">  
+      </ng-template>
+      <ng-template #elseBlock>
+        <input matInput [type]="field.type" [formControlName]="field.name" [placeholder]="field.placeholder">
+      </ng-template>        
+    <!-- <mat-error>{{(childGroup.get(field.name).errors && childGroup.get(field.name).errors.message) || field.error_message || 'This field is required'}}</mat-error> -->
+      <mat-error [innerHTML]="displayErrorMessage(field)"></mat-error>
     </mat-form-field>
-  </div>
+
+  </ng-container>
+
+  <app-intl-tel-input
+    [formGroup]="childGroup.get('phone_number')"
+    [strings]="fields"
+    class="span--2">
+  </app-intl-tel-input> 
+  
   <div>
-    <app-tos [description]="tosContent" [childGroup]="childGroup"></app-tos>
+    <app-tos [description]="tosContent" [formGroup]="childGroup"></app-tos>
   </div>
+
 </section>

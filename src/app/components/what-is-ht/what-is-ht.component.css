@@ -17,6 +17,10 @@ section {
    align-items: center;
 }
 
+.title h2 {
+    font-size: inherit;
+}
+
 .title .circle--yellow {
     flex-shrink: 0;
     margin-right: .5em;

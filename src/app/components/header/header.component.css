@@ -1,11 +1,11 @@
 .header {
     background-color: #ffffff;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 75px;
     width: 100%;
-    border-bottom-right-radius: 50px; 
     position: relative;
     padding: 1em 0;
-    box-shadow: 0 0 20px rgba(0,0,0,.1); 
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
 }
 
 .header__inner {
@@ -39,6 +39,12 @@
 
 :host /deep/ .selectPhone {
     padding-top: 20px;
+}
+
+@media (max-width: 359px) {
+    .image-row--header {
+        display: none;
+    }
 }
 
 @media (min-width: 600px) {

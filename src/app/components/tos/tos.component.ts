@@ -11,7 +11,7 @@ export class TosComponent implements OnInit {
   @Input()
   description: string;
   @Input()
-  childGroup: FormGroup;
+  formGroup: FormGroup;
 
   constructor() { }
 
