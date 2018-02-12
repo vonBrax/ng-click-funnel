@@ -80,10 +80,10 @@ export class ScrollToDirective {
         let location = 0;
         // const elementRect = el.nativeElement.getBoundingClientRect();
         const elementRect = el.getBoundingClientRect();
-        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        const absoluteElementTop = window ? elementRect.top + window.pageYOffset : null;
 
         if (this.alignCenter) {
-            location = (absoluteElementTop + (el.offsetHeight / 2)) - (window.innerHeight / 2);
+            location = window ? (absoluteElementTop + (el.offsetHeight / 2)) - (window.innerHeight / 2) : null;
         } else {
              location = offset ? absoluteElementTop -  offset : absoluteElementTop;
         }
@@ -91,7 +91,11 @@ export class ScrollToDirective {
     }
 
     getScrollLocation(): number {
-        return window.pageYOffset ? window.pageYOffset : document.documentElement.scrollTop;
+        if(window) {
+            return ( window.pageYOffset) ? window.pageYOffset : document.documentElement.scrollTop;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -100,7 +104,7 @@ export class ScrollToDirective {
     stopAnimation(): void {
         this.currentLocation = this.getScrollLocation();
         const scrollHeight = document.body.scrollHeight;
-        const internalHeight = window.innerHeight + this.currentLocation;
+        const internalHeight = window ? window.innerHeight + this.currentLocation : null;
         if (
             this.position === this.endLocation ||
             this.currentLocation === this.endLocation ||
@@ -122,7 +126,9 @@ export class ScrollToDirective {
         this.percentage = (this.timeLapsed / this.duration);
         this.percentage = (this.percentage > 1) ? 1 : this.percentage;
         this.position = this.startLocation + (this.distance * this.getEasingPattern(this.easing, this.percentage));
-        window.scrollTo(0, this.position);
+        if(window) {
+            window.scrollTo(0, this.position);
+        }
         this.stopAnimation();
     }
 }

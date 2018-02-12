@@ -76,7 +76,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     ContactUsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'ng-click-funnel'}),
     BrowserAnimationsModule,
     MaterialImportsModule,
     ReactiveFormsModule,

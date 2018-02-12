@@ -233,7 +233,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
   }
 
   initUrl(): void {
-    this.landingUrl = window.location.href;
+    this.landingUrl = window ? window.location.href : '';
     const url = this.location.path();
     let newUrl;
     const hasParams = /\?/.test(url);

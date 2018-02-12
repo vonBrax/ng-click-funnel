@@ -131,7 +131,7 @@ export class IntlTelInputComponent implements OnInit {
       return '';
     }
     const index = country.name.indexOf(' (');
-    if (window.innerWidth > 599) {
+    if (window && window.innerWidth > 599) {
       return index > -1 ? country.name.substring(0, index) : country.name;
     } else {
       return country ? country.iso2.toUpperCase() : '';
