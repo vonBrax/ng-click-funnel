@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "gen-ext-phonemetadata": "libphonenumber-generate-metadata metadata.custom.json --extended",
-    "build:stats": "ng build --prod --stats-json && webpack-bundle-analyzer dist/stats.json",
+    "build:stats": "ng build --prod --aot --build-optimizer --stats-json && webpack-bundle-analyzer dist/stats.json",
     "stats": "webpack-bundle-analyzer dist/stats.json",
     "sme": "source-map-explorer"
   },

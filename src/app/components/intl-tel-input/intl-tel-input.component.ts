@@ -79,28 +79,37 @@ export class IntlTelInputComponent implements OnInit {
     });
     this.filteredCountries = this.countryControl.valueChanges
       .pipe(
-        startWith<string | Country>(''),
+        startWith<string | Country>(this.countryControl.value),
         map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this.filter(name) : this.countries.slice())
+        map(name => name ? this.filter(name) : this.countries.slice() )
     );
-     this.phoneNumberControl.valueChanges
+
+    this.phoneNumberControl.valueChanges
       .subscribe(data => {
         // this.hiddenPhoneNumberControl.setValue(this.intlTelInputUtils.formatNumber(data, this.selectedCountry.iso2));
         this.hiddenPhoneNumberControl.setValue( this.isValidNumber() ? this.getNumber() : 'invalid');
         this._updateFlagFromNumber(data);
-        const dialCode = this.selectedCountry.dialCode;
     });
+
+    if (this.countryControl.value) {
+      this.selectedCountry = this.countryControl.value as Country;
+      this.defaultCountry = this.selectedCountry.iso2;
+    }
 
     if (options.utilsScript) {
       this.intlTelInputUtils = new IntlTelInputUtils();
       this.dataService.getJson('https://raw.githubusercontent.com/vonBrax/ng-click-funnel/master/metadata.custom.json')
         .then(data => {
           this.intlTelInputUtils.setCustomMetadata(data);
-          this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
-          this.countries[0].iso2);
+          if ( !this.phoneNumberControl.value && options.initialCountry !== 'auto') {
+            this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
+              this.countries[0].iso2);
+          } else {
+            // this._updateFlagFromNumber(this.phoneNumberControl.value);
+            this._updatePlaceholder();
+          }
         });
     }
-
     this._init();
   }
 
@@ -122,12 +131,12 @@ export class IntlTelInputComponent implements OnInit {
 
     // focus the input
     // const len = this.phoneNumberControl.value.length;
-    this.phoneNumberField.nativeElement.focus(); // .setSelectionRange(len, len);
+    // this.phoneNumberField.nativeElement.focus(); // .setSelectionRange(len, len);
     // this.phoneNumberField.nativeElement.setSelectionRange(len, len);
   }
 
   displayFn(country?: Country): string | undefined {
-    if (!country) {
+    if (!country || !country.name) {
       return '';
     }
     const index = country.name.indexOf(' (');
@@ -208,7 +217,7 @@ export class IntlTelInputComponent implements OnInit {
 
     // in various situations there could be no country selected initially,
     // but we need to be able to assume this variable exists
-    this.selectedCountry = new Country(['', '', '']);
+    this.selectedCountry = this.countryControl.value || new Country(['', '', '']);
 
     // process all the data: onlyCountries, excludeCountries, preferredCountries etc
     this._processCountryData();
@@ -337,7 +346,7 @@ export class IntlTelInputComponent implements OnInit {
       if (options.initialCountry) {
         this._setFlag(options.initialCountry.toLowerCase());
       } else {
-        this.defaultCountry = (this.preferredCountries.length) ? this.preferredCountries[0].iso2 :
+        this.defaultCountry = this.defaultCountry || (this.preferredCountries.length) ? this.preferredCountries[0].iso2 :
           this.countries[0].iso2;
         if (!val) {
           this._setFlag(this.defaultCountry);
@@ -374,6 +383,7 @@ export class IntlTelInputComponent implements OnInit {
 
     // do this first as it will throw an error and stop if countryCode is invalid
     this.selectedCountry = (countryCode) ? this._getCountryData(countryCode, false, false) : new Country(['', '', '']);
+
     this.countryControl.setValue(this.selectedCountry);
     // setTimeout(() => {  console.log('SETTING VALUE'); this.dialCodeControl.setValue(this.selectedCountry); } );
 
@@ -553,6 +563,9 @@ export class IntlTelInputComponent implements OnInit {
 
     if (countryCode !== null) {
       return this._setFlag(countryCode);
+    } else {
+      // Reseting the value for current country if none was found
+      this.countryControl.setValue(this.selectedCountry);
     }
     return false;
   }
@@ -575,18 +588,26 @@ export class IntlTelInputComponent implements OnInit {
     // seem to work (we just subscribe to the observable instead and
     // call the apropriate method when it arrives)
     const url = options.geoIpJsonpUrl;
-    this.dataService.getJsonp(url).then(value => this.handleAutoCountry(value));
+    this.dataService.getJsonp(url)
+    .then(value => this.handleAutoCountry(value))
+    .catch(e => this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
+              this.countries[0].iso2));
   }
 
   protected handleAutoCountry(data: IpInfoCallback ) {
     if (options.initialCountry === 'auto') {
       // we must set this even if there is an initial val in the input:
       // in case the initial val is invalid and they delete it - they should see their auto country
-      this.defaultCountry = data.country;
+
         // if there's no initial value in the input, then update the flag
-        if (!this.phoneNumberControl.value) {
-            // this.setCountry(this.defaultCountry);
-            // this.setCountry(this.defaultCountry);
+        // if (!this.phoneNumberControl.value) {
+        //   this.setCountry(this.defaultCountry);
+        // } else {
+        //   this._updateFlagFromNumber(this.phoneNumberControl.value);
+        // }
+        if (!this.countryControl.value.name || !this.countryControl.value.iso2 || !this.countryControl.value.dialCode) {
+          this.defaultCountry = data.country.toLowerCase();
+          this.setCountry(this.defaultCountry);
         }
     }
   }

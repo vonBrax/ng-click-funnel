@@ -210,6 +210,12 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
       } else {
         fieldName = name;
       }
+
+      if (document && document.getElementById(fieldName)) {
+        this.ubFields[fieldName] = document.getElementById(fieldName);
+        continue;
+      }
+
       el.setAttribute('type', 'hidden' );
       el.setAttribute('class', 'hidden' );
       el.setAttribute('id', fieldName);
@@ -217,8 +223,8 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
       if (value) {
         el.value = value;
       }
-      formInner.appendChild(el);
       this.ubFields[fieldName] = el;
+      formInner.appendChild(el);
     }
   }
 
@@ -365,6 +371,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     for (const k in this.ubFields) {
       if (this.ubFields.hasOwnProperty(k)) {
         const field = this.ubFields[k];
+
         const isAdditionalInfo = /additional_info_/i.test(field);
         const path = (field.dataset && field.dataset.path) ? field.dataset.path + '.' + field.name :
           (field.name ? field.name : field);
@@ -379,8 +386,10 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
         }
         if (this.formGroup.get(path)) {
           if (isAdditionalInfo) {
-            this.ubFields.additional_info.value +=
-              `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+            if (this.formGroup.get(path).value) {
+              this.ubFields.additional_info.value +=
+                `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+            }
           } else if (field.name === 'phone_number') {
             field.value = this.formGroup.get(path + '.phoneNumberControl').value;
             this.ubFields.intl_phone.value = this.formGroup.get(path + '.hiddenPhoneNumberControl').value;
