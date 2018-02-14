@@ -352,8 +352,11 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     this.formGroup = this.fb.group(controls);
 
     // Set custom validation for the email field
-    this.formGroup.get('personal_information.email')
-      .setValidators(Validators.compose([Validators.required, this.emailValidator.validate()]));
+    this.formGroup
+      .get('personal_information.email')
+      .setValidators( Validators.compose(
+        [Validators.required, this.emailValidator.validate()]
+    ));
   }
 
   setUnbounceFields() {

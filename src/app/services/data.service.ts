@@ -14,7 +14,4 @@ export class DataService {
   getJsonp(url: string): Promise<any> {
     return this.http.jsonp(url + '?callback=JSONP_CALLBACK', 'callback' ).toPromise();
   }
-
-
-
 }
