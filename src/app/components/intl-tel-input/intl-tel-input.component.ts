@@ -93,7 +93,7 @@ export class IntlTelInputComponent implements OnInit {
 
     if (options.utilsScript) {
       this.intlTelInputUtils = new IntlTelInputUtils();
-      this.dataService.getJson('https://raw.githubusercontent.com/vonBrax/ng-click-funnel/master/metadata.custom.json')
+      this.dataService.getJson('https://cdn.rawgit.com/vonBrax/mat-intl-phone-input/v1.0.24/metadata.custom.json')
         .then(data => {
           this.intlTelInputUtils.setCustomMetadata(data);
           this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
