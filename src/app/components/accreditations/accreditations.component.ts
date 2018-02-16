@@ -22,7 +22,7 @@ export class AccreditationsComponent implements OnInit {
     if (this.strings.logo_urls) {
       for (let i = 0; i < this.strings.logo_urls.length; i++) {
         const str = this.strings.logo_urls[i];
-        const fileName = str.slice(str.lastIndexOf('/') + 1 );
+        const fileName = (typeof str.lastIndexOf === 'function') ? str.slice(str.lastIndexOf('/') + 1 ) : '';
         let alt = '';
 
         if (/temos/i.test(fileName)) {
@@ -38,7 +38,7 @@ export class AccreditationsComponent implements OnInit {
     if (this.strings.press.logo_urls) {
       for (let i = 0; i < this.strings.press.logo_urls.length; i++) {
         const str = this.strings.press.logo_urls[i];
-        const fileName = str.slice(str.lastIndexOf('/') + 1 );
+        const fileName = (typeof str.lastIndexOf === 'function') ? str.slice(str.lastIndexOf('/') + 1 ) : '';
         let alt = '';
 
         if (/$fas/i.test(fileName)) {

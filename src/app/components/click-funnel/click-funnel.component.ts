@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, state } from '@angular/animations';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FormBuilder, FormGroup, Validators/*  , AbstractControl */ } from '@angular/forms';
@@ -7,6 +7,9 @@ import { MixpanelService } from '../../services/mixpanel.service';
 import { EmailValidatorService } from '../../services/email.validator.service';
 
 import { Strings } from '../../models/strings';
+
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 // import { Observable } from 'rxjs/Observable';
 // import { Subject } from 'rxjs/Subject';
@@ -97,7 +100,8 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     private fb: FormBuilder,
     private location: Location,
     private mixpanelService: MixpanelService,
-    private emailValidator: EmailValidatorService ) { }
+    private emailValidator: EmailValidatorService,
+    @Inject(PLATFORM_ID) private platformId: Object ) { }
 
   ngOnInit() {
     this.cursor = 0;
@@ -157,7 +161,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     if (this.cursor === this.funnelLength - 1 ) {
       this.container.nativeElement.scrollIntoView({behavior: 'smooth', block: 'center'});
     }
-    if (this.stepQuestion) {
+    if ( isPlatformBrowser(this.platformId) && this.stepQuestion) {
       setTimeout( () => {
         this.stepQuestion.nativeElement.focus();
       });

@@ -26,7 +26,8 @@ const index = readFileSync(join('browser', 'index.html'), 'utf8');
 
 // Using domingo to define a window object so
 // SSR compilation won't throw errors
-const domino = require('@angular/platform-server/node_modules/domino');
+// const domino = require('@angular/platform-server/node_modules/domino');
+const domino = require('domino');
 const win = domino.createWindow(index);
 global['window'] = win;
 
