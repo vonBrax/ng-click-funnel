@@ -17,12 +17,18 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { ROUTES } from './static.paths';
 
 // * NOTE :: Leave this as require() since this file is build Dynamically from webpack
-const { AppServerModuleFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle') ;
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle') ;
 
 const BROWSER_FOLDER = join(process.cwd(), 'browser');
 
 // Load the index.html file containing referances to your application bundle.
 const index = readFileSync(join('browser', 'index.html'), 'utf8');
+
+// Using domingo to define a window object so
+// SSR compilation won't throw errors
+const domino = require('@angular/platform-server/node_modules/domino');
+const win = domino.createWindow(index);
+global['window'] = win;
 
 let previousRender = Promise.resolve();
 
@@ -31,12 +37,12 @@ ROUTES.forEach(route => {
   const fullPath = join(BROWSER_FOLDER, route);
 
   // Make sure the directory structure is there
-  if(!existsSync(fullPath)) {
+  if (!existsSync(fullPath)) {
     mkdirSync(fullPath);
   }
 
   // Writes rendered HTML to index.html, replacing the file if it already exists.
-  previousRender = previousRender.then( _ => renderModuleFactory(AppServerModuleFactory, {
+  previousRender = previousRender.then( _ => renderModuleFactory(AppServerModuleNgFactory, {
     document: index,
     url: route,
     extraProviders: [
