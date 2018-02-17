@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="cell aspect-ratio--16-9">
-        <!-- <iframe *ngIf="activeVideo" [src]="activeVideo.url | safe" frameborder="0" allowfullscreen title="Patient Stories - Youtube Videos"></iframe> -->
+        <!-- <iframe *ngIf="activeVideo" style="width:200px" [src]="activeVideo.url | safe" frameborder="0" allowfullscreen title="Patient Stories - Youtube Videos"></iframe> -->
         <iframe #iframe *ngIf="videos" [lazySrc]="activeVideo.url" frameborder="0" allowfullscreen title="Patient Stories - Youtube Videos"></iframe>
       </div>
     </div>

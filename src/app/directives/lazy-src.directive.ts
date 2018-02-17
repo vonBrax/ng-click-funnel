@@ -35,7 +35,9 @@ export class LazySrcDirective implements OnInit, OnDestroy, LazyTarget {
     }
 
     ngOnDestroy() {
-        (this.lazyViewPort) && this.lazyViewPort.removeTarget(this);
+        if (this.lazyViewPort) {
+            this.lazyViewPort.removeTarget(this);
+        }
     }
 
     // This gets called by the LazyViewport service when the element associated
@@ -48,9 +50,11 @@ export class LazySrcDirective implements OnInit, OnDestroy, LazyTarget {
         // no longer need to worry about loading, we can detach from the LazyViewPort
         this.lazyViewPort.removeTarget(this);
         this.lazyViewPort = null;
-        this.renderer.setProperty(this.element, "src", this.src);
+        this.renderer.setProperty(this.element, 'src', this.src);
 
         // If an active class has been provided, add it to the element
-        (this.visibleClass) && this.renderer.addClass(this.element, this.visibleClass);
+        if (this.visibleClass) {
+            this.renderer.addClass(this.element, this.visibleClass);
+        }
     }
 }

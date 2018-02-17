@@ -1,3 +1,6 @@
+import { Inject, PLATFORM_ID, Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 export interface LazyTarget {
   element: Element;
   updateVisibility: (isVisible: boolean, ration: number) => void;
@@ -6,6 +9,7 @@ export interface LazyTarget {
 export class LazyViewport {
   private observer: IntersectionObserver;
   private targets: Map<Element, LazyTarget>;
+  @Inject(PLATFORM_ID) private platformId: Object;
 
   constructor() {
     this.observer = null;
@@ -26,7 +30,9 @@ export class LazyViewport {
       // If we don't actually have an observer (lacking browser support), then we're
       // going to punt on the feature for now and just immediately tell the target
       // that it is visible on the page.
-      target.updateVisibility(true, 1.0)
+      if (isPlatformBrowser(this.platformId)) {
+        target.updateVisibility(true, 1.0);
+      }
     }
   }
 
@@ -75,13 +81,15 @@ export class LazyViewport {
   // Handle changes in the visibility for elements being tracked by the intersection
   // observer
   private handleIntersectionUpdate = (entries: IntersectionObserverEntry[]): void => {
-    for (let entry of entries) {
+    for (const entry of entries) {
       const lazyTarget = this.targets.get(entry.target);
 
-      (lazyTarget) && lazyTarget.updateVisibility(
-        entry.isIntersecting,
-        entry.intersectionRatio
-      );
+      if (lazyTarget) {
+        lazyTarget.updateVisibility(
+          entry.isIntersecting,
+          entry.intersectionRatio
+        );
+      }
     }
   }
 }
