@@ -83,7 +83,6 @@ export class LazyViewport {
   private handleIntersectionUpdate = (entries: IntersectionObserverEntry[]): void => {
     for (const entry of entries) {
       const lazyTarget = this.targets.get(entry.target);
-
       if (lazyTarget) {
         lazyTarget.updateVisibility(
           entry.isIntersecting,
