@@ -19,7 +19,7 @@
     "gen-ext-phonemetadata": "libphonenumber-generate-metadata metadata.custom.json --extended",
     "build:wba": "ng build --prod --stats-json && webpack-bundle-analyzer dist/browser/stats.json",
     "wba": "webpack-bundle-analyzer dist/browser/stats.json",
-    "build:sme": "ng build --prod --sourcemap --output-hashing=false && source-map-explorer dist/main.bundle.js",
+    "build:sme": "ng build --prod --sourcemap --output-hashing=false && source-map-explorer dist/browser/main.bundle.js",
     "sme": "source-map-explorer"
   },
   "private": true,
