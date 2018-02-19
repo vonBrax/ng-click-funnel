@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <app-patient-stories></app-patient-stories>
     <app-review-stats></app-review-stats>
     <app-package-deals></app-package-deals>
-    <!--  <app-what-is-ht></app-what-is-ht>  -->
+    <!-- <app-what-is-ht></app-what-is-ht> -->
     <app-cta-inline></app-cta-inline>
     <app-reviews></app-reviews>
     <app-cta-with-image></app-cta-with-image>

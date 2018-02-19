@@ -2,15 +2,23 @@ export const Strings = {
   "funnel_name": "DE.Hair:1.3",
   "funnel": [
     {
-      "name": "additional_info_prev_treatment",
+      "name": "treatment",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Hatten Sie bereits eine Haartransplantation?",
+      "question": "Wie viele Grafts benötigen Sie?",
       "answers": [
-        "Ja",
-        "Nein"
+        "2.000 Grafts",
+        "3.000 Grafts",
+        "4.000 Grafts",
+        "7.000 Grafts (2x)"
+      ],
+      "icons": [
+        "https://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412237/unbounce/bald-2000.png",
+        "https://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412260/unbounce/bald-3000.png",
+        "https://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412272/unbounce/bald-4000.png",
+        "https://res.cloudinary.com/junomedical/image/upload/c_scale,w_55/v1517412282/unbounce/bald-7000.png"
       ]
     },
     {
@@ -134,7 +142,7 @@ export const Strings = {
           ]
         }
       ],
-      "tos": "Ich stimme Qunomedicals <a href=\"https://www.qunomedical.com/de/agbs\" target=\"_blank\">AGBs</a>, <a href=\"https://www.qunomedical.com/de/datenschutz\" target=\"_blank\">Datenschutzerklärung</a> und Nutzung personenbezogener Daten und Datenverwendung, inklusive meiner Gesundheitsdaten, zu.",
+      "tos": "Ich stimme Qunomedicals <a href=\"https://www.qunomedical.com/de/agbs\" target=\"_blank\" rel=\"noopener\">AGBs</a>, <a href=\"https://www.qunomedical.com/de/datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> und Nutzung personenbezogener Daten und Datenverwendung, inklusive meiner Gesundheitsdaten, zu.",
       "submit_btn": "Angebot einholen"
     }
   ],
@@ -376,8 +384,8 @@ export const Strings = {
     "description": "Qunomedical ist ein Anbieter für Medizin- und Gesundheitstourismus, der es Patienten weltweit ermöglicht, qualitativ hochwertige Behandlungen im Ausland zu guten Preisen zu finden. Qunomedical unterstützt Patienten rund um die Suche und Planung ihrer Behandlung. Qunomedical arbeitet ausschließlich mit Kliniken zusammen, die unseren strengen Aufnahmekriterien entsprechen, sowie die höchsten Zertifizierungsstandards und langjährige Erfahrung im Umgang mit internationalen Patienten vorweisen."
   },
   "footer": {
-    "terms": "<a href=\"https://www.qunomedical.com/de/agbs\" target=\"_blank\">AGBs</a>",
-    "privacy": "<a href=\"https://www.qunomedical.com/de/datenschutz\" target=\"_blank\">Datenschutzerklärung</a>",
+    "terms": "<a href=\"https://www.qunomedical.com/de/agbs\" target=\"_blank\" rel=\"noopener\">AGBs</a>",
+    "privacy": "<a href=\"https://www.qunomedical.com/de/datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a>",
     "rights": "Alle Rechte vorbehalten"
   }
 };
