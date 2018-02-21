@@ -83,9 +83,8 @@ export class IntlTelInputComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this.filter(name) : this.countries.slice())
     );
-     this.phoneNumberControl.valueChanges
+    this.phoneNumberControl.valueChanges
       .subscribe(data => {
-        // this.hiddenPhoneNumberControl.setValue(this.intlTelInputUtils.formatNumber(data, this.selectedCountry.iso2));
         this.hiddenPhoneNumberControl.setValue( this.isValidNumber() ? this.getNumber() : 'invalid');
         this._updateFlagFromNumber(data);
         const dialCode = this.selectedCountry.dialCode;
@@ -96,8 +95,8 @@ export class IntlTelInputComponent implements OnInit {
       this.dataService.getJson('https://cdn.rawgit.com/vonBrax/mat-intl-phone-input/v1.0.24/metadata.custom.json')
         .then(data => {
           this.intlTelInputUtils.setCustomMetadata(data);
-          this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 :
-          this.countries[0].iso2);
+          // this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2);
+          this._updatePlaceholder();
         });
     }
 
@@ -421,15 +420,14 @@ export class IntlTelInputComponent implements OnInit {
     if (this.intlTelInputUtils && shouldSetPlaceholder) {
       const numberType = this.intlTelInputUtils.numberType[options.placeholderNumberType];
 
-      let placeholder =
-        (this.selectedCountry.iso2) ? this.intlTelInputUtils.getExampleNumber(this.selectedCountry.iso2, options.nationalMode, numberType) :
+      let placeholder = this.selectedCountry.iso2 ?
+          this.intlTelInputUtils.getExampleNumber(this.selectedCountry.iso2, options.nationalMode, numberType) :
           '';
       placeholder = this._beforeSetNumber(placeholder);
 
       if (typeof options.customPlaceholder === 'function') {
         placeholder = options.customPlaceholder(placeholder, this.selectedCountry);
       }
-
       this.selectedCountry['placeholder'] = placeholder;
     }
   }
@@ -570,23 +568,28 @@ export class IntlTelInputComponent implements OnInit {
     this.phoneNumberControl.setValue(number);
   }
 
-  private _loadAutoCountry() {
+  private _loadAutoCountry(): void {
     // PS: Removing the callback parameter from here since it doesn't
     // seem to work (we just subscribe to the observable instead and
     // call the apropriate method when it arrives)
     const url = options.geoIpJsonpUrl;
-    this.dataService.getJsonp(url).then(value => this.handleAutoCountry(value));
+    this.dataService.getJsonp(url)
+      .then(value => this.handleAutoCountry(value))
+      .catch(() => {
+        // In case GET request fails, set a default country
+        const country = this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2;
+        this.handleAutoCountry({ip: '', country });
+      });
   }
 
-  protected handleAutoCountry(data: IpInfoCallback ) {
+  protected handleAutoCountry(data: IpInfoCallback ): void {
     if (options.initialCountry === 'auto') {
       // we must set this even if there is an initial val in the input:
       // in case the initial val is invalid and they delete it - they should see their auto country
       this.defaultCountry = data.country;
         // if there's no initial value in the input, then update the flag
         if (!this.phoneNumberControl.value) {
-            // this.setCountry(this.defaultCountry);
-            // this.setCountry(this.defaultCountry);
+            this.setCountry(this.defaultCountry);
         }
     }
   }

@@ -79,15 +79,8 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
   urlParams: string;
   cursor: number;
   progressBarValue = 0;
-  // clickEvent$: Observable<any>;
   checked;
   animationDirection = 'forwards';
-
-  // Safely unsubscribe observables
-  // private ngUnsubscribe: Subject<void> = new Subject<void>();
-
-  // @ViewChild('wrapper')
-  // wrapper: ElementRef;
 
   @ViewChild('ubFormWrapper')
   ubFormWrapper: ElementRef;
@@ -114,20 +107,6 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
   ngAfterViewInit() {
     if (typeof replaceUb === 'function' ) { replaceUb(); }
 
-    // this.clickEvent$ = Observable.fromEvent( this.wrapper.nativeElement, 'click');
-    // this.clickEvent$
-    //   .takeUntil(this.ngUnsubscribe)
-    //   .filter(evt => {
-    //     console.log('Incoming click...');
-    //     console.log(evt.target);
-    //     /* return evt.srcElement ? evt.srcElement.tagName.toLowerCase() === 'label' :
-    //       evt.target.tagName.toLowerCase() === 'label'; */
-    //       return evt.target.tagName.toLowerCase() === 'input';
-    //   })
-    //   .subscribe(evt => {
-    //     this.next();
-    // });
-
     this.ubForm = this.getUnbounceForm();
     if (this.ubForm) {
       this.initUnbounce();
@@ -143,15 +122,9 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
       });
     }
 
-    /*  setTimeout( () => {
-      this.firstOption.nativeElement.focus();
-    }); */
-
   }
 
   handleClick(evt) {
-    // console.log('Clicks are here!');
-    // console.log(evt.target);
     if (evt.target.tagName.toLowerCase() === 'input') {
       this.next();
     }
@@ -260,22 +233,6 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     } else {
       setTimeout(() => this.processNextStep(), 100);
     }
-    /* setTimeout( () => {
-      const prevStepVal = this.formGroup.get(this.funnel[this.cursor].name).value;
-      const prevStepName = this.funnel[this.cursor].name;
-      if (prevStepName === 'additional_info') {
-        const currVal = this.formGroup.get(prevStepName).value;
-      }
-      this.animationDirection = 'forwards';
-      this.cursor++;
-      this.updateUrl();
-      this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
-      this.mixpanelService.step({
-        step: this.cursor + 1,
-        name: this.funnel[this.cursor].name,
-        prevStepValue: prevStepName + ' - ' + prevStepVal
-      });
-    }, 100); */
   }
 
   processNextStep() {
