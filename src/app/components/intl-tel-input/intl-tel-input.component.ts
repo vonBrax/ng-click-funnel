@@ -104,9 +104,22 @@ export class IntlTelInputComponent implements OnInit {
   }
 
   onFocus(evt) {
-    if (evt.target.value && evt.target.setSelectionRange) {
-      evt.target.setSelectionRange(0, evt.target.value.length);
-    }
+    this.countryControl.setValue('');
+    // if (evt.target.value && evt.target.setSelectionRange) {
+    //   evt.target.setSelectionRange(0, evt.target.value.length);
+    // }
+  }
+
+  onBlur() {
+    // Clicking on a country in the country list first triggers a blur event in
+    // the input field, then the MatAutocompleteSelectedEvent and then another
+    // blur event (timeout is to wait for the MatAutocompleteSelectedEvent)
+    setTimeout( () => {
+      if (this.countryControl.value === '') {
+        this.countryControl.setValue(this.selectedCountry,
+        {onlySelf: true, emitEvent: false, emitModelToViewChange: true, emitViewToModelChange: false});
+      }
+    }, 100);
   }
 
   onSelect(evt: MatAutocompleteSelectedEvent) {

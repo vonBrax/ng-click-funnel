@@ -13,7 +13,8 @@
       [attr.aria-label]="countryStrings.placeholder"
       formControlName="countryControl"
       [matAutocomplete]="auto"
-      (focus)="onFocus($event)">
+      (focus)="onFocus($event)"
+      (blur)="onBlur()">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event)">
       <mat-option *ngFor="let country of filteredCountries | async" [value]="country" [class.last-preferred]="country['isLastPreferred']">
         <span class="iti-flag {{country.iso2}}"></span>

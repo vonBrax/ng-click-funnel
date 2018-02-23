@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-rest',
@@ -16,11 +16,7 @@ import { Component, ChangeDetectorRef, AfterViewInit } from '@angular/core';
     <app-footer></app-footer>
   `
 })
-export class RestComponent implements AfterViewInit {
+export class RestComponent {
 
-  constructor (private cd: ChangeDetectorRef) { }
-
-  ngAfterViewInit() {
-    // this.cd.detach();
-  }
+  constructor () { }
  }
