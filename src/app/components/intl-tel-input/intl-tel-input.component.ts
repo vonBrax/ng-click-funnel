@@ -27,16 +27,6 @@ import { IntlTelInputUtils } from '../../models/utils';
 })
 export class IntlTelInputComponent implements OnInit {
 
-  // formGroup: FormGroup;
-  countries: Country[];
-  filteredCountries: Observable<Country[]>;
-  selectedCountry: Country;
-  intlTelInputUtils: IntlTelInputUtils;
-  componentStrings: any;
-  private countryCodes: any;
-  private preferredCountries: Country[];
-  private defaultCountry: string;
-
   @ViewChild('phoneNumberField')
   phoneNumberField: ElementRef;
   @Input()
@@ -44,8 +34,17 @@ export class IntlTelInputComponent implements OnInit {
   @Input()
   strings: any;
 
+  // formGroup: FormGroup;
+  countries: Country[];
+  filteredCountries: Observable<Country[]>;
+  selectedCountry: Country;
+  intlTelInputUtils: IntlTelInputUtils;
+  componentStrings: any;
   countryStrings: any;
   phoneStrings: any;
+  private countryCodes: any;
+  private preferredCountries: Country[];
+  private defaultCountry: string;
 
   constructor(private fb: FormBuilder, private dataService: DataService ) { }
 
@@ -104,9 +103,22 @@ export class IntlTelInputComponent implements OnInit {
   }
 
   onFocus(evt) {
-    if (evt.target.value && evt.target.setSelectionRange) {
-      evt.target.setSelectionRange(0, evt.target.value.length);
-    }
+    this.countryControl.setValue('');
+    // if (evt.target.value && evt.target.setSelectionRange) {
+      // evt.target.setSelectionRange(0, evt.target.value.length);
+    // }
+  }
+
+  onBlur(evt) {
+    // Clicking on a country in the country list first triggers a blur event in
+    // the input field, then the MatAutocompleteSelectedEvent and then another
+    // blur event (timeout is to wait for the MatAutocompleteSelectedEvent)
+    setTimeout( () => {
+      if (this.countryControl.value === '') {
+        this.countryControl.setValue(this.selectedCountry,
+        {onlySelf: true, emitEvent: false, emitModelToViewChange: true, emitViewToModelChange: false});
+      }
+    }, 100);
   }
 
   onSelect(evt: MatAutocompleteSelectedEvent) {
@@ -427,10 +439,10 @@ export class IntlTelInputComponent implements OnInit {
     const shouldSetPlaceholder = options.autoPlaceholder !== 'off';
 
     if (this.intlTelInputUtils && shouldSetPlaceholder) {
-      const numberType = this.intlTelInputUtils.numberType[options.placeholderNumberType];
+      // const numberType = this.intlTelInputUtils.numberType[options.placeholderNumberType];
 
       let placeholder = this.selectedCountry.iso2 ?
-          this.intlTelInputUtils.getExampleNumber(this.selectedCountry.iso2, options.nationalMode, numberType) :
+          this.intlTelInputUtils.getExampleNumber(this.selectedCountry.iso2, options.nationalMode, /* numberType */ ) :
           '';
       placeholder = this._beforeSetNumber(placeholder);
 

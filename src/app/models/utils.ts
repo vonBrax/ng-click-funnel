@@ -3,14 +3,14 @@ import { parseCustom, formatCustom, getNumberType, isValidNumberCustom } from 'l
 
 // Import type definitions
 import { CountryCode, ParsedNumber, NumberFormat } from 'libphonenumber-js';
-import { examples, numberTypes, validationError } from './allCountries.data';
+import { examples, /* numberTypes, validationError */ } from './allCountries.data';
 
 // Import metadata
 // import {metadata} from './metadata.custom';
 
 export class IntlTelInputUtils {
 
-    numberType = numberTypes;
+    // numberType = numberTypes;
     customMetadata: any;
 
     contructor() {}
@@ -30,7 +30,7 @@ export class IntlTelInputUtils {
     }
 
     // get an example number for the given country code
-    getExampleNumber(countryCode: string, nationalFormat: boolean, numberType) {
+    getExampleNumber(countryCode: string, nationalFormat: boolean, numberType?: string) {
       try {
         /** TODO: CHECK IF IT IS REALLY NECESSARY TO GET THE PHONE NUMBER EXAMPLES
          *  FOR A SPECIFIC TYPE (MOBILE, FIXED-LINE ETC) SINCE WE ARE CURRENTLY

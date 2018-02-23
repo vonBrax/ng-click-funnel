@@ -1,5 +1,5 @@
 export const CountryDetails = {
-  uk:
+  gb:
     {
       number: '+441466455033',
       formatted: '+44 14 6645 5033',

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './personal-info.component.html',
   styleUrls: ['./personal-info.component.css']
 })
-export class PersonalInfoComponent implements OnInit {
+export class PersonalInfoComponent {
 
   @Input()
   childGroup: FormGroup;
@@ -18,9 +18,6 @@ export class PersonalInfoComponent implements OnInit {
   lastEmailValue: string;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   displayErrorMessage(field: any): string | null {
   return ( this.childGroup.get(field.name).errors && this.childGroup.get(field.name).errors.message ) ||

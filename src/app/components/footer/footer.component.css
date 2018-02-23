@@ -11,13 +11,20 @@ a {
 
 .footer {
     background: #585a51;
+    background-color: #c1c1c1;
     color: #e1e1e1;
+    color: #585a51;
     padding: 2em 1em;
-    margin: 0 auto;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    padding: 2em 0;
+    /* margin: 0 auto; */
+    
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .svg--quno-logo {
@@ -28,7 +35,12 @@ a {
 
 .svg .st1 {
     fill: #585a51;
+    fill: #c1c1c1;
     opacity: .5;
+}
+
+.svg--linkedin path {
+  fill: #969595;
 }
 
 .icon-row {
@@ -114,6 +126,7 @@ a {
 .icon-row--rounded-icons .icon-row__link--linkedin:focus path {
     fill: #FFFFFF;
 }
+
 
 @media (min-width: 992px) {
   .icon-row.footerLinks {

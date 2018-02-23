@@ -4,7 +4,7 @@ export const CountryList = [
     CountryDetails.de,
     CountryDetails.at,
     CountryDetails.ch,
-    CountryDetails.uk,
+    CountryDetails.gb,
     CountryDetails.ie,
     CountryDetails.us,
     CountryDetails.ca,

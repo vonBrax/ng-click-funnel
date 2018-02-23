@@ -1,5 +1,5 @@
 export const Strings = {
-  "funnel_name": "DE.Hair:1.3",
+  "funnel_name": "ES.Hair:1.1",
   "funnel": [
     {
       "name": "treatment",
@@ -7,45 +7,33 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "Wie viele Grafts benötigen Sie?",
+      "question": "¿Cuantos grafts (unidades foliculares)?",
       "answers": [
-        "2.000 Grafts",
-        "3.000 Grafts",
-        "4.000 Grafts",
-        "7.000 Grafts (2x)"
+        "2000 grafts",
+        "3000 grafts",
+        "4000 grafts",
+        "7000 grafts",
+        "trasplante de barba"
       ],
       "icons": [
         "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412237/unbounce/bald-2000.png",
         "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412260/unbounce/bald-3000.png",
         "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412272/unbounce/bald-4000.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412282/unbounce/bald-7000.png"
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412282/unbounce/bald-7000.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519238746/unbounce/beard.png"
       ]
     },
     {
-      "name": "additional_info_prev_treatment",
+      "name": "additional_info_first_time",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Hatten Sie bereits eine Haartransplantation?",
+      "question": "¿Es este tu primer trasplante de cabello?",
       "answers": [
-        "Ja",
-        "Nein"
-      ]
-    },
-    {
-      "name": "timeline",
-      "type": "radio-click",
-      "validators": [
-        "required"
-      ],
-      "question": "Wann möchten Sie die Behandlung machen?",
-      "answers": [
-        "So bald wie möglich",
-        "In den nächsten 3 Monaten",
-        "In den nächsten 6 Monaten",
-        "In mehr als 6 Monaten",
-        "Noch nicht entschieden"
+        "Primera vez",
+        "Secunda vez",
+        "Tercera vez"
       ]
     },
     {
@@ -54,14 +42,45 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "Wo würden Sie die Behandlung machen lassen?",
+      "question": "¿Dónde?",
       "answers": [
-        "Türkei",
-        "Polen",
-        "Ungarn",
-        "Deutschland",
-        "Österreich",
-        "Andere/Ich bin mir nicht sicher"
+        "Turquía",
+        "Polonia",
+        "India",
+        "Hungría",
+        "España",
+        "Irlanda"
+      ],
+      "icons": [
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239116/unbounce/flag-tr.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239135/unbounce/flag-mx.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239147/unbounce/flag-in.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239159/unbounce/flag-hu.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239169/unbounce/flag-uk.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239176/unbounce/flag-ie.png"
+      ],
+      "append": [
+        "€",
+        "€€",
+        "€€",
+        "€€",
+        "€€€",
+        "€€€"
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Cuando?",
+      "answers": [
+        "lo antes posible",
+        "En 1 mes",
+        "En 3 meses",
+        "En 6 meses",
+        "Más adelante"
       ]
     },
     {
@@ -70,35 +89,36 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "Welche Informationen suchen Sie?",
+      "question": "Quiero...",
       "answers": [
-        "Ein persönliches Angebot",
-        "Eine grobe Kostenübersicht",
-        "Generelle Information über Ärzte und Preise",
-        "Andere/Ich bin mir nicht sicher"
+        "Reservar una cita",
+        "Obtener una cotización",
+        "Encuentrar la clínica adecuada",
+        "Obtener más información"
       ]
     },
     {
       "name": "additional_info_user_notes",
       "type": "textarea",
       "validators": [],
-      "question": "Kommentare",
+      "question": "MISSING",
       "answers": [],
-      "label": "Zusätzliche Informationen",
-      "next_button": "WEITER"
+      "label": "MISSING",
+      "next_button": "MISSING"
     },
     {
       "name": "personal_information",
       "type": "personal_information",
       "validators": [],
-      "label": "Zusätzliche Informationen",
-      "next_button": "WEITER",
+      "question": "MISSING(optional)",
+      "label": "MISSING",
+      "next_button": "MISSING",
       "fields": [
         {
           "name": "first_name",
           "type": "text",
-          "placeholder": "Vorname",
-          "error_message": "Bitte geben Sie uns Ihren Vornamen",
+          "placeholder": "Nombre de pila",
+          "error_message": "MISSING",
           "validators": [
             "required"
           ]
@@ -106,8 +126,8 @@ export const Strings = {
         {
           "name": "last_name",
           "type": "text",
-          "placeholder": "Nachname",
-          "error_message": "Bitte geben Sie uns Ihren Nachnamen",
+          "placeholder": "Apellido",
+          "error_message": "MISSING",
           "validators": [
             "required"
           ]
@@ -115,8 +135,8 @@ export const Strings = {
         {
           "name": "email",
           "type": "email",
-          "placeholder": "E-Mail",
-          "error_message": "Bitte geben Sie Ihre E-Mail Adresse ein",
+          "placeholder": "Email",
+          "error_message": "MISSING",
           "validators": [
             "required"
           ]
@@ -124,8 +144,8 @@ export const Strings = {
         {
           "name": "phone_country",
           "type": "text",
-          "placeholder": "Land",
-          "error_message": "Bitte geben Sie Ihr Land an",
+          "placeholder": "País",
+          "error_message": "MISSING",
           "validators": [
             "required"
           ]
@@ -133,66 +153,57 @@ export const Strings = {
         {
           "name": "phone_number",
           "type": "phone",
-          "placeholder": "Telefonnummer",
-          "error_message": "Ihre Telefonnummer fehlt noch",
+          "placeholder": "Teléfono",
+          "error_message": "MISSING",
           "validators": [
             "required"
           ]
         }
       ],
-      "tos": "Ich stimme Qunomedicals <a href=\"https://www.qunomedical.com/de/agbs\" target=\"_blank\" rel=\"noopener\">AGBs</a>, <a href=\"https://www.qunomedical.com/de/datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a> und Nutzung personenbezogener Daten und Datenverwendung, inklusive meiner Gesundheitsdaten, zu.",
-      "submit_btn": "Angebot einholen"
+      "tos": "Acepto los <a href=\"https://www.qunomedical.com/en/terms-and-conditions\" target=\"_blank\" rel=\"noopener\">Términos y Condiciones</a>, la <a href=\"https://www.qunomedical.com/en/privacy\" target=\"_blank\" rel=\"noopener\">Política de Privacidad</a> y que Qunomedical puede recopilar, procesar, usar y divulgar mi información personal y de salud.",
+      "submit_btn": "OBTENER MI COTIZACIÓN"
     }
   ],
   "hero_banner": {
-    "headline": "Ihre Haartransplantation",
+    "headline": "Trasplante de cabello",
     "values": [
-      {
-        "title": "Bezahlbar",
-        "description": "Komplett-Pakete - nur für Sie verhandelt"
-      },
-      {
-        "title": "Hohe Qualität",
-        "description": "Wählen Sie aus anerkannten Ärzten"
-      },
-      {
-        "title": "Sicher",
-        "description": "Wir begleiten Sie bei jedem Schritt"
-      }
+      {},
+      {},
+      {}
     ]
   },
   "how_it_works": [
     {
-      "title": "Kostenlose Telefonberatung",
-      "description": "Lernen Sie alles über Haatransplantationen, Ärzte und Ihre Optionen."
+      "title": "FREE PHONE CONSULTATION",
+      "description": "Learn everything there is to know about hair transplants, our doctors and your options"
     },
     {
-      "title": "Angebot erhalten",
-      "description": "Wir senden Ihnen ein kostenloses, individuelles Angebot, damit Sie genau wissen, was im Preis enthalten ist."
+      "title": "RECEIVE FREE QUOTE",
+      "description": "We'll send you a free, personal quote so you'll know exactly what's included"
     },
     {
-      "title": "Buchen und zurücklehnen",
-      "description": "Wenn Sie sich entscheiden zu buchen, wird Ihr persönlicher Gesundheitsberater sicherstellen, dass Sie bestens vorbereitet sind. Für unseren Service zahlen Sie niemals extra."
+      "title": "BOOK, SIT BACK AND RELAX",
+      "description": "If you decide to book, your personal health manager will make sure you're well prepared. We will never charge extra for our services"
     }
   ],
   "review_stats": {
-    "title": "BEWERTUNGEN",
-    "description": "Sehen Sie Bewertungen von hunderten Qunomedical Kunden.",
+    "title": "REVIEW STATS",
+    "description": "Get the details on feedback the thousands of Qunomedical patients have provided, from their experiences with us and our partner clinics, to the treatment they received.",
     "stats": [
       {
-        "question": "Würden Sie Qunomedical an Freunde und Familie weiterempfehlen?",
-        "answer": "JA",
+        "question": "WOULD YOU RECOMMEND QUNOMEDICAL TO YOUR FAMILY AND FRIENDS?",
+        "answer": "YES",
         "stat": "83.60%"
       },
       {
-        "question": "War Ihre Behandlung genauso gut oder besser als sie zu Hause gewesen wäre?",
-        "answer": "JA",
+        "question": "WOULD YOU CONSIDER YOUR TREATMENT QUALITY/SERVICE THE SAME OR BETTER THAN YOU WOULD RECEIVE AT HOME?",
+        "answer": "YES",
         "stat": "95%"
       },
       {
-        "question": "Würden Sie die Qualität der Klinik mit 4 oder 5 von 5 Sternen bewerten?",
+        "question": "WOULD YOU RATE THE QUALITY OF THE FACILITIES A 4 OR 5 OUT OF 5 STARS?",
         "stars": 5,
-        "answer": "JA",
+        "answer": "YES",
         "stat": "94%"
       }
     ]
@@ -202,170 +213,181 @@ export const Strings = {
       "doctor": {
         "name": "Dr. Emrah Cinik, MD",
         "photo": "https://res.cloudinary.com/junomedical/image/upload/c_thumb,g_face,w_130,h_130/v1480581742/staff/16A2875.jpg",
-        "specialty": "Haartransplantationsspezialist",
-        "location": "Istanbul, Türkei"
+        "specialty": "Hair Transplant Specialist",
+        "location": "Istanbul, Turkey"
       },
       "review": {
-        "quote": "Das Personal war sehr fürsorglich und ich habe mich sicher gefühlt.",
+        "quote": "The staff were considerate and caring and I felt safe.",
         "stars": 5
       },
       "package": {
-        "treatment": "FUE Haartransplantation",
+        "treatment": "FUE Hair Transplant",
         "description": [
-          "2 Hotelübernachtungen inklusive Frühstück",
-          "Persönlicher Chauffeur",
-          "Blutanalyse",
-          "PRP Behandlung",
-          "24/7 Qunomedical Kontakt"
+          "2 nights hotel stay including breakfast",
+          "Personal driver during your stay",
+          "Blood analysis",
+          "PRP treatment",
+          "24/7 Qunomedical assistance hotline"
         ],
-        "price": "2.100€",
-        "deal": "Maximale Grafts"
+        "price": "€2,100",
+        "deal": "maximum grafts"
       },
       "cta": {
-        "text": "&nbsp;",
-        "button_text": "Anfragen"
+        "text": "For more info or to book",
+        "button_text": "Get in touch"
       }
     },
     {
       "doctor": {
         "name": "Dr. Ziya Yavuz, MD",
         "photo": "https://res.cloudinary.com/junomedical/image/upload/c_thumb,g_face,w_130,h_130/v1480098817/staff/Yavuz_Liv.jpg",
-        "specialty": "Haartransplantationsspezialist",
-        "location": "Istanbul, Türkei"
+        "specialty": "Hair Transplant Specialist",
+        "location": "Istanbul, Turkey"
       },
       "review": {
-        "quote": "Ich war mehr als beeindruckt von dem Arzt.",
+        "quote": "I was beyond impressed with my experience at this doctor's office.",
         "stars": 4
       },
       "package": {
-        "treatment": "FUE Haartransplantation",
+        "treatment": "FUE Hair Transplant",
         "description": [
-          "2 Hotelübernachtungen inklusive Frühstück",
-          "Persönlicher Chauffeur",
-          "Blutanalyse",
-          "PRP Behandlung",
-          "24/7 Qunomedical Kontakt"
+          "2 nights hotel stay including breakfast",
+          "Personal driver during your stay",
+          "Blood analysis",
+          "PRP treatment",
+          "24/7 Qunomedical assistance hotline"
         ],
-        "price": "2.300€",
-        "deal": "Maximale Grafts"
+        "price": "€2,300",
+        "deal": "maximum grafts"
       },
       "cta": {
-        "text": "&nbsp;",
-        "button_text": "Anfragen"
+        "text": "For more info or to book",
+        "button_text": "Get in touch"
       }
     },
     {
       "doctor": {
         "name": "Dr. Maciej Borejsza, MD",
         "photo": "https://res.cloudinary.com/junomedical/image/upload/c_thumb,g_face,w_130,h_130/v1475677934/staff/Dr_M._Borejsza.jpg",
-        "specialty": "Haartransplantationsspezialist",
-        "location": "Bielsko-Biala, Polen"
+        "specialty": "Hair Transplant Specialist",
+        "location": "Bielsko-Biala, Poland"
       },
       "review": {
-        "quote": "Ich mochte vor allem die genaue Beratung vor der Behandlung.",
+        "quote": "I especially liked the extensive consultation before the treatment.",
         "stars": 5
       },
       "package": {
-        "treatment": "FUE Haartransplantation",
+        "treatment": "FUE Hair Transplant",
         "description": [
-          "2 Hotelübernachtungen inklusive Frühstück",
-          "Persönlicher Chauffeur",
-          "Blutanalyse",
-          "PRP Behandlung",
-          "24/7 Qunomedical Kontakt"
+          "2 nights hotel stay including breakfast",
+          "Personal driver during your stay",
+          "Blood analysis",
+          "PRP treatment",
+          "24/7 Qunomedical assistance hotline"
         ],
-        "price": "2.300€",
-        "deal": "2000 Grafts"
+        "price": "€2,300",
+        "deal": "2000 grafts"
       },
       "cta": {
-        "text": "&nbsp;",
-        "button_text": "Anfragen"
+        "text": "For more info or to book",
+        "button_text": "Get in touch"
       }
     }
   ],
   "patient_stories": {
-    "title": "ERFAHRUNGSBERICHTE",
-    "description": "Sehen Sie sich Erfahrungsberichte von Kunden an und lernen Sie mehr über deren Erwartungen, Bedenken und Gesamteindruck.",
+    "title": "PATIENT STORIES",
+    "description": "Hear first-hand accounts of patients visiting our partner clinics, and get a sense of their need, hesitations, and overall experience partnering with Qunomedical to satisfy their health needs!",
     "videos": [
       {
-        "title": "EAMONS HAARTRANSPLANTATION",
+        "title": "EAMON'S HAIR TRANSPLANT",
         "url": "https://www.youtube-nocookie.com/embed/C-2S-q-mOSY?rel=0&amp\\;showinfo=0"
       },
       {
-        "title": "DR. CINIK IN DER TÜRKEI",
+        "title": "DR. CINIK IN TURKEY",
         "url": "https://www.youtube-nocookie.com/embed/hn1vbS3tIY0?rel=0&amp;showinfo=0"
       },
       {
-        "title": "DR. GARG IN INDIEN",
+        "title": "DR. GARG IN INDIA",
         "url": "https://www.youtube-nocookie.com/embed/Nimf4hHcidQ?rel=0&amp;showinfo=0"
       },
       {
-        "title": "DR. BOREJSZA IN POLEN",
+        "title": "DR. BOREJSZA IN POLAND",
         "url": "https://www.youtube-nocookie.com/embed/eHMTtgsJNas?rel=0&amp;showinfo=0"
       }
     ]
   },
   "what_is_ht": {
+    "title": "What is a hair transplant?",
     "description": [
-      null,
-      null
+      "A <strong>Hair Transplant</strong> is a minimally-invasive, outpatient surgical procedure that can permanently restore the hair of men and women who are experiencing partial baldness by transplanting new follicles, or \"grafts\" (refering to a piece of living tissue that is surgically moved from one body site to another) into balding or thinning areas.",
+      "A hair transplant can be recommended for anyone experiencing partial baldness due to male-pattern baldness (androgenetic alopecia), a receding hairline, traction alopecia, or head trauma. Hair Transplants are typically not recommended for patients under 25."
     ],
     "methods": [
-      {},
-      {}
+      {
+        "name": "Follicular Unit Transplantation",
+        "abbr": "FUT",
+        "description": "Removing a strip of skin from the donor area (usually the back of the patient's head, creating a permanent scar where the scalp is repositioned) under local anesthesia, dividing it into smaller grafts, and then implanting them into the place on the recipients sites.",
+        "extras": "<strong>Recovery: ~2weeks</strong>"
+      },
+      {
+        "name": "Follicular Unit Extraction",
+        "abbr": "FUE",
+        "description": "Manually harvesting individual hair follicles from a donor area under local anesthesia (sometimes requiring the head to be shaved), and then grafting them into the appropriate places to achieve a natural, uniform look.",
+        "extras": "<strong>Recovery: ~5 days</strong>"
+      }
     ]
   },
   "cta_inline": {
-    "text": "Sie möchten mehr über Haartransplantationen erfahren? Unsere Gesundheitsberater helfen Ihnen gerne.",
-    "button_text": "Kontakt"
+    "text": "Want to learn more about hair transplants? Our health managers are happy to help.",
+    "button_text": "Get in touch"
   },
   "reviews": {
-    "title": "Warum Qunomedical? Das sagen unsere Kunden",
+    "title": "Why Qunomedical? Here's what our patients say",
     "reviews": [
       {
-        "patient": "Erkan A.",
-        "country": "Deutschland",
-        "treatment": "FUE Haartransplantation",
+        "patient": "Van",
+        "country": "United States",
+        "treatment": "FUE Hair Transplant",
         "stars": 5,
-        "date": "November 2017",
-        "teaser": "Alles gut!",
-        "full": "Es war super waren sehr freundlich haben sich um mich gekümmert kann nur empfehlen."
+        "date": "July 2017",
+        "teaser": "The whole process turned out great! Coree and the Qunomedical team operated effectively on communication to my outbound appointment.",
+        "full": "The whole process turned out great! Coree and the Qunomedical team operated effectively on communication to my outbound appointment. The English was a little challenging but the staff worked well. The facility was very busy but remained in good standings. The hotels were great. Qunomedical team worked well on getting me the best deal and comfortability for my treatment."
       },
       {
-        "patient": "Alexander B.",
-        "country": "Deutschland",
-        "treatment": "FUE Haartransplantation",
+        "patient": "Bradley",
+        "country": "United Kingdom",
+        "treatment": "FUE Hair Transplant",
         "stars": 5,
-        "date": "Oktober 2017",
-        "teaser": "Das Krankenhaus was sehr sauber! Die Beratung vorher und nachher war und ist sehr gut! Ich bin sehr zufrieden!",
-        "full": "Der Transfer vom Flughafen ins Hotel und ins Krankenhaus war erstklassig und sehr pünktlich! Das erste Gespräch bis hin zum Abschluss Gespräch war sehr professionell und sehr freundlich! Ich wurde sehr freundlich behandelt. Das Krankenhaus was sehr sauber! Die Beratung vorher und nachher war und ist sehr gut! Ich bin sehr zufrieden! Mit Qunomedical war ich rund um zufrieden und habe mich gut beraten und betreut gefühlt! Wir sind Immer noch in Kontakt und der Kontakt ist sehr freundlich und kompetent."
+        "date": "June 2017",
+        "teaser": "Everything went exactly how I was told it would go, the staff were brilliant and now I'm just excited to see the results in several months.",
+        "full": "Everything went exactly how I was told it would go, the staff were brilliant and now I'm just excited to see the results in several months. Will be needing another operation so can't wait for that then hopefully I will be back to my confident self. Thanks Qunomedical for all you have done. Can't really complain about anything, I was satisfied from start to finish. Kind regards Bradley"
       },
       {
-        "patient": "Harjit B.",
-        "country": "Deutschland",
-        "treatment": "FUE Haartransplantation",
+        "patient": "Shahin T.",
+        "country": "United Kingdom",
+        "treatment": "FUE Hair Transplant",
         "stars": 5,
-        "date": "März 2017",
-        "teaser": "Beratung & Untersuchung war gut organisiert. Mitarbeiter & Einrichtungen waren besser als ich erwartet hatte.",
-        "full": "Ich wurde abgeholt und zurück zum Flughafen gebracht. Beratung & Untersuchung war gut organisiert. Mitarbeiter & Einrichtungen waren besser als ich erwartet hatte. Außer einem Missverständnis der Implantation der Haare in meinem hinteren Kopf lief alles gut. Meine Erfahrung mit Qunomedical war sehr gut. Es gibts nichts zu verbessern, alles wurde richtig gemacht.."
+        "date": "May 2017",
+        "teaser": "If I had any doubts Qunomedical was there every step of the way. I have no regrets at all and all my family are happy with the results.",
+        "full": "As soon as we landed, the transfer team had our information ready and knew exactly where to take us. We relaxed at the hotel. The next morning, medical staff at the hotel picked us on time for a consultation. Everything went according to plan and exactly how it should have. All staff have been very accommodating, very helpful and on time. My Experience with Qunomedical was very good. Good communication. Very helpful with information. If I had any doubts Qunomedical was there every step of the way. I have no regrets at all and all my family are happy with results."
       }
     ]
   },
   "cta_with_image": {
     "image_url": "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_440/pages/homepage-quote.png",
-    "title": "Wissen Sie schon wohin es gehen soll? Oder wollen Sie mehr über Ihre Behandlung erfahren?",
-    "text": "Ein kostenloses, professionelles Angebot ist der erste Schritt auf dem Weg zu Ihrem gesünderen Selbst. Auf Sie abgestimmt und völlig unverbindlich.",
-    "button_text": "Jetzt Angebot einholen"
+    "title": "Know exactly where you want to go? Or still understanding your treatment?",
+    "text": "A free professional quote is your first step in your healthcare journey. Based on your personal case, without any obligation to book.",
+    "button_text": "Request A Quote"
   },
   "accreditations": {
-    "title": "Sehen Sie selbst.",
-    "description": "Wir sind anerkannt durch Temos, eine unabhängige Zertifizierung für Qualität im Bereich Medizintourismus, und vom International Medical Travel Journal (IMTJ) als Beste Agentur für Medizinreisen 2017 ausgezeichnet.",
+    "title": "Don't take our word for it.",
+    "description": "The quality of our services doesn't go unnoticed. We are certified by Temos, an independent certification body for excellence in medical tourism, and the International Medical Travel Journal (IMTJ) awarded us as the Best Medical Travel Agency in 2017.",
     "logo_urls": [
       "https://res.cloudinary.com/junomedical/image/upload/w_150/accreditation/temos-international",
       "https://res.cloudinary.com/junomedical/image/upload/w_150/accreditation/imtj"
     ],
     "press": {
-      "title": "Bekannt aus",
+      "title": "As seen in",
       "logo_urls": [
         "https://res.cloudinary.com/junomedical/image/upload/w_240/press/fas-new",
         "https://res.cloudinary.com/junomedical/image/upload/w_240/press/forbes-new",
@@ -375,15 +397,15 @@ export const Strings = {
     }
   },
   "cta_plain": {
-    "text": "Wir begleiten Sie auf Ihrem Weg zu einem glücklicheren, gesünderen Selbst.",
-    "button_text": "Jetzt Spezialisten finden"
+    "text": "Let us be your guide on your journey to a happier, more confident you.",
+    "button_text": "FIND A DOCTOR NOW"
   },
   "disclaimer": {
-    "description": "Qunomedical ist ein Anbieter für Medizin- und Gesundheitstourismus, der es Patienten weltweit ermöglicht, qualitativ hochwertige Behandlungen im Ausland zu guten Preisen zu finden. Qunomedical unterstützt Patienten rund um die Suche und Planung ihrer Behandlung. Qunomedical arbeitet ausschließlich mit Kliniken zusammen, die unseren strengen Aufnahmekriterien entsprechen, sowie die höchsten Zertifizierungsstandards und langjährige Erfahrung im Umgang mit internationalen Patienten vorweisen."
+    "description": "Qunomedical is here to bring the world of healthcare closer to you. We believe that everyone should have access to high-quality, affordable healthcare regardless of where they live. As far as we're concerned, your needs will always come first, that's why we'll help you find the best accredited doctors and hospitals around the world.  We're committed to providing ou with access to the high-quality medical treatment you deserve and we'll be there with you throughout every step of your journey; during the booking process, your hospital visit, and your recuperation period."
   },
   "footer": {
-    "terms": "<a href=\"https://www.qunomedical.com/de/agbs\" target=\"_blank\" rel=\"noopener\">AGBs</a>",
-    "privacy": "<a href=\"https://www.qunomedical.com/de/datenschutz\" target=\"_blank\" rel=\"noopener\">Datenschutzerklärung</a>",
-    "rights": "Alle Rechte vorbehalten"
+    "terms": "<a href=\"https://www.qunomedical.com/en/terms-and-conditions\" target=\"_blank\" rel=\"noopener\">Términos y Condiciones</a>",
+    "privacy": "<a href=\"https://www.qunomedical.com/en/privacy\" target=\"_blank\" rel=\"noopener\">Política de Privacidad</a>",
+    "rights": "Todos los derechos reservados"
   }
 };
