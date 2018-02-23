@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 
 import { ComponentManifest } from './lazy-modules/component-manifest';
 import { ComponentLoaderModule } from './lazy-modules/component-loader.module';
-// import { MaterialImportsModule } from './modules/material.imports.module';
 import { EntryModule } from './lazy-modules/entry.module';
 
 const manifests: ComponentManifest[] = [
@@ -29,11 +28,10 @@ const manifests: ComponentManifest[] = [
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-click-funnel'}),
     BrowserAnimationsModule,
-    // MaterialImportsModule,
     EntryModule,
     ComponentLoaderModule.forRoot(manifests)
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

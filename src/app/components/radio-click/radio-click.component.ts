@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,12 +6,14 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './radio-click.component.html',
   styleUrls: ['./radio-click.component.css']
 })
-export class RadioClickComponent implements OnInit {
+export class RadioClickComponent implements OnInit, OnChanges {
 
   @Input()
   answer: string;
   @Input()
   icon: string;
+  @Input()
+  append: string;
   @Input()
   index: number;
   @Input()
@@ -22,6 +24,10 @@ export class RadioClickComponent implements OnInit {
   labelEl: ElementRef;
 
   constructor() { }
+
+  ngOnChanges(change: SimpleChanges): void {
+    console.log('Radio click component changed!');
+  }
 
   ngOnInit() { }
 

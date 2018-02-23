@@ -70,11 +70,12 @@ mat-card-actions {
     /* grid-template-rows: auto; */
     grid-auto-rows: 1fr;
     grid-row-gap: 1em;
-    /* align-items: stretch; */
+    grid-row-gap: 8px;
 }
 
 .option {
     transition: background-color .1s ease-in, transform .1s ease-in-out;
+    min-height: 0;
 }
 
 /* .option:hover,
@@ -113,6 +114,7 @@ mat-card-actions {
 @media(min-width: 600px) {
     mat-card {
         height: 500px;
+        height: 550px;
     }
 
     mat-card-header {
@@ -121,5 +123,6 @@ mat-card-actions {
 
     mat-card-content {
         height: 300px;
+        height: 350px;
     }
 }

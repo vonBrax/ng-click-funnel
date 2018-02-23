@@ -8,10 +8,11 @@
     [attr.name]="controlName"
     (keydown)="onKeydown($event)">
   <label class="radio-button" [attr.for]="controlName + '_' + answer" #labelEl>
-    <img *ngIf="icon" [attr.src]="icon" alt=""> {{answer}}
-    <!-- <img src="https://d9hhrg4mnvzow.cloudfront.net/get.qunomedical.com/en_us/source_all/hair1_4/1c562cab-140x140-bald-2000.png" alt=""> -->
+    <img *ngIf="icon" [attr.src]="icon" alt="">
+    <span>{{answer}}</span>
    <!--  <span class="radio-option">{{numberToChar(index)}}</span> -->
     <!-- <input type="radio" value="{{answer}}" name="{{index}}" [formControlName]="controlName">  -->
     <!-- <span class="radio-answer" >{{answer}}</span> -->
+    <span *ngIf="append" class="append font-weight--bold">{{append}}</span>
   </label>
 </div>

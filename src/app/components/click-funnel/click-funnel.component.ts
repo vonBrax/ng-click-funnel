@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Inject, OnChanges, SimpleChanges } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, state } from '@angular/animations';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { FormBuilder, FormGroup, Validators/*  , AbstractControl */ } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl  } from '@angular/forms';
 
 import { MixpanelService } from '../../services/mixpanel.service';
 import { EmailValidatorService } from '../../services/email.validator.service';
 
 import { Strings } from '../../models/strings';
+import { Country } from '../../models/country.class';
 
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
@@ -65,7 +66,7 @@ declare var lp, replaceUb;
   ]
 })
 
-export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestroy */ {
+export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /* , OnDestroy */ {
 
   funnel: any[] = Strings.funnel;
   funnelName: string = Strings.funnel_name;
@@ -95,6 +96,10 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     private mixpanelService: MixpanelService,
     private emailValidator: EmailValidatorService,
     @Inject(PLATFORM_ID) private platformId: Object ) { }
+
+  ngOnChanges(change: SimpleChanges): void {
+    console.log('Click funnel changed');
+  }
 
   ngOnInit() {
     this.cursor = 0;
@@ -290,7 +295,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
             continue;
           } else if (step.fields[i].name === 'phone_number') {
             nestedControls['phone_number'] = this.fb.group({
-              countryControl: ['', Validators.required],
+              countryControl: ['', Validators.compose([Validators.required, validateCountry() ])],
               phoneNumberControl: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
               hiddenPhoneNumberControl: ''
             });
@@ -365,4 +370,11 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestro
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   } */
+}
+
+function validateCountry() {
+  return (ctrl: AbstractControl): {[key: string]: any} => {
+    if (!ctrl.value || ctrl.value instanceof Country ) { return null; }
+    return { message: 'Please select a country from the list'};
+  };
 }

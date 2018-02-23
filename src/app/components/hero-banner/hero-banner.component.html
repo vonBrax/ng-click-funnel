@@ -5,10 +5,9 @@
       <h1>{{strings.headline}}</h1>
       <div class="hero__value hide--phone hide--tabletMid" *ngFor="let value of strings.values">
         <h2>
-          <mat-icon>check</mat-icon>
-          <strong>{{value.title}}</strong>
+          <mat-icon>check</mat-icon><strong>{{value.title}}</strong>
         </h2>
-        <p class="padding-left--large">{{value.description}}</p>
+        <p>{{value.description}}</p>
       </div>
 
       <figure class="hide--phone hide--tabletMid">

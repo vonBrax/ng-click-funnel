@@ -15,16 +15,16 @@ export class EmailValidatorService {
 
     lastEmailChecked: string;
 
-    INVALID_1 = 'Email address must contain one "@"';
-    INVALID_2 = 'Please enter a valid email address';
-    INVALID_3 = 'Did you mean ';
+    // INVALID_1 = 'Email address must contain one "@"';
+    // INVALID_2 = 'Please enter a valid email address';
+    // INVALID_3 = 'Did you mean ';
 
     /*
     * GERMAN EMAIL ERROR MESSAGES (Uncomment to switch)
     */
-    // INVALID_1 = 'Emailadresse muss ein @ enthalten';
-    // INVALID_2 = 'Bitte geben Sie eine gültige Emailadresse an';
-    // INVALID_3 = 'Meinten Sie ';
+    INVALID_1 = 'Emailadresse muss ein @ enthalten';
+    INVALID_2 = 'Bitte geben Sie eine gültige Emailadresse an';
+    INVALID_3 = 'Meinten Sie ';
 
     /* public validate(ctrl: AbstractControl): any {
         if (!ctrl) {

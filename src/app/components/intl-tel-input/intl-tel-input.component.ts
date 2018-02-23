@@ -126,7 +126,7 @@ export class IntlTelInputComponent implements OnInit {
   }
 
   displayFn(country?: Country): string | undefined {
-    if (!country) {
+    if ( !country || !(country instanceof Country)) {
       return '';
     }
     const index = country.name.indexOf(' (');
@@ -148,7 +148,15 @@ export class IntlTelInputComponent implements OnInit {
      ('+' + option.dialCode + ' ' + option.iso2 + ' ' + option.name.toLowerCase()).indexOf(value.toLowerCase()) > -1);
   }
 
-  private _getDialCode(number: string) {
+  /**
+   *
+   * @param number
+   *
+   * Return a valid dial code extracted
+   * from the given phone number string
+   * or an empty string if invalid
+   */
+  private _getDialCode(number: string): string {
     let dialCode = '';
     if (number.charAt(0) === '+') {
       let numericChars = '';
@@ -172,7 +180,8 @@ export class IntlTelInputComponent implements OnInit {
   }
 
    // get the input val, adding the dial code if separateDialCode is enabled
-  private _getFullNumber() {
+
+  private _getFullNumber(): string {
     const val = this.phoneNumberControl.value.trim(),
       dialCode = this.selectedCountry.dialCode,
       numericVal = this._getNumeric(val),
@@ -369,7 +378,7 @@ export class IntlTelInputComponent implements OnInit {
   }
 
   private _setFlag(countryCode: string) {
-    const prevCountry: Country = (this.selectedCountry.iso2) ? this.selectedCountry : new Country(['', '', '']);
+    // const prevCountry: Country = (this.selectedCountry.iso2) ? this.selectedCountry : new Country(['', '', '']);
 
     // do this first as it will throw an error and stop if countryCode is invalid
     this.selectedCountry = (countryCode) ? this._getCountryData(countryCode, false, false) : new Country(['', '', '']);
@@ -397,7 +406,7 @@ export class IntlTelInputComponent implements OnInit {
     this._updatePlaceholder();
 
     // return if the flag has changed or not
-    return (prevCountry.iso2 !== countryCode);
+    // return (prevCountry.iso2 !== countryCode);
   }
 
   private _getCountryData(countryCode: string, ignoreOnlyCountriesOption: boolean, allowFail: boolean): Country {
@@ -588,9 +597,15 @@ export class IntlTelInputComponent implements OnInit {
       // in case the initial val is invalid and they delete it - they should see their auto country
       this.defaultCountry = data.country;
         // if there's no initial value in the input, then update the flag
-        if (!this.phoneNumberControl.value) {
-            this.setCountry(this.defaultCountry);
+        if ( !this.countryControl.value || this.countryControl.invalid) {
+          this.setCountry(this.defaultCountry);
+        } else {
+          // this.setCountry(this.selectedCountry.iso2);
+          this.setCountry(this.countryControl.value.iso2);
         }
+        /* if ( !this.phoneNumberControl.value) {
+            this.setCountry(this.defaultCountry);
+        } */
     }
   }
 
@@ -633,10 +648,13 @@ export class IntlTelInputComponent implements OnInit {
   public setCountry(countryCode: string) {
     countryCode = countryCode.toLowerCase();
     // check if already selected
-    if (this.selectedCountry.iso2 !== countryCode) {
-      this._setFlag(countryCode);
-      this._updateDialCode(this.selectedCountry.dialCode, false);
-    }
+    // if ( this.selectedCountry.iso2 !== countryCode) {
+    //   this._setFlag(countryCode);
+    //   this._updateDialCode(this.selectedCountry.dialCode, false);
+    // }
+    this._setFlag(countryCode);
+    // By here, selectedCountry is already set to countryCode country
+    this._updateDialCode(this.selectedCountry.dialCode, false);
   }
 
   // set the input value and update the flag

@@ -8,12 +8,13 @@ import { Strings } from '../../models/strings';
 })
 export class FooterComponent implements OnInit {
 
-  year: Number = new Date().getFullYear();
+  year: number;
   footer: any;
 
   constructor() { }
 
   ngOnInit() {
     this.footer = Strings.footer;
+    this.year = new Date().getFullYear();
   }
 }

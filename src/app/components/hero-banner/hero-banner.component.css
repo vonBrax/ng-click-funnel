@@ -37,6 +37,14 @@
     margin: 1em 0;
 }
 
+.hero__value > h2 > strong {
+    padding-left: 8px;
+}
+
+.hero__value > p {
+    padding-left: 32px;
+}
+
 figure {
     /* flex-basis: 100%; */
     margin-top: 4em;
