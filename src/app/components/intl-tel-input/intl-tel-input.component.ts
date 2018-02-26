@@ -116,8 +116,9 @@ export class IntlTelInputComponent implements OnInit {
     // blur event (timeout is to wait for the MatAutocompleteSelectedEvent)
     setTimeout( () => {
       if (this.countryControl.value === '') {
-        this.countryControl.setValue(this.selectedCountry,
-        {onlySelf: true, emitEvent: false, emitModelToViewChange: true, emitViewToModelChange: false});
+        this.countryControl.setValue(this.selectedCountry);
+        this.defaultCountry = this.selectedCountry.iso2;
+        // {onlySelf: true, emitEvent: false, emitModelToViewChange: true, emitViewToModelChange: false});
       }
     }, 100);
   }

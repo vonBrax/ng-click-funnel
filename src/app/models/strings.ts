@@ -306,13 +306,24 @@ export const Strings = {
     ]
   },
   "what_is_ht": {
+    "title": "",
     "description": [
-      null,
-      null
+      "",
+      ""
     ],
     "methods": [
-      {},
-      {}
+      {
+        "name": "",
+        "abbr": "",
+        "description": "",
+        "extras": ""
+      },
+      {
+        "name": "",
+        "abbr": "",
+        "description": "",
+        "extras": ""
+      }
     ]
   },
   "cta_inline": {
