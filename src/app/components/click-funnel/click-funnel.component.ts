@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Inject, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, state } from '@angular/animations';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, AbstractControl  } from '@angular/forms';
@@ -66,7 +66,7 @@ declare var lp, replaceUb;
   ]
 })
 
-export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /* , OnDestroy */ {
+export class ClickFunnelComponent implements OnInit, AfterViewInit /* , OnDestroy */ {
 
   funnel: any[] = Strings.funnel;
   funnelName: string = Strings.funnel_name;
@@ -79,6 +79,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
   landingUrl: string;
   urlParams: string;
   cursor: number;
+  dynamicIndex: number;
   progressBarValue = 0;
   checked;
   animationDirection = 'forwards';
@@ -96,10 +97,6 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
     private mixpanelService: MixpanelService,
     private emailValidator: EmailValidatorService,
     @Inject(PLATFORM_ID) private platformId: Object ) { }
-
-  ngOnChanges(change: SimpleChanges): void {
-    console.log('Click funnel changed');
-  }
 
   ngOnInit() {
     this.cursor = 0;
@@ -131,6 +128,12 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
 
   handleClick(evt) {
     if (evt.target.tagName.toLowerCase() === 'input') {
+      if (this.cursor < this.funnel.length - 1 && this.funnel[this.cursor + 1].dynamics) {
+        // this.dynamicIndex = this.funnel[this.cursor].answers.indexOf(this.checked[this.cursor]);
+        const index = this.funnel[this.cursor].answers.indexOf(this.checked[this.cursor]);
+        this.funnel[this.cursor + 1].question = this.funnel[this.cursor + 1].dynamics[index].question;
+        this.funnel[this.cursor + 1].dynamicIndex = index;
+      }
       this.next();
     }
   }
@@ -242,19 +245,24 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
 
   processNextStep() {
     const prevStepVal = this.formGroup.get(this.funnel[this.cursor].name).value;
-      const prevStepName = this.funnel[this.cursor].name;
-      if (prevStepName === 'additional_info') {
-        const currVal = this.formGroup.get(prevStepName).value;
-      }
-      this.animationDirection = 'forwards';
-      this.cursor++;
-      this.updateUrl();
-      this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
-      this.mixpanelService.step({
-        step: this.cursor + 1,
-        name: this.funnel[this.cursor].name,
-        prevStepValue: prevStepName + ' - ' + prevStepVal
-      });
+    const prevStepName = this.funnel[this.cursor].name;
+    if (prevStepName === 'additional_info') {
+      const currVal = this.formGroup.get(prevStepName).value;
+    }
+    this.animationDirection = 'forwards';
+
+    // if (this.cursor === 0) {
+    //   this.funnel[1].question = `¿Cuánt${prevStepVal.charAt(prevStepVal.length - 2) === 'a' ? 'a' : 'o'}s ${prevStepVal.toLowerCase()}?`;
+    // }
+
+    this.cursor++;
+    this.updateUrl();
+    this.progressBarValue = Math.round((100 * this.cursor) / this.funnelLength );
+    this.mixpanelService.step({
+      step: this.cursor + 1,
+      name: this.funnel[this.cursor].name,
+      prevStepValue: prevStepName + ' - ' + prevStepVal
+    });
   }
 
   onSubmit() {
@@ -320,6 +328,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
     this.funnel.forEach(step => {
       this.createHiddenFields(step.name, step.fields);
     });
+    this.createHiddenFields('personal_information', [{name: 'tos_signoff'}]);
     this.createHiddenFields('jlp', null, this.landingUrl);
     this.createHiddenFields('intl_phone', null);
     // if (localStorage.getItem('jlp')) { this.createHiddenFields('jlp', null, localStorage.getItem('jlp')); }
@@ -331,7 +340,9 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
     for (const k in this.ubFields) {
       if (this.ubFields.hasOwnProperty(k)) {
         const field = this.ubFields[k];
-        const isAdditionalInfo = /additional_info_/i.test(field);
+        const isDynamicField = /dynamic_step/i.test(field.name);
+        const isAdditionalInfo = isDynamicField ? /additional_info_/i.test(this.formGroup.get(field.name).value) :
+          /additional_info_/i.test(field);
         const path = (field.dataset && field.dataset.path) ? field.dataset.path + '.' + field.name :
           (field.name ? field.name : field);
         if (path === 'additional_info') {
@@ -345,11 +356,22 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
         }
         if (this.formGroup.get(path)) {
           if (isAdditionalInfo) {
-            this.ubFields.additional_info.value +=
+            if (isDynamicField) {
+              const split = this.formGroup.get(path).value.split('*');
+              this.ubFields.additional_info.value +=
+                `${separator}${split[0].replace('additional_info_', '')}: "${split[1]}"`;
+              field.remove();
+            } else {
+              this.ubFields.additional_info.value +=
               `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+            }
           } else if (field.name === 'phone_number') {
             field.value = this.formGroup.get(path + '.phoneNumberControl').value;
             this.ubFields.intl_phone.value = this.formGroup.get(path + '.hiddenPhoneNumberControl').value;
+          } else if (isDynamicField) {
+            const split = this.formGroup.get(path).value.split('*');
+            this.createHiddenFields(split[0], null, split[1]);
+            field.remove();
           } else {
             field.value = this.formGroup.get(path).value;
           }

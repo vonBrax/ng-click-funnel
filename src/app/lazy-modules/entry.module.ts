@@ -18,13 +18,14 @@ import { RadioClickComponent } from '../components/radio-click/radio-click.compo
 import { PersonalInfoComponent } from '../components/personal-info/personal-info.component';
 import { IntlTelInputComponent } from '../components/intl-tel-input/intl-tel-input.component';
 import { TosComponent } from '../components/tos/tos.component';
-import { ContactUsComponent } from '../components/contact-us/contact-us.component';
-import { HowItWorksComponent } from '../components/how-it-works/how-it-works.component';
+import { PatientStoriesComponent } from '../components/patient-stories/patient-stories.component';
+import { FooterComponent } from '../components/footer/footer.component';
+import { SvgAngleRightCircleComponent } from '../components/svg-angle-right-circle/svg-angle-right-circle.component';
 import { EntryComponent } from './entry.component';
 
+import { LazyModule } from '../modules/lazy.module';
 import { MaterialImportsModule } from '../modules/material.imports.module';
 import { PipesModule } from '../pipes/pipes.module';
-import { LazyModule } from '../modules/lazy.module';
 import { ClickOutsideModule } from '../directives/click-outside.module';
 
 @NgModule({
@@ -37,8 +38,9 @@ import { ClickOutsideModule } from '../directives/click-outside.module';
     PersonalInfoComponent,
     IntlTelInputComponent,
     TosComponent,
-    ContactUsComponent,
-    HowItWorksComponent,
+    PatientStoriesComponent,
+    FooterComponent,
+    SvgAngleRightCircleComponent,
     EntryComponent
   ],
   imports: [

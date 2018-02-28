@@ -22,9 +22,18 @@ export class EmailValidatorService {
     /*
     * GERMAN EMAIL ERROR MESSAGES (Uncomment to switch)
     */
-    INVALID_1 = 'Emailadresse muss ein @ enthalten';
-    INVALID_2 = 'Bitte geben Sie eine gültige Emailadresse an';
-    INVALID_3 = 'Meinten Sie ';
+    // INVALID_1 = 'Emailadresse muss ein @ enthalten';
+    // INVALID_2 = 'Bitte geben Sie eine gültige Emailadresse an';
+    // INVALID_3 = 'Meinten Sie ';
+
+    /**
+     * SPANISH EMAIL ERROR MESSAGES
+     */
+
+    INVALID_1 = 'La dirección de correo electrónico debe contener uno "@"';
+    INVALID_2 = 'Por favor, introduce una dirección de correo electrónico válida';
+    INVALID_3 = 'Querías decir ';
+
 
     /* public validate(ctrl: AbstractControl): any {
         if (!ctrl) {

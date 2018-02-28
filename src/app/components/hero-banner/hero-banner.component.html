@@ -4,12 +4,14 @@
     <div class="hero__values">
       <h1>{{strings.headline}}</h1>
       <div class="hero__value hide--phone hide--tabletMid" *ngFor="let value of strings.values">
+        <ng-container *ngIf="value.length">
         <h2>
           <mat-icon>check</mat-icon><strong>{{value.title}}</strong>
         </h2>
         <p>{{value.description}}</p>
+        </ng-container>
       </div>
-
+      
       <figure class="hide--phone hide--tabletMid">
         <img
           src="https://res.cloudinary.com/junomedical/image/upload/v1519046567/unbounce/1x1.png"

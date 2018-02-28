@@ -1,8 +1,7 @@
-<!-- <div class="radio-container" (click)="removeAnswers()">  -->
 <div class="radio-container" [formGroup]="formGroup">
   <input
     type="radio"
-    value="{{answer}}"
+    value="{{dynamicValue ? dynamicValue + '*' + answer : answer}}"
     [formControlName]="controlName"
     [attr.id]="controlName + '_' + answer"
     [attr.name]="controlName"
@@ -10,9 +9,6 @@
   <label class="radio-button" [attr.for]="controlName + '_' + answer" #labelEl>
     <img *ngIf="icon" [attr.src]="icon" alt="">
     <span>{{answer}}</span>
-   <!--  <span class="radio-option">{{numberToChar(index)}}</span> -->
-    <!-- <input type="radio" value="{{answer}}" name="{{index}}" [formControlName]="controlName">  -->
-    <!-- <span class="radio-answer" >{{answer}}</span> -->
     <span *ngIf="append" class="append font-weight--bold">{{append}}</span>
   </label>
 </div>

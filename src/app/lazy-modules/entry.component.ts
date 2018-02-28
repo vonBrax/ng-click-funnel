@@ -1,20 +1,14 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-entry',
   template: `
   <app-header></app-header>
   <app-hero-banner></app-hero-banner>
-  <!--  <app-how-it-works class="hide--phone"></app-how-it-works>
-  <app-contact-us class="show--phone"></app-contact-us>
-  <div id="lazyModule" [lazySrc]="'rest'"></div> -->
+  <app-patient-stories></app-patient-stories>
+  <app-footer></app-footer>
   `
 })
-export class EntryComponent implements OnInit, OnChanges {
+export class EntryComponent {
   constructor() { }
-  ngOnInit() { }
-
-  ngOnChanges() {
-    console.log('Entry component changed!');
-  }
 }
