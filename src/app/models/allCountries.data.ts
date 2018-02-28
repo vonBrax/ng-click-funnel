@@ -289,7 +289,7 @@ export const options = {
   nationalMode: true,
   onlyCountries: [],
   placeholderNumberType: 'MOBILE',
-  preferredCountries: ['de', 'at', 'ch'],
+  preferredCountries: ['gb', 'ie', 'us', 'ca'],
   separateDialCode: false,
   utilsScript: true
 };

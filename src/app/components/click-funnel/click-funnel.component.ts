@@ -322,6 +322,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
     });
     this.createHiddenFields('jlp', null, this.landingUrl);
     this.createHiddenFields('intl_phone', null);
+    this.createHiddenFields('personal_information', [{name: 'tos_signoff'}]);
     // if (localStorage.getItem('jlp')) { this.createHiddenFields('jlp', null, localStorage.getItem('jlp')); }
   }
 
