@@ -1,5 +1,5 @@
 export const Strings = {
-  "funnel_name": "ES.Hair:1.1",
+  "funnel_name": "ES.Dental:1.1",
   "funnel": [
     {
       "name": "treatment",
@@ -7,33 +7,109 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "¿Cuantos grafts (unidades foliculares)?",
+      "question": "¿Necesitas un dentista?",
       "answers": [
-        "2000 grafts",
-        "3000 grafts",
-        "4000 grafts",
-        "7000 grafts",
-        "Trasplante de barba"
+        "Implantes",
+        "Coronas",
+        "Carilla",
+        "Blanqueamiento dental",
+        "Chequeo"
       ],
       "icons": [
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412237/unbounce/bald-2000.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412260/unbounce/bald-3000.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412272/unbounce/bald-4000.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1517412282/unbounce/bald-7000.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519238746/unbounce/beard.png"
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/dental-implant.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/dental-crown.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/dental-veneer.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/dental-whitening.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/dental-checkup.png"
       ]
     },
     {
-      "name": "additional_info_first_time",
+      "name": "dynamic_step2",
+      "type": "dynamic-step",
+      "validators": [
+        "required"
+      ],
+      "dynamics": [
+        {
+          "name": "additional_info_how_many_implants",
+          "question": "¿Cuántos implantes?",
+          "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6 o más"
+          ]
+        },
+        {
+          "name": "additional_info_how_many_crowns",
+          "question": "¿Cuántas coronas?",
+          "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6 o más"
+          ]
+        },
+        {
+          "name": "additional_info_how_many_veneers",
+          "question": "¿Cuántas carillas?",
+          "answers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6 o más"
+          ]
+        },
+        {
+          "name": "additional_info_last_whitening",
+          "question": "¿Cuándo fue tu último blanqueamiento dental?",
+          "answers": [
+            "Últimos 12 meses",
+            "Últimos 1-2 años",
+            "Mas de 2 años",
+            "Nunca lo hice"
+          ]
+        },
+        {
+          "name": "additional_info_last_checkup",
+          "question": "¿Cuándo fue tu último examen dental?",
+          "answers": [
+            "Últimos 12 meses",
+            "Últimos 1-2 años",
+            "Mas de 2 años",
+            "Nunca lo hice"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "additional_info_country_residency",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "¿Es este tu primer trasplante de cabello?",
+      "question": "¿Dónde vives?",
       "answers": [
-        "Primera vez",
-        "Secunda vez",
-        "Tercera vez"
+        "Argentina",
+        "Colombia",
+        "España",
+        "Estados Unidos",
+        "México",
+        "Venezuela"
+      ],
+      "icons": [
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-ar.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-co.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-es.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-us.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-mx.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-ve.png"
       ]
     },
     {
@@ -42,30 +118,45 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "¿Dónde?",
+      "question": "¿A donde quieres ir?",
       "answers": [
-        "Turquía",
-        "Polonia",
-        "India",
         "Hungría",
-        "España",
-        "Irlanda"
+        "México",
+        "Costa Rica",
+        "Croacia",
+        "Polonia",
+        "España"
       ],
       "icons": [
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239116/unbounce/flag-tr.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239135/unbounce/flag-mx.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239147/unbounce/flag-in.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239159/unbounce/flag-hu.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239169/unbounce/flag-uk.png",
-        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/v1519239176/unbounce/flag-ie.png"
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-hu.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-mx.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-cr.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-hr.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-pl.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-es.png"
       ],
       "append": [
+        "€",
         "€",
         "€€",
         "€€",
         "€€",
-        "€€€",
         "€€€"
+      ]
+    },
+    {
+      "name": "additional_info_frequency_abroad",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Con qué frecuencia viajas al exterior?",
+      "answers": [
+        "Nunca",
+        "1 vez por año",
+        "2 veces por año",
+        "3 veces por año",
+        "Más de 3 veces por año"
       ]
     },
     {
@@ -74,9 +165,9 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "¿Cuando?",
+      "question": "¿Cuándo quieres este tratamiento?",
       "answers": [
-        "Lo antes posible",
+        "Tan pronto como sea posible",
         "En 1 mes",
         "En 3 meses",
         "En 6 meses",
@@ -89,12 +180,96 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "Quiero...",
+      "question": "¿Qué estás buscando?",
       "answers": [
-        "Reservar una cita",
         "Obtener una cotización",
-        "Encuentrar la clínica adecuada",
-        "Obtener más información"
+        "Reservar una cita",
+        "Solo obtener información",
+        "Encontrar la clínica adecuada"
+      ]
+    },
+    {
+      "name": "additional_info_occupation",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Cuál es tu ocupación?",
+      "answers": [
+        "Empleado",
+        "Desempleado",
+        "Trabajador público",
+        "Retirado",
+        "Independiente",
+        "Estudiante"
+      ]
+    },
+    {
+      "name": "additional_info_payment",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Cómo quieres pagar?",
+      "answers": [
+        "Pago único",
+        "Cuotas mensuales"
+      ]
+    },
+    {
+      "name": "additional_info_priority",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Cuál es tu prioridad?",
+      "answers": [
+        "Barato",
+        "Encontrar un especialista",
+        "Cerca de donde vivo",
+        "Mejores críticas",
+        "Reserva rápida"
+      ]
+    },
+    {
+      "name": "additional_info_last_visit",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Última visita al dentista?",
+      "answers": [
+        "Últimos 6 meses",
+        "Últimos 6-12 meses",
+        "Últimos 1-2 años",
+        "Mas de 2 años"
+      ]
+    },
+    {
+      "name": "additional_info_treatment_plan",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Ya tienes un plan de tratamiento?",
+      "answers": [
+        "Sí",
+        "No",
+        "No sé lo que es"
+      ]
+    },
+    {
+      "name": "additional_info_insurance",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "¿Tienes un seguro dental?",
+      "answers": [
+        "No",
+        "Parcialmente",
+        "Sí",
+        "No estoy seguro"
       ]
     },
     {
@@ -110,7 +285,6 @@ export const Strings = {
       "name": "personal_information",
       "type": "personal_information",
       "validators": [],
-      "question": "Por favor, introduzca los datos de contacto para recibir su presupuesto personal",
       "label": "Notas adicionales",
       "next_button": "SIGUIENTE",
       "fields": [
@@ -165,30 +339,10 @@ export const Strings = {
     }
   ],
   "hero_banner": {
-    "headline": "Trasplante de cabello",
+    "headline": "Te ayudamos a encontrar el dentista necesario",
     "values": []
   },
   "patient_stories": {
-    "title": "HISTORIAS DE PACIENTES",
-    "description": "",
-    "videos": [
-      {
-        "title": "TRASPLANTE DE CABELLO DE EAMON",
-        "url": "https://www.youtube-nocookie.com/embed/C-2S-q-mOSY?rel=0&amp\\;showinfo=0"
-      },
-      {
-        "title": "DR. CINIK EN TURKEY",
-        "url": "https://www.youtube-nocookie.com/embed/hn1vbS3tIY0?rel=0&amp;showinfo=0"
-      },
-      {
-        "title": "DR. GARG EN INDIA",
-        "url": "https://www.youtube-nocookie.com/embed/Nimf4hHcidQ?rel=0&amp;showinfo=0"
-      },
-      {
-        "title": "DR. BOREJSZA EN POLAND",
-        "url": "https://www.youtube-nocookie.com/embed/eHMTtgsJNas?rel=0&amp;showinfo=0"
-      }
-    ]
   },
   "footer": {
     "terms": "<a href=\"https://www.qunomedical.com/en/terms-and-conditions\" target=\"_blank\" rel=\"noopener\">Términos y Condiciones</a>",

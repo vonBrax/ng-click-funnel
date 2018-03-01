@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
   <app-header></app-header>
   <app-hero-banner></app-hero-banner>
-  <app-patient-stories></app-patient-stories>
+  <!-- <app-patient-stories></app-patient-stories> -->
   <app-footer></app-footer>
   `
 })
