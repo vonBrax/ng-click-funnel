@@ -33,6 +33,24 @@
                     </div>
                   </div>
                 </fieldset>
+
+                 <fieldset *ngSwitchCase="'dynamic-step'" role="radiogroup" aria-required="true">
+                  <legend aria-labelledby="stepQuestion"></legend>
+                  <div [@answersAnimation]="animationDirection" class="wrapper">
+                    <div *ngFor="let answer of step.dynamics[step.dynamicIndex].answers; index as j" class="option" [class.option--selected]="checked[i]===answer">
+                      <app-radio-click
+                        [answer]="answer"
+                        [icon]="step.dynamics[step.dynamicIndex].icons ? step.dynamics[step.dynamicIndex].icons[j] : null"
+                        [append]="step.dynamics[step.dynamicIndex].append ? step.dynamics[step.dynamicIndex].append[j] : null"
+                        [dynamicValue]="step.dynamics[step.dynamicIndex].name"
+                        [index]="j"
+                        [formGroup]="formGroup"
+                        [controlName]="step.name"
+                        (click)="checked[i]=answer">
+                      </app-radio-click>
+                    </div>
+                  </div>
+                </fieldset>
                 
                 <div *ngSwitchCase="'personal_information'" [@answersAnimation]="'forwards'">
                   <app-personal-info [childGroup]="formGroup.get(step.name)" [fields]="step.fields" [tosContent]="step.tos"></app-personal-info>

@@ -20,6 +20,8 @@ export class RadioClickComponent {
   formGroup: FormGroup;
   @Input()
   controlName: string;
+  @Input()
+  dynamicValue: string;
   @ViewChild('labelEl')
   labelEl: ElementRef;
 

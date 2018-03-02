@@ -2,7 +2,7 @@
 <div class="radio-container" [formGroup]="formGroup">
   <input
     type="radio"
-    value="{{answer}}"
+    value="{{dynamicValue ? dynamicValue + '*' + answer : answer}}"
     [formControlName]="controlName"
     [attr.id]="controlName + '_' + answer"
     [attr.name]="controlName"

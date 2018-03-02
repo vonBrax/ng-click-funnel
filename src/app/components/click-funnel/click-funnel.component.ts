@@ -79,6 +79,7 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
   landingUrl: string;
   urlParams: string;
   cursor: number;
+  dynamicIndex: number;
   progressBarValue = 0;
   checked;
   animationDirection = 'forwards';
@@ -130,7 +131,16 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
   }
 
   handleClick(evt) {
+    // if (evt.target.tagName.toLowerCase() === 'input') {
+    //   this.next();
+    // }
     if (evt.target.tagName.toLowerCase() === 'input') {
+      if (this.cursor < this.funnel.length - 1 && this.funnel[this.cursor + 1].dynamics) {
+        // this.dynamicIndex = this.funnel[this.cursor].answers.indexOf(this.checked[this.cursor]);
+        const index = this.funnel[this.cursor].answers.indexOf(this.checked[this.cursor]);
+        this.funnel[this.cursor + 1].question = this.funnel[this.cursor + 1].dynamics[index].question;
+        this.funnel[this.cursor + 1].dynamicIndex = index;
+      }
       this.next();
     }
   }
