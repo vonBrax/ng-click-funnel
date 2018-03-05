@@ -14,8 +14,7 @@ import { filter } from 'rxjs/operators/filter';
 
 import { DataService } from '../../services/data.service';
 
-
-import { ALL_COUNTRIES, regionlessNanpNumbers, options } from '../../models/allCountries.data';
+import { ALL_COUNTRIES, regionlessNanpNumbers, options } from '../../data/intl-tel-input.data';
 import { Country, IpInfoCallback } from '../../models/country.class';
 import { IntlTelInputUtils } from '../../models/utils';
 
@@ -92,7 +91,7 @@ export class IntlTelInputComponent implements OnInit {
 
     if (options.utilsScript) {
       this.intlTelInputUtils = new IntlTelInputUtils();
-      this.dataService.getJson('https://cdn.rawgit.com/vonBrax/mat-intl-phone-input/v1.0.24/metadata.custom.json')
+      this.dataService.getJson(options.metadataUrl)
         .then(data => {
           this.intlTelInputUtils.setCustomMetadata(data);
           // this.setCountry(this.preferredCountries.length ? this.preferredCountries[0].iso2 : this.countries[0].iso2);

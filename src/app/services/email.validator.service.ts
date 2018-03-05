@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
-import { DOMAINS } from '../models/mailcheck';
+import { DOMAINS, messages } from '../data/email.validator.data';
 
 @Injectable()
 export class EmailValidatorService {
@@ -12,27 +12,7 @@ export class EmailValidatorService {
     domains: string[] = DOMAINS.default;
     secondLevelDomains: string[] = DOMAINS.defaultSecondLevel;
     topLevelDomains: string[] = DOMAINS.defaultTopLevel;
-
     lastEmailChecked: string;
-
-    INVALID_1 = 'Email address must contain one "@"';
-    INVALID_2 = 'Please enter a valid email address';
-    INVALID_3 = 'Did you mean ';
-
-    /*
-    * GERMAN EMAIL ERROR MESSAGES (Uncomment to switch)
-    */
-    // INVALID_1 = 'Emailadresse muss ein @ enthalten';
-    // INVALID_2 = 'Bitte geben Sie eine gültige Emailadresse an';
-    // INVALID_3 = 'Meinten Sie ';
-
-    /* public validate(ctrl: AbstractControl): any {
-        if (!ctrl) {
-            return null;
-        } else {
-            return this.run(ctrl.value);
-        }
-    } */
 
     public validate() {
         return (ctrl: AbstractControl): {[key: string]: any} => {
@@ -49,9 +29,9 @@ export class EmailValidatorService {
         // var suggestedCallback = opts.suggested || defaultCallback;
         // var emptyCallback = opts.empty || defaultCallback;
         if (email.indexOf('@') === -1) {
-            return {address: '', domain: '', full: email, message: this.INVALID_1 };
+            return {address: '', domain: '', full: email, message: messages[0] }; // this.INVALID_1 };
         } else if ( email.indexOf('@') < 1 || email.indexOf('@') === email.length - 1) {
-            return {address: email.replace('@', ''), domain: '', full: email, message: this.INVALID_2 };
+            return {address: email.replace('@', ''), domain: '', full: email, message: messages[1] }; // this.INVALID_2 };
         } else if (this.lastEmailChecked && this.lastEmailChecked === email) {
             return null;
         } else {
@@ -104,7 +84,7 @@ export class EmailValidatorService {
                     address: emailParts.address,
                     domain: closestDomain,
                     full: emailParts.address + '@' + closestDomain,
-                    message: this.INVALID_3 + emailParts.address + '@' + closestDomain + '?'
+                    message: /* this.INVALID_3 */ messages[2] + emailParts.address + '@' + closestDomain + '?'
                 };
             }
         }

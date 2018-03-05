@@ -22,7 +22,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, loader: 'ts-loader'}
+      { test: /\.ts$/, loader: 'ts-loader', exclude: [/tasks/, /fetch-strings/, /bariatric/, path.resolve(__dirname, 'tasks/fetch-strings/bariatric.de.ts')] }
     ]
   },
   plugins: [

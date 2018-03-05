@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { fromPromise as ObservableFromPromise } from 'rxjs/observable/fromPromise';
 import { _throw as ObservableThrow } from 'rxjs/observable/throw';
 
-import { DYNAMIC_COMPONENT, DYNAMIC_COMPONENT_MANIFESTS, ComponentManifest } from './component-manifest';
+import { DYNAMIC_COMPONENT, DYNAMIC_COMPONENT_MANIFESTS, ComponentManifest } from '../models/component-manifest';
 
 @Injectable()
 export class ComponentLoaderService {

@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ipInfoUrl: 'https://www.qunomedical.com/api/ipinfo',
+  intlTelMeta: 'https://cdn.rawgit.com/vonBrax/mat-intl-phone-input/v1.0.24/metadata.custom.json',
+  locale: 'en'
 };

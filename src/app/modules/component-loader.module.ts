@@ -8,8 +8,8 @@ import {
 
 import { ROUTES } from '@angular/router';
 
-import { ComponentLoaderService } from './component-loader.service';
-import { ComponentManifest, DYNAMIC_COMPONENT, DYNAMIC_COMPONENT_MANIFESTS } from './component-manifest';
+import { ComponentLoaderService } from '../services/component-loader.service';
+import { ComponentManifest, DYNAMIC_COMPONENT, DYNAMIC_COMPONENT_MANIFESTS } from '../models/component-manifest';
 
 @NgModule()
 export class ComponentLoaderModule {
@@ -40,4 +40,4 @@ export class ComponentLoaderModule {
   }
 }
 
-export { ComponentManifest } from './component-manifest';
+export { ComponentManifest } from '../models/component-manifest';

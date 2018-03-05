@@ -20,8 +20,9 @@ import { IntlTelInputComponent } from '../components/intl-tel-input/intl-tel-inp
 import { TosComponent } from '../components/tos/tos.component';
 import { ContactUsComponent } from '../components/contact-us/contact-us.component';
 import { HowItWorksComponent } from '../components/how-it-works/how-it-works.component';
-import { EntryComponent } from './entry.component';
+import { InitialLoadComponent } from '../components/chunks/initial-load/initial-load.component';
 
+// Modules imports
 import { MaterialImportsModule } from '../modules/material.imports.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { LazyModule } from '../modules/lazy.module';
@@ -39,7 +40,7 @@ import { ClickOutsideModule } from '../directives/click-outside.module';
     TosComponent,
     ContactUsComponent,
     HowItWorksComponent,
-    EntryComponent
+    InitialLoadComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +59,7 @@ import { ClickOutsideModule } from '../directives/click-outside.module';
     { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true }
   ],
   exports: [
-    EntryComponent
+    InitialLoadComponent
   ]
 })
-export class EntryModule {}
+export class InitialLoadModule {}

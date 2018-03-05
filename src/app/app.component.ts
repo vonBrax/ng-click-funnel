@@ -1,6 +1,6 @@
 import { Component, ViewChild, ViewContainerRef, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ComponentLoaderService } from './lazy-modules/component-loader.service';
+import { ComponentLoaderService } from './services/component-loader.service';
 
 // import { EntryComponent } from './lazy-modules/entry.component';
 
@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-        this.loadComponent('rest');
+        this.loadComponent('sections-below');
       });
     }
   }

@@ -1,5 +1,3 @@
-// Array of country objects for the flag dropdown.
-
 // Here is the criteria for the plugin to support a given country/territory
 // - It has an iso2 code: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 // - It has it's own country calling code (it is not a sub-region of
@@ -7,6 +5,36 @@
 // - It has a flag in the region-flags project: https://github.com/behdad/region-flags/tree/gh-pages/png
 // - It is supported by libphonenumber (it must be listed on this page):
 // https://github.com/googlei18n/libphonenumber/blob/master/resources/ShortNumberMetadata.xml
+
+import { environment } from '../../environments/environment';
+
+const prefCountries = environment.locale === 'es' ?
+  [ 'es', 'gb' , 'ie', 'us']
+  : environment.locale === 'de' ?
+    ['de', 'at', 'ch' ]
+    : ['gb', 'ie', 'us', 'ca'];
+
+// Options used for initialization of intl-tel-input
+export const options = {
+  allowDropdown: true,
+  autoHideDialCode: true,
+  autoPlaceholder: 'polite',
+  customPlaceholder: null,
+  dropdownContainer: '',
+  excludeCountries: [],
+  formatOnDisplay: true,
+  geoIpLookup: null,
+  geoIpJsonpUrl: environment.ipInfoUrl,
+  metadataUrl: environment.intlTelMeta,
+  hiddenInput: '',
+  initialCountry: 'auto',
+  nationalMode: true,
+  onlyCountries: [],
+  placeholderNumberType: 'MOBILE',
+  preferredCountries: prefCountries,
+  separateDialCode: false,
+  utilsScript: true
+};
 
 // Each country array has the following information:
 // [
@@ -16,6 +44,8 @@
 //    Order (if >1 country with same dial code),
 //    Area codes
 // ]
+
+// Array of country objects used for the flag dropdown.
 export const ALL_COUNTRIES =
 [
   ['Afghanistan (‫افغانستان‬‎)', 'af', '93'],
@@ -273,26 +303,6 @@ export const ALL_COUNTRIES =
 export const regionlessNanpNumbers = [
   '800', '822', '833', '844', '855', '866', '877', '880', '881', '882', '883', '884', '885', '886', '887', '888', '889'
 ];
-
-export const options = {
-  allowDropdown: true,
-  autoHideDialCode: true,
-  autoPlaceholder: 'polite',
-  customPlaceholder: null,
-  dropdownContainer: '',
-  excludeCountries: [],
-  formatOnDisplay: true,
-  geoIpLookup: null,
-  geoIpJsonpUrl: 'https://www.qunomedical.com/api/ipinfo',
-  hiddenInput: '',
-  initialCountry: 'auto',
-  nationalMode: true,
-  onlyCountries: [],
-  placeholderNumberType: 'MOBILE',
-  preferredCountries: ['gb', 'ie', 'us', 'ca'],
-  separateDialCode: false,
-  utilsScript: true
-};
 
 export const examples = {
   'AC': '40123', 'AD': '312345', 'AE': '501234567', 'AF': '701234567', 'AG': '2684641234', 'AI': '2642351234',

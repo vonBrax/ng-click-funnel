@@ -4,9 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
-import { ComponentManifest } from './lazy-modules/component-manifest';
-import { ComponentLoaderModule } from './lazy-modules/component-loader.module';
-import { EntryModule } from './lazy-modules/entry.module';
+import { ComponentManifest } from './models/component-manifest';
+import { ComponentLoaderModule } from './modules/component-loader.module';
+import { InitialLoadModule } from './modules/initial-load.module';
 
 const manifests: ComponentManifest[] = [
   // {
@@ -15,9 +15,9 @@ const manifests: ComponentManifest[] = [
   //   loadChildren: './lazy-modules/entry.module#EntryModule'
   // },
   {
-    componentId: 'rest',
-    path: 'rest',
-    loadChildren: './lazy-modules/rest.module#RestModule'
+    componentId: 'sections-below',
+    path: 'sections-below',
+    loadChildren: './modules/sections-below.module#SectionsBelowModule'
   }
 ];
 
@@ -28,7 +28,7 @@ const manifests: ComponentManifest[] = [
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-click-funnel'}),
     BrowserAnimationsModule,
-    EntryModule,
+    InitialLoadModule,
     ComponentLoaderModule.forRoot(manifests)
   ],
   providers: [ ],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountryList } from '../../models/phone-selector';
+import { CountryList } from '../../data/phone-selector.data';
 
 @Component({
   selector: 'app-phone-selector',
@@ -13,9 +13,5 @@ export class PhoneSelectorComponent implements OnInit {
 
   ngOnInit() {
     this.countryList = CountryList;
-  }
-
-  testing() {
-    console.log('Am I working???');
   }
 }

@@ -3,7 +3,7 @@ import { parseCustom, formatCustom, getNumberType, isValidNumberCustom } from 'l
 
 // Import type definitions
 import { CountryCode, ParsedNumber, NumberFormat } from 'libphonenumber-js';
-import { examples, numberTypes, validationError } from './allCountries.data';
+import { examples, numberTypes, validationError } from '../data/intl-tel-input.data';
 
 // Import metadata
 // import {metadata} from './metadata.custom';

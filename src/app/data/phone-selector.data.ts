@@ -1,3 +1,5 @@
+import { environment } from '../../environments/environment';
+
 export const CountryDetails = {
   uk:
     {
@@ -70,3 +72,24 @@ export const CountryDetails = {
       flag: `<svg height="480" width="640" viewBox="0 0 640 480"><g fill-rule="evenodd" stroke-width="1pt" transform="scale(1.25 .9375)"><rect rx="0" ry="0" height="509.76" width="512" fill="#fff"></rect><rect rx="0" ry="0" height="169.92" width="512" y="342.08" fill="#21468b"></rect><path fill="#ae1c28" d="M0 0h512v169.92H0z"></path></g></svg>`
     }
 };
+
+const ukBlock = [ CountryDetails.uk, CountryDetails.ie, CountryDetails.us, CountryDetails.ca ];
+const deBlock = [ CountryDetails.de, CountryDetails.at, CountryDetails.ch ];
+const others = [ CountryDetails.au, CountryDetails.no, CountryDetails.nl ];
+
+export const CountryList = environment.locale === 'de' ? deBlock.concat(ukBlock, others) : ukBlock.concat(deBlock, others);
+
+  /*
+export const CountryList = [
+    CountryDetails.uk,
+    CountryDetails.ie,
+    CountryDetails.us,
+    CountryDetails.ca,
+    CountryDetails.de,
+    CountryDetails.at,
+    CountryDetails.ch,
+    CountryDetails.au,
+    CountryDetails.no,
+    CountryDetails.nl
+];
+  */

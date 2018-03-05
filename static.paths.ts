@@ -1,5 +1,5 @@
 export const ROUTES = [
   '/',
-  '/rest',
-  '/rest/nested'
+  '/sections-below',
+  '/sections-below/nested'
 ];

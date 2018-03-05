@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ComponentLoaderModule } from './component-loader.module';
+import { ComponentLoaderModule } from '../modules/component-loader.module';
 import { LazyModule } from '../modules/lazy.module';
 import { MaterialImportsModule } from '../modules/material.imports.module';
 import { PipesModule } from '../pipes/pipes.module';
@@ -24,7 +24,7 @@ import { SvgHtIconComponent } from '../components/svg-ht-icon/svg-ht-icon.compon
 import { SvgQuoteComponent } from '../components/svg-quote/svg-quote.component';
 import { SvgStarComponent } from '../components/svg-star/svg-star.component';
 import { SvgStar2Component } from '../components/svg-star2/svg-star2.component';
-import { RestComponent } from './rest.component';
+import { SectionsBelowComponent } from '../components/chunks/sections-below/sections-below.component';
 
 @NgModule({
   declarations: [
@@ -45,15 +45,15 @@ import { RestComponent } from './rest.component';
     SvgQuoteComponent,
     SvgStarComponent,
     SvgStar2Component,
-    RestComponent,
+    SectionsBelowComponent,
     ScrollToDirective
   ],
   imports: [
     CommonModule,
-    ComponentLoaderModule.forChild(RestComponent),
+    ComponentLoaderModule.forChild(SectionsBelowComponent),
     MaterialImportsModule,
     LazyModule,
     PipesModule
   ]
 })
-export class RestModule { }
+export class SectionsBelowModule { }
