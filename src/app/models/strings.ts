@@ -33,7 +33,7 @@ export const Strings = {
       ]
     },
     {
-      "name": "additional_info_hairloss_for",
+      "name": "additional_info_condition_duration",
       "type": "radio-click",
       "validators": [
         "required"
@@ -144,6 +144,14 @@ export const Strings = {
         "Spain",
         "Germany",
         "Other"
+      ],
+      "icons": [
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-uk.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-ie.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-us.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-es.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-de.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/globe.png"
       ]
     },
     {
@@ -152,7 +160,7 @@ export const Strings = {
       "validators": [
         "required"
       ],
-      "question": "Would you be open to travelling abroad your hair transplant?",
+      "question": "Would you be open to travelling abroad for your hair transplant?",
       "answers": [
         "Yes",
         "No"
@@ -179,7 +187,7 @@ export const Strings = {
           ]
         },
         {
-          "name": "additional_info_distance_willingness",
+          "name": "additional_info_distance_limits",
           "question": "How far are you willing to drive?",
           "answers": [
             "less than 10km",

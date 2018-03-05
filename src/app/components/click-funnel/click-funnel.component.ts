@@ -339,10 +339,42 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
   setUnbounceForm() {
     if (!this.ubForm) { return; }
     const separator = ', ';
+    /*
     for (const k in this.ubFields) {
       if (this.ubFields.hasOwnProperty(k)) {
         const field = this.ubFields[k];
         const isAdditionalInfo = /additional_info_/i.test(field);
+        const path = (field.dataset && field.dataset.path) ? field.dataset.path + '.' + field.name :
+          (field.name ? field.name : field);
+        if (path === 'additional_info') {
+          continue;
+        }
+        if (field.name === 'phone_country') {
+          // TODO: CHANGE THE IMPLEMENTATION OF THIS THING
+          const countryPath = path.replace('.phone_country', '.phone_number.countryControl');
+          field.value = this.formGroup.get(countryPath).value.iso2;
+          continue;
+        }
+        if (this.formGroup.get(path)) {
+          if (isAdditionalInfo) {
+            this.ubFields.additional_info.value +=
+              `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+          } else if (field.name === 'phone_number') {
+            field.value = this.formGroup.get(path + '.phoneNumberControl').value;
+            this.ubFields.intl_phone.value = this.formGroup.get(path + '.hiddenPhoneNumberControl').value;
+          } else {
+            field.value = this.formGroup.get(path).value;
+          }
+        }
+      }
+    }
+    */
+    for (const k in this.ubFields) {
+      if (this.ubFields.hasOwnProperty(k)) {
+        const field = this.ubFields[k];
+        const isDynamicField = /dynamic_step/i.test(field.name);
+        const isAdditionalInfo = isDynamicField ? /additional_info_/i.test(this.formGroup.get(field.name).value) :
+          /additional_info_/i.test(field);
         const path = (field.dataset && field.dataset.path) ? field.dataset.path + '.' + field.name :
           (field.name ? field.name : field);
         if (path === 'additional_info') {
@@ -356,11 +388,22 @@ export class ClickFunnelComponent implements OnInit, AfterViewInit, OnChanges /*
         }
         if (this.formGroup.get(path)) {
           if (isAdditionalInfo) {
-            this.ubFields.additional_info.value +=
+            if (isDynamicField) {
+              const split = this.formGroup.get(path).value.split('*');
+              this.ubFields.additional_info.value +=
+                `${separator}${split[0].replace('additional_info_', '')}: "${split[1]}"`;
+              field.remove();
+            } else {
+              this.ubFields.additional_info.value +=
               `${separator}${field.replace('additional_info_', '')}: "${this.formGroup.get(path).value}"`;
+            }
           } else if (field.name === 'phone_number') {
             field.value = this.formGroup.get(path + '.phoneNumberControl').value;
             this.ubFields.intl_phone.value = this.formGroup.get(path + '.hiddenPhoneNumberControl').value;
+          } else if (isDynamicField) {
+            const split = this.formGroup.get(path).value.split('*');
+            this.createHiddenFields(split[0], null, split[1]);
+            field.remove();
           } else {
             field.value = this.formGroup.get(path).value;
           }
