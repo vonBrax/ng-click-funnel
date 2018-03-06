@@ -1,81 +1,224 @@
 exports.Strings = {
-  "funnel_name": "EN.Hair:1.5",
+  "funnel_name": "EN.Hair:1.6",
   "funnel": [
     {
-      "name": "additional_info_prev_treatment",
+      "name": "additional_info_grafts",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Have you previously had a hair transplant?",
+      "question": "How many grafts do you need?",
+      "answers": [
+        "1000",
+        "2000",
+        "3000",
+        "4000",
+        "More than 4000",
+        "I'm not sure"
+      ]
+    },
+    {
+      "name": "additional_info_age",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "How old are you?",
+      "answers": [
+        "18-25",
+        "26-35",
+        "36-45",
+        "46-55",
+        "56 and over"
+      ]
+    },
+    {
+      "name": "additional_info_condition_duration",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "For how long have you been experiencing hair loss?",
+      "answers": [
+        "Less than 1 year",
+        "1-2 years",
+        "2-5 years",
+        "Longer than 5 years"
+      ]
+    },
+    {
+      "name": "additional_info_familial_history",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "Does hair loss run in your family?",
       "answers": [
         "Yes",
         "No"
       ]
     },
     {
-      "name": "travel_disposition",
+      "name": "additional_info_medications_in_use",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Do you know the advantages of having your treatment abroad?",
+      "question": "Are you using Minoxidil or Finasteride?",
       "answers": [
-        "Yes, I'm ready to book my appointment",
-        "I've decided and I'm looking for the right clinic",
-        "I want to learn the advantages of going abroad",
-        "I want to stay local"
+        "Minoxidil",
+        "Finasteride",
+        "Both",
+        "None"
       ]
     },
     {
-      "name": "timeline",
+      "name": "additional_info_smoker",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Do you have a treatment date in mind?",
+      "question": "Do you smoke?",
       "answers": [
-        "As soon as possible",
-        "Within the next 3 months",
-        "Within the next 6 months",
-        "More than 6 months in the future",
-        "Haven't decided"
+        "<10 cigarettes per day",
+        "10-20 cigarettes per day",
+        ">20 cigarettes per day",
+        "No"
       ]
     },
     {
-      "name": "country_interest",
+      "name": "additional_info_drinker",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "Where would you be open to travel to for your treatment?",
+      "question": "Do you drink?",
       "answers": [
-        "Turkey",
-        "Poland",
-        "Hungary",
-        "I want to stay local",
-        "Other / not sure"
+        "Daily",
+        "2-3 times per week",
+        "Once a week",
+        "Once a month",
+        "Less than once a month",
+        "Never"
       ]
     },
     {
-      "name": "urgency",
+      "name": "additional_info_treatment_education",
       "type": "radio-click",
       "validators": [
         "required"
       ],
-      "question": "What information are you looking for?",
+      "question": "How much do you know about hair transplants?",
       "answers": [
-        "A personalized price quote for which I'll send pictures",
-        "A rough cost estimate of my treatment",
-        "General information about clinics, doctors, and prices",
-        "Other / Not sure"
+        "A lot, I want to get it done now",
+        "I know people who have done it before",
+        "I'm still researching",
+        "Not much, I need more info"
+      ]
+    },
+    {
+      "name": "additional_info_priority",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "What's most important to you?",
+      "answers": [
+        "Leading specialist",
+        "Cheapest price",
+        "Extensive consultation",
+        "Fastest appointment"
+      ]
+    },
+    {
+      "name": "additional_info_country_residency",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "Where do you live?",
+      "answers": [
+        "United Kingdom",
+        "Ireland",
+        "USA",
+        "Spain",
+        "Germany",
+        "Other"
+      ],
+      "icons": [
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-uk.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-ie.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-us.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-es.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/flag-de.png",
+        "https://res.cloudinary.com/junomedical/image/upload/f_auto,c_scale,w_55/unbounce/globe.png"
+      ]
+    },
+    {
+      "name": "additional_info_travel_willingness",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "Would you be open to travelling abroad for your hair transplant?",
+      "answers": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "name": "dynamic_step12",
+      "type": "dynamic-step",
+      "validators": [
+        "required"
+      ],
+      "dynamics": [
+        {
+          "name": "additional_info_country_interest",
+          "question": "Do you already have a country in mind?",
+          "answers": [
+            "Turkey",
+            "Poland",
+            "Hungary",
+            "Portugal",
+            "Greece",
+            "Other",
+            "I'm open to all options"
+          ]
+        },
+        {
+          "name": "additional_info_distance_limits",
+          "question": "How far are you willing to drive?",
+          "answers": [
+            "less than 10km",
+            "10-50km",
+            "50-100km",
+            "100-200km",
+            "more than 200km"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "additional_info_other_treatments_interest",
+      "type": "radio-click",
+      "validators": [
+        "required"
+      ],
+      "question": "Are you interested in any other treatments?",
+      "answers": [
+        "Plastic surgery",
+        "Dentistry",
+        "Orthopedics",
+        "Other",
+        "No"
       ]
     },
     {
       "name": "additional_info_user_notes",
       "type": "textarea",
       "validators": [],
-      "question": "Is there anything else we should know?",
+      "question": "Comments",
       "answers": [],
       "label": "Additional Notes",
       "next_button": "NEXT"
@@ -84,7 +227,6 @@ exports.Strings = {
       "name": "personal_information",
       "type": "personal_information",
       "validators": [],
-      "question": "Please enter contact details to receive your personal quote",
       "label": "Additional Notes",
       "next_button": "NEXT",
       "fields": [
